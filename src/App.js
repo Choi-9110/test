@@ -8,7 +8,7 @@ import Popup from "./components/Menus/Basic management/Pop-up/Popup";
 import Push from "./components/Menus/Basic management/Push Notification Management/Push";
 import Notice from "./components/Menus/Basic management/Notice Event/Notice";
 import ForbiddenWords from "./components/Menus/Basic management/forbidden word management/ForbiddenWords";
-import Poll1 from "./components/Menus/poll/Poll1";
+import Poll1 from "./components/Menus/poll/PollList/Poll1";
 import Fullmember from "./components/Menus/Member management/Full member information/Fullmember";
 import Log from "./components/Menus/Member management/Log management/Log";
 import WithdrawalMembers from "./components/Menus/Member management/Manage withdrawal members/WithdrawalMembers";
@@ -28,7 +28,7 @@ import PushReport from "./components/Menus/Basic management/Push Notification Ma
 import CreateNewPoint from "./components/Menus/Member management/Point management/create new point/CreateNewPoint";
 import History from "./components/Menus/Member management/Point management/Point history management/History";
 import PushSending from "./components/Menus/Basic management/Push Notification Management/push sending/PushSending";
-import Tabmenu from "./components/Menus/poll/Tabmenu";
+import Tabmenu from "./components/Menus/poll/PollList/TabMenu/Tabmenu";
 import PopupRegistration from "./components/Menus/Basic management/Pop-up/popup registration/PopupRegistration";
 import MemberInformation from "./components/Menus/Member management/Full member information/Member information management/MemberInformation";
 import HistoryMangement from "./components/Menus/Member management/Withdrawal application management/Withdrawal request history/HistoryManagement";

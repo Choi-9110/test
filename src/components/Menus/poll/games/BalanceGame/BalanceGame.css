@@ -19,6 +19,15 @@
 #balancegame_write .item .desc input[type=radio] + label { min-width: 140px; font-size: 0.875rem; color: #c684ff; line-height: 44px; text-align: center; margin-right: 10px; padding: 0 20px; display: inline-block; border-radius: 10px; border: 1px solid #c684ff; cursor: pointer; transition: all 0.5s;}
 #balancegame_write .item .desc input[type=text].w100{width: 100px; margin-left: 10px; text-align: center;}
 
+/* emoji */
+#balancegame_write .item .desc .react-input-emoji--container{border: none;}
+#balancegame_write .item .desc .react-input-emoji--input{position: relative;  outline: none; border: 1px solid #ddd; height: 46px;}
+#balancegame_write .item .desc .react-input-emoji--button{position: absolute; top: 1rem; right: 0%; z-index: 1000;}
+#balancegame_write .item .desc .react-emoji{width: 100%;}
+#balancegame_write .item .desc .react-emoji-picker--wrapper{ position: absolute; bottom: 0; right: 0; height:300px; width: 400px; overflow: hidden; z-index: 10;}
+#balancegame_write .item .desc .react-emoji-picker { top: 19rem; left: 37.3rem; animation: slidein 0.1s ease-in-out; position: fixed;}
+
+
 #balancegame_write .item .desc input[type=file] {display:none;}
 #balancegame_write .item .desc input.txtR {width:180px; text-align:right;}
 #balancegame_write .item .desc input.txtR.no { background-color: #ddd;}

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "../../Poll1TotalList.css"
+import "../../PollList/Poll1TotalList.css";
 
 function AddDiv(props){
 	const [Select_1, setSelect_1] = useState("");

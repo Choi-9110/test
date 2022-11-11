@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import client from "../../client";
+import client from "../../../client";
 import "./Poll1TotalList.css";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -37,7 +37,7 @@ function Poll1TotalList(){
 		client.get("primary-poll/list")
 		.then(({data}) => setPolllist(data))
 	}, [])
-	
+
     return (
         <div className="contents">
 			<section id="poll1_search">
@@ -148,7 +148,7 @@ function Poll1TotalList(){
 
 					<tbody>
 						{polllist.map((qdata, Q_Idx)=>(
-							<tr key={Q_Idx}>
+							<tr key={Q_Idx} onClick={() => console.log("click")}>
 								<td className="num">{qdata.Q_Idx}</td>
 								<td className="state"><span className={qdata.State === 0 ? "state state" : qdata.State === 1 ? "state ongoing" : "state complete"}>{qdata.State === 0 ? "작성중" : qdata.State === 1 ? "진행중" : "완료"}</span></td>
 								<td>{qdata.Title}</td>

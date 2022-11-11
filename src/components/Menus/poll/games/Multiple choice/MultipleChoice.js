@@ -5,6 +5,7 @@ import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
 import "./MultipleChoice.css";
 import AddDiv from "./AddDiv";
+import InputEmoji from "react-input-emoji";
 
 function MulitpleChoice(){
     const [Start_Date, setStart_Date] = useState(null);
@@ -210,7 +211,13 @@ function MulitpleChoice(){
 						<div className="item">
 							<p className="title">질문을 입력해주세요.</p>
 							<div className="desc">
-								<div><input type="text" onChange={handleTitle} maxLength='30'/></div>
+								<div>
+									<InputEmoji
+										onChange={e => setTitle(e)}
+										placeholder=""
+										maxLength="30"
+									/>
+								</div>
 								<p className="comment">30자 이내로 적어주세요.</p>
 							</div>
 						</div>

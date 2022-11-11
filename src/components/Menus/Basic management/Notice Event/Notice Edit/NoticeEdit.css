@@ -26,6 +26,9 @@
 #notice-edit_write .item .desc .input-group>.react-datepicker-wrapper, #notice-edit_write .item .desc .input-group>div>.react-datepicker-wrapper{width: 200px; margin-right: 10px; background: url(../../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #notice-edit_write .item .desc .input-group>div>.react-datepicker__tab-loop{position: fixed; z-index: 1000;}
 
+/* ck에디터 */
+#notice-edit_write .item .desc .ck-reset > .ck-editor__main > .ck-content > p{font-size: 13px;}
+
 #notice-edit_btn-wrap {text-align: center;margin-top: 50px; display: flex; justify-content: center;}
 #notice-edit_btn-wrap a { min-width: 210px; display: inline-block; font-family: 'scdream5'; color: #fff; line-height: 56px; padding: 0 20px; margin: 0 5px; background: #cf7afe; transition: all 0.5s;}
 #notice-edit_btn-wrap a.btnL { color: #b2b2b2; border: 1px solid #b2b2b2; background: #fff;}

@@ -2,12 +2,15 @@ import React, {useState} from "react";
 import "./PushSending.css";
 import DatePicker from "react-datepicker";
 import {ko} from 'date-fns/esm/locale';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function PushSendingData(){
     const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
-
+	const [data, setData] = useState("")
+	console.log(data)
     return (
         <div className="contents">
 			<section id="push-sending_write">
@@ -34,7 +37,32 @@ function PushSendingData(){
 					</div>
 					<div className="item">
 						<p className="title">메시지 내용을 입력해주세요.</p>
-						<div className="desc"><textarea id="" name="" placeholder=""></textarea></div>
+						<div className="desc">
+							<CKEditor
+								editor={ClassicEditor}
+								config={{
+									placeholder: "내용을 입력하세요.",
+								}}
+
+								onReady={editor => {
+									console.log('Editor is ready to use!', editor);
+								}}
+								
+								onChange={(event, editor) => {
+									const data = editor.getData();
+									setData(data)
+								}}
+								
+								onBlur={(event, editor) => {
+									console.log('Blur.', editor);
+								}}
+								
+								onFocus={(event, editor) => {
+									console.log('Focus.', editor);
+								}}
+
+							/>
+						</div>
 					</div>
 					<div className="item">
 						<p className="title">이미지를 입력해주세요.</p>

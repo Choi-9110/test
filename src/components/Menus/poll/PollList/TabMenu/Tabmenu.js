@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import {Link} from "react-router-dom";
 import "./Tabmenu.css";
-import Sidebar from "../../sidebarmenu/Sidebar";
-import Dateprofile from "../../Dateprofile";
-import BalanceGameData from "./games/BalanceGame/BalanceGame";
-import UpDownData from "./games/Up&Down/UpDown";
-import MulitpleChoiceData from "./games/Multiple choice/MultipleChoice";
-import ScopeData from "./games/Scope/Scope";
-import ChooseScoreData from "./games/ChooseScore/ChooseScore";
+import Sidebar from "../../../../sidebarmenu/Sidebar";
+import Dateprofile from "../../../../Dateprofile";
+import BalanceGame from "../../games/BalanceGame/BalanceGame";
+import UpDown from "../../games/Up&Down/UpDown";
+import MulitpleChoice from "../../games/Multiple choice/MultipleChoice"
+import Scope from "../../games/Scope/Scope";
+import ChooseScore from "../../games/ChooseScore/ChooseScore";
 
 function Tabmenu(){
     const [tabmenu, setTabmenu] = useState(0);
@@ -28,7 +28,7 @@ function Tabmenu(){
                     <li className={parseInt(tabmenu) === 4 ? "on":""} onClick={() => setTabmenu(parseInt(4))}><a>점수 선택</a></li>
                 </ul>
 
-                {tabmenu === 0 ? <BalanceGameData/> : tabmenu === 1 ? <UpDownData/> : tabmenu === 2 ? <MulitpleChoiceData/> : tabmenu === 3 ? <ScopeData/> : tabmenu === 4 && <ChooseScoreData/>}
+                {tabmenu === 0 ? <BalanceGame/> : tabmenu === 1 ? <UpDown/> : tabmenu === 2 ? <MulitpleChoice/> : tabmenu === 3 ? <Scope/> : tabmenu === 4 && <ChooseScore/>}
             </div>
         </>
     )

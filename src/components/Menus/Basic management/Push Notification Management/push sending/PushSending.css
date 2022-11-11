@@ -46,12 +46,16 @@ input[type=radio], input[type=checkbox] {position: absolute;visibility: hidden;}
 
 #push-sending_write .item .desc span.txt { display: inline-block; font-family: 'scdream6'; font-size: 0.875rem; line-height: 46px; margin: 0 10px;}
 
+#push-sending_write .item .desc > div > input[type=text]{width: 100%;}
 #push-sending_write .item .desc > div > div > input[type=text]{width: 200px;}
 #push-sending_write .item .desc > .react-datepicker-wrapper{width: 200px; background: url(../../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #push-sending_write .item .desc > .react-datepicker__tab-loop{display: inline-flex; z-index: 1000;}
 #push-sending_write .item .desc .input-group > div > div > input[type=text]{width: 200px;}
 #push-sending_write .item .desc .input-group > .react-datepicker-wrapper{width: 200px; margin-right: 5px; background: url(../../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #push-sending_write .item .desc .input-group > .react-datepicker__tab-loop{display: inline-flex; z-index: 1000;}
+
+/* ck에디터 */
+#push-sending_write .item .desc .ck-reset > .ck-editor__main > .ck-content > p{font-size: 13px;}
 
 #push-sending_write .item .box-wrap {background: #f7f9fb;}
 #push-sending_write .item .box-wrap.type2 {margin-bottom: 10px;border: 1px solid #e8e8e8;}

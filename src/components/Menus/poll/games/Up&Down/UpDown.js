@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
 import "./UpDown.css";
+import InputEmoji from "react-input-emoji";
 
 function UpDown(){
     const formData = new FormData();
@@ -12,9 +13,9 @@ function UpDown(){
 	const [End_Date, setEnd_Date] = useState(null);
 
     const [Title, setTitle] = useState("");
-	const handleTitle = (e) => {
-		setTitle(e.target.value);
-	}
+	// const handleTitle = (e) => {
+	// 	setTitle(e.target.value);
+	// }
 
     const [Select_1, setSelect_1] = useState("");
     const handleSelect_Text1 = (e) => {
@@ -174,7 +175,13 @@ function UpDown(){
                         <div className="item">
                             <p className="title">질문을 입력해주세요.</p>
                             <div className="desc">
-                                <div><input type="text" onChange={handleTitle} maxLength='30'/></div>
+                                <div>
+									<InputEmoji
+										onChange={e => setTitle(e)}
+										placeholder=""
+										maxLength="30"
+									/>
+								</div>
                                 <p className="comment">30자 이내로 적어주세요.</p>
                             </div>
                         </div>

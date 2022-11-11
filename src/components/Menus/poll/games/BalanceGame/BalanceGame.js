@@ -4,23 +4,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
 import "./BalanceGame.css";
+import InputEmoji from "react-input-emoji";
 
 function BalanceGame(){
-
-	console.log("ACTION GOGO");
-
 	// 파일 업로드를 위한  폼데이터 
 	const formData = new FormData();
+
 	const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 	
 	
 
 	const [Title, setTitle] = useState("");
-	const handleTitle = (e) => {
-		setTitle(e.target.value);
-	}
+	// const handleTitle = (e) => {
+	// 	setTitle(e.target.value);
+	// }
 
+	console.log(Title)
 	
 
 	const [Select_1, setSelect_1] = useState("");
@@ -45,7 +45,7 @@ function BalanceGame(){
 		setMax_Personnel(parseInt(e.target.value));
 	}
 
-	const [Image, setImage] = useState("");
+	const [Image, setImage] = useState('');
 
 	const [freeImage, setfreeImage] = useState('');
 	const handlefreeImage = (fileBlob) => {       
@@ -60,7 +60,7 @@ function BalanceGame(){
 		});
 	};
 
-	const [Select_Image_1, setSelect_Image_1] = useState("");
+	const [Select_Image_1, setSelect_Image_1] = useState('');
 
 	const [freeImage1, setfreeImage1] = useState('');
 	const handlefreeImage1 = (fileBlob) => {       
@@ -77,7 +77,7 @@ function BalanceGame(){
 	};
 
 	
-	const [Select_Image_2, setSelect_Image_2] = useState("");
+	const [Select_Image_2, setSelect_Image_2] = useState('');
 
 	const [freeImage2, setfreeImage2] = useState('');
 	const handlefreeImage2 = (fileBlob) => {       
@@ -122,35 +122,36 @@ function BalanceGame(){
 	const Regist_M_Idx = null;
 	
 	//formData.append('files', )
-	
+	formData.append('files',Image)
+	formData.append('files',Select_Image_1 )
+	formData.append('files',Select_Image_2 )
+
 	const onSubmitHandler = async(e) => {
 		e.preventDefault();
 
 		console.log("■■■■■■■■■■■■■■■■■■■■■■■■");
-		formData.append('files',Image)
-		formData.append('files',Select_Image_2 )
-		formData.append('files',Select_Image_1 )
+		
 		console.log("■■■■■■■■■■■■■■■■■■■■■■■■");
 
 		// for (let key of formData.keys()) {
 		// 	console.log(key);
 		//   }
-		//   // FormData의 value 확인
+		// FormData의 value 확인
 		//   for (let value of formData.values()) {
 		// 	console.log(value);
 		//   }
    
 
 		 client.post('/uploads/fileups', formData).then((res) =>{
-			
+
+			console.log(res.data.returnValue.length);
+
+			console.log(res)
 			const Image = res.data.returnValue[0];
-			const Select_Image_1 =res.data.returnValue[1];
+			const Select_Image_1 = res.data.returnValue[1];
 			const Select_Image_2 = res.data.returnValue[2];
-			
-			console.log('data in one');
-			console.log(Image);
-			
-			 client.post('/primary-poll/create', {
+
+			client.post('/primary-poll/create', {
 				Title,
 				Image,
 				State,
@@ -166,9 +167,6 @@ function BalanceGame(){
 			}).then(({data}) => {
 				const primaryPoll = data.Q_Idx;
 
-				console.log('data in two');
-				console.log(data.Q_Idx);
-				console.log(primaryPoll);
 				client.post('/primary-poll-item/create', {
 					primaryPoll,
 					Select_Image_1,
@@ -219,7 +217,13 @@ function BalanceGame(){
 						<div className="item">
 							<p className="title">질문을 입력해주세요.</p>
 							<div className="desc">
-								<div><input type="text" onChange={handleTitle} maxLength='30'/></div>
+								<div>
+									<InputEmoji
+										onChange={e => setTitle(e)}
+										placeholder=""
+										maxLength="30"
+									/>
+								</div>
 								<p className="comment">30자 이내로 적어주세요.</p>
 							</div>
 						</div>

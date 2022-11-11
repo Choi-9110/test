@@ -4,6 +4,8 @@ import {ko} from 'date-fns/esm/locale';
 import "./NoticeEdit.css";
 import client from "../../../../client";
 import { Link } from "react-router-dom";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function NoticeEditData(){
     const [Start_Date, setStart_Date] = useState(null);
@@ -48,9 +50,7 @@ function NoticeEditData(){
 	};
 
 	const [Content, setContent] = useState("");
-	const handleContents = (e) => {
-		setContent(e.target.value);
-	}
+	console.log(Content)
 
 	const [endcheck, setEndcheck] = useState(false);
 
@@ -117,7 +117,32 @@ function NoticeEditData(){
 				<div className="item">
 					<p className="title">내용을 입력해주세요.</p>
 					<div className="desc">
-						<div><textarea id="" name="" placeholder="" onChange={handleContents}></textarea></div>
+						<div>
+							<CKEditor
+								editor={ClassicEditor}
+								config={{
+									placeholder: "내용을 입력하세요.",
+								}}
+
+								onReady={editor => {
+									console.log('Editor is ready to use!', editor);
+								}}
+								
+								onChange={(event, editor) => {
+									const data = editor.getData();
+									setContent(data)
+								}}
+								
+								onBlur={(event, editor) => {
+									console.log('Blur.', editor);
+								}}
+								
+								onFocus={(event, editor) => {
+									console.log('Focus.', editor);
+								}}
+
+							/>	
+						</div>
 					</div>
 				</div>
 				<div className="item">

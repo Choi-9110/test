@@ -45,6 +45,14 @@
 #multiple_write .item .box-wrap .box { padding: 20px; margin-bottom: -1px; border: 1px solid #e8e8e8; background-size: 20px auto; z-index: 0;}
 #multiple_write .item .desc button.btn-add { display: block; font-family: 'scdream5'; width: 100%; font-weight: bold; line-height: 54px; color: #c684ff; text-align: center; margin-top: 10px; border: 1px solid #c684ff; background: none; cursor: pointer;}
 
+/* emoji */
+#multiple_write .item .desc .react-input-emoji--container{border: none;}
+#multiple_write .item .desc .react-input-emoji--input{position: relative;  outline: none; border: 1px solid #ddd; height: 46px;}
+#multiple_write .item .desc .react-input-emoji--button{position: absolute; top: 1rem; right: 0%; z-index: 1000;}
+#multiple_write .item .desc .react-emoji{width: 100%;}
+#multiple_write .item .desc .react-emoji-picker--wrapper{ position: absolute; bottom: 0; right: 0; height:300px; width: 400px; overflow: hidden; z-index: 10;}
+#multiple_write .item .desc .react-emoji-picker { top: 19rem; left: 37.3rem; animation: slidein 0.1s ease-in-out; position: fixed;}
+
 #multiple_write .item .desc .boxs>.comment.one{margin-bottom: 15px;}
 
 #multiple_write .item .boxs{position: relative;}

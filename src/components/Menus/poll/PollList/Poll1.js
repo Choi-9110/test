@@ -1,7 +1,7 @@
 import React from "react";
 import Poll1TotalList from "./Poll1TotalList";
-import Sidebar from "../../sidebarmenu/Sidebar";
-import Dateprofile from "../../Dateprofile";
+import Sidebar from "../../../sidebarmenu/Sidebar";
+import Dateprofile from "../../../Dateprofile";
 import { Link } from "react-router-dom";
 
 function Poll1(){
