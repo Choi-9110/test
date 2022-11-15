@@ -216,45 +216,45 @@ function ChooseScore(){
 							</div>
 						</div>
                         <div className="item">
-						<p className="title">척도 단계</p>
-						<div className="desc">
-							<select onChange={(e) => setScale_Unit(parseInt(e.target.value))}>
-								<option value="선택">선택</option>
-								<option value="3">3점</option>
-								<option value="4">4점</option>
-								<option value="5">5점</option>
-								<option value="6">6점</option>
-								<option value="7">7점</option>
-								<option value="8">8점</option>
-								<option value="9">9점</option>
-								<option value="10">10점</option>
-								<option value="11">11점</option>
-							</select>
+							<p className="title">척도 단계</p>
+							<div className="desc">
+								<select onChange={(e) => setScale_Unit(parseInt(e.target.value))}>
+									<option value="선택">선택</option>
+									<option value="3">3점</option>
+									<option value="4">4점</option>
+									<option value="5">5점</option>
+									<option value="6">6점</option>
+									<option value="7">7점</option>
+									<option value="8">8점</option>
+									<option value="9">9점</option>
+									<option value="10">10점</option>
+									<option value="11">11점</option>
+								</select>
+							</div>
 						</div>
-					</div>
-					<div className="item">
-						<p className="title">점수를 적어주세요.</p>
-						<div className="desc">
-							<ol className="progress-bar">
-								<li>
-									<div className="top"><input type="text" id="" name="" placeholder="숫자 입력" onChange={handleScale_Start}/></div>
-									<div className="bottom"><input type="text" id="" name="" placeholder="왼쪽 입력" onChange={handleScale_Start_Text}/></div>
-								</li>
-								<li></li>
-								<li></li>
-								<li>
-                                    {/* {Scale_Unit % 2 === 1 ? <div className="top">{Math.floor(Scale_Unit / 2 + 1)}</div> : false} */}
-                                    <div className="bottom"><input type="text" placeholder="가운데 입력" onChange={handleScale_Mid_Text}/></div>
-								</li>
-								<li></li>
-								<li></li>
-								<li>
-									<div className="top"><input type="text" id="" name="" placeholder="숫자 입력" onChange={handleScale_End}/></div>
-									<div className="bottom"><input type="text" id="" name="" placeholder="오른쪽 입력" onChange={handleScale_End_Text}/></div>
-								</li>
-							</ol>
+						<div className="item">
+							<p className="title">점수를 적어주세요.</p>
+							<div className="desc">
+								<ol className="progress-bar">
+									<li>
+										<div className="top"><input type="text" id="" name="" placeholder="숫자 입력" onChange={handleScale_Start}/></div>
+										<div className="bottom"><input type="text" id="" name="" placeholder="왼쪽 입력" onChange={handleScale_Start_Text}/></div>
+									</li>
+									<li></li>
+									<li></li>
+									<li>
+										{/* {Scale_Unit % 2 === 1 ? <div className="top">{Math.floor(Scale_Unit / 2 + 1)}</div> : false} */}
+										<div className="bottom"><input type="text" placeholder="가운데 입력" onChange={handleScale_Mid_Text}/></div>
+									</li>
+									<li></li>
+									<li></li>
+									<li>
+										<div className="top"><input type="text" id="" name="" placeholder="숫자 입력" onChange={handleScale_End}/></div>
+										<div className="bottom"><input type="text" id="" name="" placeholder="오른쪽 입력" onChange={handleScale_End_Text}/></div>
+									</li>
+								</ol>
+							</div>
 						</div>
-					</div>
 						<div className="item">
 							<p className="title">폴 시작일</p>
 							<div className="desc">

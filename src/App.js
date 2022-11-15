@@ -34,6 +34,7 @@ import MemberInformation from "./components/Menus/Member management/Full member 
 import HistoryMangement from "./components/Menus/Member management/Withdrawal application management/Withdrawal request history/HistoryManagement";
 import MemberInfo from "./components/Menus/Member management/Manage withdrawal members/Withdrawal Member Info/MemberInfo";
 import MemberHistory from "./components/Menus/Member management/Manage withdrawal members/Withdrawal Member History/MemberHistory";
+import Correct from "./components/Menus/poll/PollList/Correct/Correct";
 
 
 function App(){
@@ -74,6 +75,7 @@ function App(){
                 {/* 1차 폴 */}
                 <Route path="polltotallist" element={<Poll1/>}/>
                     <Route path="polltotallist/pollgamelist" element={<Tabmenu/>}/>
+                    <Route path="polltotallist/pollcorrect" element={<Correct/>}/>
 
                 <Route path="fulllist1" element={<FullList/>}/>
                 <Route path="waitinglist1" element={<WaitingList/>}/>

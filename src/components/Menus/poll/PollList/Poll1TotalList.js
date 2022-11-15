@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import DatePicker from "react-datepicker";
 import {ko} from 'date-fns/esm/locale';
+import { useNavigate } from "react-router-dom";
 
 function Poll1TotalList(){
+	const [polldata, setpolldata] = useState();
+
 	const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
@@ -37,6 +40,8 @@ function Poll1TotalList(){
 		client.get("primary-poll/list")
 		.then(({data}) => setPolllist(data))
 	}, [])
+
+	const navigate = useNavigate();
 
     return (
         <div className="contents">
@@ -148,7 +153,15 @@ function Poll1TotalList(){
 
 					<tbody>
 						{polllist.map((qdata, Q_Idx)=>(
-							<tr key={Q_Idx} onClick={() => console.log("click")}>
+							<tr key={Q_Idx} name={Q_Idx} onClick={() => {
+
+								navigate("/polltotallist/pollcorrect", {
+									state: {
+										data: qdata.Q_Idx
+									}
+								})
+								}}
+							>
 								<td className="num">{qdata.Q_Idx}</td>
 								<td className="state"><span className={qdata.State === 0 ? "state state" : qdata.State === 1 ? "state ongoing" : "state complete"}>{qdata.State === 0 ? "작성중" : qdata.State === 1 ? "진행중" : "완료"}</span></td>
 								<td>{qdata.Title}</td>

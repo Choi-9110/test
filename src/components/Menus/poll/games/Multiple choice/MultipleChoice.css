@@ -11,6 +11,7 @@
 #multiple_write .item .desc #btnAtt:before {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:2px; height:28px; background:#e8e8e8; content:'';}
 #multiple_write .item .desc #btnAtt:after {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:28px; height:2px; background:#e8e8e8; content:'';}
 #multiple_write .item .desc #photo-view .preview-img{width: 280px; height: 140px; object-fit: cover;}
+#multiple_write .item .desc .img-photo #photo-view { display: inline-block;}
 
 #multiple_write .item .desc input[type=radio]{display: none;}
 #multiple_write .item .desc input[type=radio]:checked + label { color: #fff; background: #c684ff;}

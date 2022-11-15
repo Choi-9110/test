@@ -18,12 +18,12 @@ function UpDown(){
 	// }
 
     const [Select_1, setSelect_1] = useState("");
-    const handleSelect_Text1 = (e) => {
+    const handleSelect_Text_1 = (e) => {
         setSelect_1(e.target.value);
     }
 
     const [Select_2, setSelect_2] = useState("");
-    const handleSelect_Text2 = (e) => {
+    const handleSelect_Text_2 = (e) => {
         setSelect_2(e.target.value);
     }
 
@@ -198,8 +198,8 @@ function UpDown(){
                         <div className="item">
                             <p className="title">응답옵션을 선택해주세요.</p>
                             <div className="desc">
-                                <input type="text" className="w180" onChange={handleSelect_Text1} placeholder="좋아요 (기본값)" />
-                                <input type="text" className="w180" onChange={handleSelect_Text2} placeholder="싫어요 (기본값)" />
+                                <input type="text" className="w180" onChange={handleSelect_Text_1} placeholder="좋아요 (기본값)" />
+                                <input type="text" className="w180" onChange={handleSelect_Text_2} placeholder="싫어요 (기본값)" />
                             </div>
                         </div>
                         <div className="item">

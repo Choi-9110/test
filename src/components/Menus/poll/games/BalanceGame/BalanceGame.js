@@ -16,12 +16,6 @@ function BalanceGame(){
 	
 
 	const [Title, setTitle] = useState("");
-	// const handleTitle = (e) => {
-	// 	setTitle(e.target.value);
-	// }
-
-	console.log(Title)
-	
 
 	const [Select_1, setSelect_1] = useState("");
     const handleSelect_Text_1 = (e) => {
@@ -48,18 +42,27 @@ function BalanceGame(){
 	const [Image, setImage] = useState('');
 
 	const [freeImage, setfreeImage] = useState('');
-	const handlefreeImage = (fileBlob) => {       
-		const reader = new FileReader();         
-		reader.readAsDataURL(fileBlob);		
-		setImage(fileBlob);       
-		return new Promise((resolve) => {        
-			reader.onload = () => {         
-				setfreeImage(reader.result);          
+	const handlefreeImage = (fileBlob) => {
+		const reader = new FileReader();
+		if(fileBlob){
+			reader.readAsDataURL(fileBlob);
+			setImage(fileBlob);
+		}
+
+		return new Promise((resolve) => {
+			reader.onload = () => {
+				setfreeImage(reader.result);
 				resolve();
 			};
-		});
+		});	
 	};
 
+	const removeImg = () => {
+		setImage('')
+		setfreeImage('')
+	}
+
+	
 	const [Select_Image_1, setSelect_Image_1] = useState('');
 
 	const [freeImage1, setfreeImage1] = useState('');
@@ -84,9 +87,9 @@ function BalanceGame(){
 		const reader = new FileReader();         
 		reader.readAsDataURL(fileBlob);
 		
-		setSelect_Image_2(fileBlob);       
-		return new Promise((resolve) => {        
-			reader.onload = () => {         
+		setSelect_Image_2(fileBlob);   
+		return new Promise((resolve) => {
+			reader.onload = () => {
 				setfreeImage2(reader.result);          
 				resolve();
 			};
@@ -122,25 +125,18 @@ function BalanceGame(){
 	const Regist_M_Idx = null;
 	
 	//formData.append('files', )
-	formData.append('files',Image)
-	formData.append('files',Select_Image_1 )
-	formData.append('files',Select_Image_2 )
-
+	formData.append('files', Image)
+	formData.append('files', Select_Image_1)
+	formData.append('files', Select_Image_2)
+	// for (let key of formData.keys()) {
+	// 		console.log(key);
+	// 	  }
+	// 	// FormData의 value 확인
+	//   for (let value of formData.values()) {
+	// 	console.log(value);
+	//   }
 	const onSubmitHandler = async(e) => {
 		e.preventDefault();
-
-		console.log("■■■■■■■■■■■■■■■■■■■■■■■■");
-		
-		console.log("■■■■■■■■■■■■■■■■■■■■■■■■");
-
-		// for (let key of formData.keys()) {
-		// 	console.log(key);
-		//   }
-		// FormData의 value 확인
-		//   for (let value of formData.values()) {
-		// 	console.log(value);
-		//   }
-   
 
 		 client.post('/uploads/fileups', formData).then((res) =>{
 
@@ -150,7 +146,7 @@ function BalanceGame(){
 			const Image = res.data.returnValue[0];
 			const Select_Image_1 = res.data.returnValue[1];
 			const Select_Image_2 = res.data.returnValue[2];
-
+			
 			client.post('/primary-poll/create', {
 				Title,
 				Image,
@@ -231,8 +227,8 @@ function BalanceGame(){
 							<p className="title">질문 이미지를 추가해주세요.</p>
 							<div className="desc">
 								<div className="img-photo">
-									<label id='btnAtt'><input type='file' multiple={true} onChange={(e) => {handlefreeImage(e.target.files[0])}}/></label>
-									<div id="photo-view">{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}</div>
+									<label id='btnAtt'><input type='file' multiple={true} onChange={(e) => {handlefreeImage(e.target.files[0]); e.target.value="";}}/></label>
+									{freeImage && <div id="photo-view"><img className="preview-img" src={freeImage} alt="preview-img"/><input type="button" value="X" className="deleteImg" onClick={removeImg}/></div>}
 								</div>
 								<p className="comment">권장 크기 : 1000 x 500</p>
 							</div>
@@ -241,14 +237,13 @@ function BalanceGame(){
 							<p className="title">보기를 입력해주세요.</p>
 							<div className="desc">
 								<div className="boxs">
-									<input className="ex-box" type="text" onChange={handleSelect_Text_1} placeholder="보기를 입력해주세요."></input>
-									<div id="photo">{freeImage1 && <img className="preview-img1" src={freeImage1} alt="preview-img"/>}</div>
+									<input className="ex-box" type="text" onChange={handleSelect_Text_1} placeholder="보기를 입력해주세요."/>
 									<label id="btnAtt2"><input type="file" onChange={(e) => {handlefreeImage1(e.target.files[0])}}/>이미지 추가</label>
+									<label id="btnAtt3"><input type="button" value="이미지 삭제"/></label>
 									<p className="comment one">권장 크기: 1,000 x 1,000</p>
 								</div>
 								<div className="boxs">
-									<input className="ex-box" type="text" onChange={handleSelect_Text_2} placeholder="보기를 입력해주세요."></input>
-									<div id="photo">{freeImage2 && <img className="preview-img2" src={freeImage2} alt="preview-img"/>}</div>
+									<input className="ex-box" type="text" onChange={handleSelect_Text_2} placeholder="보기를 입력해주세요."/>
 									<label id="btnAtt2"><input type="file" onChange={(e) => {handlefreeImage2(e.target.files[0])}}/>이미지 추가</label>
 									<p className="comment">권장 크기: 1,000 x 1,000</p>
 								</div>

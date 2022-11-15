@@ -48,6 +48,7 @@ input[type=file], input[type=url], input[type=number], input[type=date], textare
 #poll1_list table .reward {width:8%;}
 #poll1_list table .people {width:8%;}
 #poll1_list table .management {width:11%;}
+#poll1_list table tbody tr{cursor: pointer;}
 #poll1_list table thead th {font-family:'scdream6'; font-size:0.875rem; line-height:70px; border-bottom:1px solid #e8e8e8;}
 #poll1_list table td {min-height:70px; font-size:0.875rem; text-align:center; padding:15px 0; border-bottom:1px solid #e8e8e8;}
 #poll1_list table span.state {color:#b2b2b2; font-weight: bold;}

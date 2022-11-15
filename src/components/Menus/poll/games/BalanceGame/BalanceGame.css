@@ -10,7 +10,9 @@
 #balancegame_write .item .desc #btnAtt {position:relative; width:280px; height:140px; display:inline-block; vertical-align:top; cursor:pointer; border: 1px dashed #e8e8e8;}
 #balancegame_write .item .desc #btnAtt:before {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:2px; height:28px; background:#e8e8e8; content:'';}
 #balancegame_write .item .desc #btnAtt:after {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:28px; height:2px; background:#e8e8e8; content:'';}
-#balancegame_write .item .desc #photo-view .preview-img{width: 280px; height: 140px; object-fit: cover;}
+#balancegame_write .item .desc .img-photo #photo-view {position: absolute; left: 2rem; top: auto; display: inline-block;}
+#balancegame_write .item .desc .img-photo #photo-view .preview-img{width: 280px; height: 140px; object-fit: cover;}
+#balancegame_write .item .desc .img-photo #photo-view input[type=button] {position: absolute; width: 280px; height: 2.3rem; bottom: 0; left: 0; background: black; color: white; font-size: 1rem; opacity: 0.7; cursor: pointer;}
 
 #balancegame_write .item .desc .react-datepicker-wrapper{background: url(../../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 
@@ -59,15 +61,6 @@
 #balancegame_write .item .boxs{position: relative;}
 #balancegame_write .item .boxs #btnAtt2 { position: absolute; right: .6rem; top: 0.3rem; width: auto; height: auto; font-size: 0.875rem; color: #fff; line-height: 36px; text-align: center; padding: 0 10px; border-radius: 5px; background: #c684ff; background-size: 20px; cursor: pointer;}
 #balancegame_write .item .boxs #btnAtt2:hover{ background: #b46ef0; transition: all 0.5s;}
-
-#balancegame_write .item .progress-bar {display:table; table-layout:fixed; width:100%; margin:0;}
-#balancegame_write .item .progress-bar li {position:relative; display:table-cell; float:left; width:14.28%; text-align:center; font-weight: bold;}
-#balancegame_write .item .progress-bar li:before {position:relative; width:30px; height:30px; display:block; margin:60px auto; border-radius:50%; border:5px solid #c684ff; background:#fff; z-index:1; content:'';}
-#balancegame_write .item .progress-bar li:after {position:absolute; top:50%; transform:translateY(-50%); left:-50%; width:100%; height:10px; background:#f1e1ff; z-index:0; content:'';}
-#balancegame_write .item .progress-bar li:first-child:after {display:none;}
-#balancegame_write .item .progress-bar .top {position:absolute; top:0; left:50%; transform:translateX(-50%); font-size: 1.5rem;}
-#balancegame_write .item .progress-bar .bottom {position:absolute; bottom:0; left:50%; transform:translateX(-50%);}
-#balancegame_write .item .progress-bar input[type=text] {text-align:center; padding:0;}
 
 #balancegame_btn-wrap {text-align:center; margin-top:50px; justify-content: center; display: flex; align-items: center;}
 #balancegame_btn-wrap a {min-width:210px; display:inline-block; font-family:'scdream5'; color:#fff; line-height:56px; padding:0 20px; margin:0 5px; background:#cf7afe; transition:all 0.5s;}
