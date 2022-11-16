@@ -10,8 +10,9 @@
 #choosescore_write .item .desc #btnAtt {position:relative; width:280px; height:140px; display:inline-block; vertical-align:top; cursor:pointer; border: 1px dashed #e8e8e8;}
 #choosescore_write .item .desc #btnAtt:before {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:2px; height:28px; background:#e8e8e8; content:'';}
 #choosescore_write .item .desc #btnAtt:after {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:28px; height:2px; background:#e8e8e8; content:'';}
-#choosescore_write .item .desc #photo-view .preview-img{width: 280px; height: 140px; object-fit: cover;}
-#choosescore_write .item .desc .img-photo #photo-view { display: inline-block;}
+#choosescore_write .item .desc .img-photo #photo-view { position: absolute; left: 2rem; top: auto; display: inline-block;}
+#choosescore_write .item .desc .img-photo #photo-view .preview-img{width: 280px; height: 140px; object-fit: cover;}
+#choosescore_write .item .desc .img-photo #photo-view input[type=button].deleteImg {position: absolute; width: 280px; height: 2.3rem; bottom: 0; left: 0; background: black; color: white; font-size: 1rem; opacity: 0.7; cursor: pointer;}
 
 #choosescore_write .item .desc select { position: relative; height: 46px; font-size: 0.75rem; padding: 0 31px 0 10px; margin: 0; border: 1px solid #e8e8e8; border-radius: 0; vertical-align: middle; background: #fff;}
 

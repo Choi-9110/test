@@ -5,6 +5,7 @@ import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
 import "./UpDown.css";
 import InputEmoji from "react-input-emoji";
+import Dropzone from 'react-dropzone';
 
 function UpDown(){
     const formData = new FormData();
@@ -13,16 +14,13 @@ function UpDown(){
 	const [End_Date, setEnd_Date] = useState(null);
 
     const [Title, setTitle] = useState("");
-	// const handleTitle = (e) => {
-	// 	setTitle(e.target.value);
-	// }
 
-    const [Select_1, setSelect_1] = useState("");
+    const [Select_1, setSelect_1] = useState("좋아요");
     const handleSelect_Text_1 = (e) => {
         setSelect_1(e.target.value);
     }
 
-    const [Select_2, setSelect_2] = useState("");
+    const [Select_2, setSelect_2] = useState("싫어요");
     const handleSelect_Text_2 = (e) => {
         setSelect_2(e.target.value);
     }
@@ -53,6 +51,11 @@ function UpDown(){
 			};      
 		});
 	};
+
+	const removeImg = () => {
+		setImage('')
+		setfreeImage('')
+	}
 
     const Type = 1;
     const Max_Choice = 1;
@@ -189,8 +192,21 @@ function UpDown(){
                             <p className="title">질문 이미지를 추가해주세요.</p>
                             <div className="desc">
                                 <div className="img-photo">
-                                    <label id='btnAtt'><input type='file' multiple={true} onChange={(e) => {handlefreeImage(e.target.files[0])}}/></label>
-                                    <div id="photo-view">{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}</div>
+									<Dropzone onDrop={acceptedFiles => {
+										console.log(acceptedFiles)
+										setImage(acceptedFiles[0]); 
+										handlefreeImage(acceptedFiles[0]);
+										}}>
+										{({getRootProps, getInputProps}) => (
+											<div id="btnAtt" {...getRootProps()}>
+												<input {...getInputProps()} />
+											</div>      
+										)}
+									</Dropzone>
+									{freeImage ? <div id="photo-view">
+										<img className="preview-img" src={freeImage} alt="preview-img"/>
+										<input type="button" value="X" className="deleteImg" onClick={removeImg}/>
+									</div> : null}
                                 </div>
                                 <p className="comment">권장 크기 : 1000 x 500</p>
                             </div>
@@ -262,10 +278,25 @@ function UpDown(){
                         <h4>미리보기</h4>
                         <div className="phone">
                             <div className="desc">
-                                <div>{Title}</div>
-								<div>{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}</div>
-								<p>{Select_1}</p><p>{Select_2}</p>
-								<div>{Rewards}<br/>{Max_Personnel}</div>
+								<div className="modal">
+									<ul className="info">
+										<li>리워드: {Rewards === NaN ? 0 : Rewards}</li>
+										<li>참여 인원수: {Max_Personnel}명</li>
+										<li>Up&Down</li>
+									</ul>
+									<p className="title">{Title}</p>
+									<p className="date">날짜</p>
+									{Image === "" ? null : 
+										<div className="titleImg">
+											{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}
+										</div>}
+									<div className="updowns">
+										<ul className="updown">
+											<li>{Select_1}</li>
+											<li>{Select_2}</li>
+										</ul>
+									</div>
+								</div>
                             </div>
                         </div>
                     </div>

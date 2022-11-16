@@ -10,8 +10,9 @@
 #scope_write .item .desc #btnAtt {position:relative; width:280px; height:140px; display:inline-block; vertical-align:top; cursor:pointer; border: 1px dashed #e8e8e8;}
 #scope_write .item .desc #btnAtt:before {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:2px; height:28px; background:#e8e8e8; content:'';}
 #scope_write .item .desc #btnAtt:after {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:28px; height:2px; background:#e8e8e8; content:'';}
-#scope_write .item .desc #photo-view .preview-img{width: 280px; height: 140px; object-fit: cover;}
-#scope_write .item .desc .img-photo #photo-view { display: inline-block;}
+#scope_write .item .desc .img-photo #photo-view { position: absolute; left: 2rem; top: auto; display: inline-block;}
+#scope_write .item .desc .img-photo #photo-view .preview-img{width: 280px; height: 140px; object-fit: cover;}
+#scope_write .item .desc .img-photo #photo-view input[type=button].deleteImg {position: absolute; width: 280px; height: 2.3rem; bottom: 0; left: 0; background: black; color: white; font-size: 1rem; opacity: 0.7; cursor: pointer;}
 
 #scope_write .item .desc input[type=radio]{display: none;}
 #scope_write .item .desc input[type=radio]:checked + label { color: #fff; background: #c684ff;}

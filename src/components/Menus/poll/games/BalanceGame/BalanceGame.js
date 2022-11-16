@@ -5,6 +5,7 @@ import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
 import "./BalanceGame.css";
 import InputEmoji from "react-input-emoji";
+import Dropzone from 'react-dropzone';
 
 function BalanceGame(){
 	// 파일 업로드를 위한  폼데이터 
@@ -29,14 +30,25 @@ function BalanceGame(){
         setSelect_2(e.target.value);
     }
 
-	const [Rewards, setRewards] = useState();
+	const [Rewards, setRewards] = useState(Number);
 	const handleRewards = (e) => {
-		setRewards(parseInt(e.target.value));
+
+		if(!parseInt(e.target.value)){
+			setRewards(0);
+		}else{
+			setRewards(parseInt(e.target.value));
+		}
+		
 	}
 
-	const [Max_Personnel, setMax_Personnel] = useState();
+	const [Max_Personnel, setMax_Personnel] = useState(Number);
 	const handleMax_Personnel = (e) => {
-		setMax_Personnel(parseInt(e.target.value));
+
+		if(!parseInt(e.target.value)){
+			setMax_Personnel(0);
+		}else{
+			setMax_Personnel(parseInt(e.target.value));
+		}
 	}
 
 	const [Image, setImage] = useState('');
@@ -79,6 +91,14 @@ function BalanceGame(){
 		});
 	};
 
+	const removeSelectImg1 = () => {
+		setSelect_Image_1('')
+		setfreeImage1('')
+	}
+	const removeSelectImg2 = () => {
+		setSelect_Image_2('')
+		setfreeImage2('')
+	}
 	
 	const [Select_Image_2, setSelect_Image_2] = useState('');
 
@@ -227,8 +247,21 @@ function BalanceGame(){
 							<p className="title">질문 이미지를 추가해주세요.</p>
 							<div className="desc">
 								<div className="img-photo">
-									<label id='btnAtt'><input type='file' multiple={true} onChange={(e) => {handlefreeImage(e.target.files[0]); e.target.value="";}}/></label>
-									{freeImage && <div id="photo-view"><img className="preview-img" src={freeImage} alt="preview-img"/><input type="button" value="X" className="deleteImg" onClick={removeImg}/></div>}
+									<Dropzone onDrop={acceptedFiles => {
+										console.log(acceptedFiles)
+										setImage(acceptedFiles[0]);
+										handlefreeImage(acceptedFiles[0]);
+										}}>
+										{({getRootProps, getInputProps}) => (
+											<div id="btnAtt" {...getRootProps()}>
+												<input {...getInputProps()} />
+											</div>      
+										)}
+									</Dropzone>
+									{freeImage ? <div id="photo-view">
+										<img className="preview-img" src={freeImage} alt="preview-img"/>
+										<input type="button" value="X" className="deleteImg" onClick={removeImg}/>
+									</div> : null}
 								</div>
 								<p className="comment">권장 크기 : 1000 x 500</p>
 							</div>
@@ -236,15 +269,42 @@ function BalanceGame(){
 						<div className="item">
 							<p className="title">보기를 입력해주세요.</p>
 							<div className="desc">
-								<div className="boxs">
-									<input className="ex-box" type="text" onChange={handleSelect_Text_1} placeholder="보기를 입력해주세요."/>
-									<label id="btnAtt2"><input type="file" onChange={(e) => {handlefreeImage1(e.target.files[0])}}/>이미지 추가</label>
-									<label id="btnAtt3"><input type="button" value="이미지 삭제"/></label>
-									<p className="comment one">권장 크기: 1,000 x 1,000</p>
+								<div className="boxs boxsone">
+									<input className="ex-box" type="text" onChange={handleSelect_Text_1} placeholder="보기를 입력해주세요." maxLength="30"/>
+									<Dropzone onDrop={acceptedFiles => {
+										console.log(acceptedFiles)
+										setSelect_Image_1(acceptedFiles[0]);
+										handlefreeImage1(acceptedFiles[0]);
+										}}>
+										{({getRootProps, getInputProps}) => (
+											<div id="btnAtt2" {...getRootProps()}>
+												<input {...getInputProps()} />
+											</div>      
+										)}
+									</Dropzone>
+									{freeImage1 ? <div id="photo-view">
+										<img className="preview-img" src={freeImage1} alt="preview-img"/>
+										<input type="button" value="X" className="deleteImg" onClick={removeSelectImg1}/>
+									</div> : null}
+									<p className="comment">권장 크기: 1,000 x 1,000</p>
 								</div>
 								<div className="boxs">
-									<input className="ex-box" type="text" onChange={handleSelect_Text_2} placeholder="보기를 입력해주세요."/>
-									<label id="btnAtt2"><input type="file" onChange={(e) => {handlefreeImage2(e.target.files[0])}}/>이미지 추가</label>
+									<input className="ex-box" type="text" onChange={handleSelect_Text_2} placeholder="보기를 입력해주세요." maxLength="30"/>
+									<Dropzone onDrop={acceptedFiles => {
+										console.log(acceptedFiles)
+										setSelect_Image_2(acceptedFiles[0]);
+										handlefreeImage2(acceptedFiles[0]);
+										}}>
+										{({getRootProps, getInputProps}) => (
+											<div id="btnAtt2" {...getRootProps()}>
+												<input {...getInputProps()} />
+											</div>      
+										)}
+									</Dropzone>
+									{freeImage2 ? <div id="photo-view">
+										<img className="preview-img" src={freeImage2} alt="preview-img"/>
+										<input type="button" value="X" className="deleteImg" onClick={removeSelectImg2}/>
+									</div> : null}
 									<p className="comment">권장 크기: 1,000 x 1,000</p>
 								</div>
 							</div>
@@ -303,18 +363,42 @@ function BalanceGame(){
 								<div><input type="text" className="txtR" onChange={handleMax_Personnel}/><span className="txt">명</span></div>
 							</div>
 						</div>
+						<div className="item">
+							<p className="title">승인</p>
+							<div className="desc">
+							<p className="chkBox"><input type="checkbox" id="agr-chk" name="" /><label htmlFor="agr-chk"></label></p>
+							</div>
+						</div>
 					</div>
 
 					<div className="right preview">
 						<h4>미리보기</h4>
 						<div className="phone">
 							<div className="desc">
-								<div>{Title}</div>
-								<div>{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}</div>
-								<div>{freeImage1 && <img className="preview-img1" src={freeImage1} alt="preview-img"/>}
-									{freeImage2 && <img className="preview-img1" src={freeImage2} alt="preview-img"/>}</div>
-								<div>{Select_1} {Select_2}</div>
-								<div>{Rewards}<br/>{Max_Personnel}</div>
+								<div className="modal">
+									<ul className="info">
+										<li>리워드: {Rewards === NaN ? 0 : Rewards}</li>
+										<li>참여 인원수: {Max_Personnel}명</li>
+										<li>밸런스 게임</li>
+									</ul>
+									<p className="title">{Title}</p>
+									<p className="date">날짜</p>
+									{Image === "" ? null : 
+										<div className="titleImg">
+											{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}
+										</div>}
+									<div className="balances">
+										<ul className="balance">
+											<li>{freeImage1 && <img className="preview-img1" src={freeImage1} alt="preview-img"/>}</li>
+											<li><p>{Select_1}</p></li>
+										</ul>
+										{Select_Image_1 && Select_Image_2 ? <span className="vs">VS</span> : null}
+										<ul className="balance">
+											<li>{freeImage2 && <img className="preview-img1" src={freeImage2} alt="preview-img"/>}</li>
+											<li><p>{Select_2}</p></li>
+										</ul>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

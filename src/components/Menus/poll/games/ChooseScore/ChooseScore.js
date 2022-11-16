@@ -5,6 +5,7 @@ import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
 import "./ChooseScore.css";
 import InputEmoji from "react-input-emoji";
+import Dropzone from 'react-dropzone';
 
 function ChooseScore(){
 	const formData = new FormData();
@@ -13,9 +14,6 @@ function ChooseScore(){
 	const [End_Date, setEnd_Date] = useState(null);
 	
 	const [Title, setTitle] = useState("");
-	const handleTitle = (e) => {
-		setTitle(e.target.value);
-	}
 
 	const [Rewards, setRewards] = useState();
 	const handleRewards = (e) => {
@@ -41,6 +39,11 @@ function ChooseScore(){
 			};
 		});
 	};
+
+	const removeImg = () => {
+		setImage('')
+		setfreeImage('')
+	}
 
     const [Scale_Start, setScale_Start] = useState();
     const handleScale_Start = (e) => {
@@ -209,8 +212,21 @@ function ChooseScore(){
 							<p className="title">질문 이미지를 추가해주세요.</p>
 							<div className="desc">
 								<div className="img-photo">
-									<label id='btnAtt'><input type='file' multiple={true} onChange={(e) => {handlefreeImage(e.target.files[0])}}/></label>
-									<div id="photo-view">{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}</div>
+									<Dropzone onDrop={acceptedFiles => {
+										console.log(acceptedFiles)
+										setImage(acceptedFiles[0]); 
+										handlefreeImage(acceptedFiles[0]);
+										}}>
+										{({getRootProps, getInputProps}) => (
+											<div id="btnAtt" {...getRootProps()}>
+												<input {...getInputProps()} />
+											</div>      
+										)}
+									</Dropzone>
+									{freeImage ? <div id="photo-view">
+										<img className="preview-img" src={freeImage} alt="preview-img"/>
+										<input type="button" value="X" className="deleteImg" onClick={removeImg}/>
+									</div> : null}
 								</div>
 								<p className="comment">권장 크기 : 1000 x 500</p>
 							</div>

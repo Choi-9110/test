@@ -29,11 +29,18 @@ function NoticeData(){
         }
     }
 
+	const [noticelist, setNoticelist] = useState([]);
 	const [eventlist, setEventlist] = useState([]);
 	useEffect(() => {
-		client.get("event-board/list")
-		.then(({data}) => setEventlist(data))
-		
+		client.get("event-board/list").then(({data}) => setEventlist(data));
+		client.get("notice-board/list").then(({data}) => setNoticelist(data));
+
+		// switch(value){
+		// 	case '공지사항': client.get("event-board/list").then(({data}) => setEventlist(data));
+		// 	break;
+		// 	case '이벤트': client.get("notice-board/list").then(({data}) => setNoticelist(data));
+		// 	break;
+		// }
 	}, [])
 
     return (
@@ -161,6 +168,10 @@ function NoticeData(){
 								</td>
 							</tr>
 						))}
+
+						
+
+						
 
 
 
