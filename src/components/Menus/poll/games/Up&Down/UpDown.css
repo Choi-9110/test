@@ -27,18 +27,20 @@
 #updown_write .item .desc .react-input-emoji--button{position: absolute; top: 1rem; right: 0%; z-index: 1000;}
 #updown_write .item .desc .react-emoji{width: 100%;}
 #updown_write .item .desc .react-emoji-picker--wrapper{ position: absolute; bottom: 0; right: 0; height:300px; width: 400px; overflow: hidden; z-index: 10;}
-#updown_write .item .desc .react-emoji-picker { top: 19rem; left: 37.3rem; animation: slidein 0.1s ease-in-out; position: fixed;}
+#updown_write .item .desc .react-emoji-picker { top: 19rem; left: 66rem; animation: slidein 0.1s ease-in-out; position: fixed;}
 
 #updown_write .item .desc input[type=file] {display:none;}
 #updown_write .item .desc input.txtR {width:180px; text-align:right;}
 #updown_write .item .desc input.txtR.no { background-color: #ddd;}
 #updown_write .item .desc span.txt {display:inline-block; font-family:'scdream6'; font-size:0.875rem; line-height:46px; margin-left:10px; font-weight: bold;}
 #updown_write .item .desc p.comment {font-size:0.75rem; color:#35b256; margin-top:10px;}
+
 #updown_write .item .desc .chkBox { position: relative; font-family: 'scdream3'; font-size: 0.875rem; margin-top: 10px;}
-#updown_write input[type=checkbox] + label:before { position: absolute; left: 0; top: 0; width: 22px; height: 22px; border: 1px solid #e8e8e8; background: #fff; content: '';}
-#updown_write input[type=checkbox] + label { position: relative; line-height: 22px; padding-left: 35px; display: inline-block; vertical-align: top;}
-#updown_write input[type=checkbox] {display: none;}
-#updown_write input[type=checkbox]:checked + label:after { position: absolute; top: 55%; left: 1px; transform: translateY(-50%); width: 22px; height: 22px; background-color: #b46ef0; background-size: 100%; content: '';}
+#updown_write .item .desc input[type=checkbox] + label:before { position: absolute; left: 0; top: -10px; width: 22px; height: 22px; border: 1px solid #ddd; background: #fff; content: '';}
+#updown_write .item .desc input[type=checkbox] + label { position: relative; line-height: 22px; padding-left: 35px; display: inline-block; vertical-align: top;}
+#updown_write .item .desc input[type=checkbox] {display: none;}
+#updown_write .item .desc input[type=checkbox]:checked + label:after { position: absolute; top: 55%; left: 1px; transform: translateY(-45%); width: 20px; height: 20px; background-color: #b46ef0; background-size: 100%; content: '';}
+
 
 #updown_write .item .box-wrap {background: #f7f9fb;}
 #updown_write .item .box-wrap input[type=text] {background: #fff;}
@@ -75,7 +77,7 @@
 #updown_write .preview .phone .desc {position:relative; height:100%; max-height:690px; display: flex; justify-content: center; align-items: center;}
 #updown_write .right { width:25%; padding:0 20px; position: fixed; right: -30px; bottom: 1rem;}
 #updown_write .preview {text-align:center; border: 1xp solid #333;}
-#updown_write .preview h4 {font-family: 'scdream6'; font-size:1.25rem; margin:10px auto 30px;}
+#updown_write .preview h4 {font-family: 'scdream6'; font-size:1.25rem; margin:auto 30px;}
 
 #updown_write .preview .phone .desc .modal{box-shadow: 1px 1px 5px #d1d1d1; height: 18rem; width: 17rem; border-radius: 15px; margin-bottom: 10rem;}
 #updown_write .preview .phone .desc .modal .title{font-weight: bold; display: flex; margin: 10px 8px 5px 10px; font-size: 11px;}

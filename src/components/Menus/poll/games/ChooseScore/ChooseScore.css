@@ -29,7 +29,7 @@
 #choosescore_write .item .desc .react-input-emoji--button{position: absolute; top: 1rem; right: 0%; z-index: 1000;}
 #choosescore_write .item .desc .react-emoji{width: 100%;}
 #choosescore_write .item .desc .react-emoji-picker--wrapper{ position: absolute; bottom: 0; right: 0; height:300px; width: 400px; overflow: hidden; z-index: 10;}
-#choosescore_write .item .desc .react-emoji-picker { top: 19rem; left: 37.3rem; animation: slidein 0.1s ease-in-out; position: fixed;}
+#choosescore_write .item .desc .react-emoji-picker { top: 19rem; left: 66rem; animation: slidein 0.1s ease-in-out; position: fixed;}
 
 #choosescore_write .item .desc input[type=file] {display:none;}
 #choosescore_write .item .desc input.txtR {width:180px; text-align:right;}
@@ -37,15 +37,38 @@
 #choosescore_write .item .desc span.txt {display:inline-block; font-family:'scdream6'; font-size:0.875rem; line-height:46px; margin-left:10px; font-weight: bold;}
 #choosescore_write .item .desc p.comment {font-size:0.75rem; color:#35b256; margin-top:10px;}
 #choosescore_write .item .desc .chkBox { position: relative; font-family: 'scdream3'; font-size: 0.875rem; margin-top: 10px;}
-#choosescore_write input[type=checkbox] + label:before { position: absolute; left: 0; top: 0; width: 22px; height: 22px; border: 1px solid #e8e8e8; background: #fff; content: '';}
-#choosescore_write input[type=checkbox] + label { position: relative; line-height: 22px; padding-left: 35px; display: inline-block; vertical-align: top;}
-#choosescore_write input[type=checkbox] {display: none;}
-#choosescore_write input[type=checkbox]:checked + label:after { position: absolute; top: 55%; left: 1px; transform: translateY(-50%); width: 22px; height: 22px; background-color: #b46ef0; background-size: 100%; content: '';}
+#choosescore_write .item .desc .chkBox > input[type=checkbox] + label:before { position: absolute; left: 0; top: 0; width: 22px; height: 22px; border: 1px solid #e8e8e8; background: #fff; content: '';}
+#choosescore_write .item .desc .chkBox > input[type=checkbox] + label { position: relative; line-height: 22px; padding-left: 35px; display: inline-block; vertical-align: top;}
+#choosescore_write .item .desc .chkBox > input[type=checkbox] {display: none;}
+#choosescore_write .item .desc .chkBox > input[type=checkbox]:checked + label:after { position: absolute; top: 55%; left: 1px; transform: translateY(-50%); width: 22px; height: 22px; background-color: #b46ef0; background-size: 100%; content: '';}
 
-#choosescore_write .right {float:right; width:25%; padding:0 20px;}
-#choosescore_write .preview {text-align:center;}
-#choosescore_write .preview h4 {font-family: 'scdream6'; font-size:1.25rem; margin:10px auto 30px;}
-#choosescore_write .preview .phone .desc {border-radius:32px; overflow:hidden;}
+#choosescore_write .item .desc .chkBox2 { position: relative; font-family: 'scdream3'; font-size: 0.875rem; margin-top: 10px;}
+#choosescore_write .item .desc .chkBox2 > input[type=checkbox] + label:before { position: absolute; left: 0; top: -10px; width: 22px; height: 22px; border: 1px solid #ddd; background: #fff; content: '';}
+#choosescore_write .item .desc .chkBox2 > input[type=checkbox] + label { position: relative; line-height: 22px; padding-left: 35px; display: inline-block; vertical-align: top;}
+#choosescore_write .item .desc .chkBox2 > input[type=checkbox] {display: none;}
+#choosescore_write .item .desc .chkBox2 > input[type=checkbox]:checked + label:after { position: absolute; top: 55%; left: 1px; transform: translateY(-45%); width: 20px; height: 20px; background-color: #b46ef0; background-size: 100%; content: '';}
+
+
+#choosescore_write .preview .phone {position:relative; max-width:360px; height:46rem; max-height:730px; margin:0 auto; padding:1.3vh 1vw 1.5vh; background:url(../../../../../img/img_phone.svg) top center no-repeat; background-size:100%;}
+#choosescore_write .preview .phone .desc {position:relative; height:100%; max-height:690px; display: flex; justify-content: center; align-items: center;}
+#choosescore_write .right { width:25%; padding:0 20px; position: fixed; right: -30px; bottom: 1rem;}
+#choosescore_write .preview {text-align:center; border: 1xp solid #333;}
+#choosescore_write .preview h4 {font-family: 'scdream6'; font-size:1.25rem; margin:auto 30px;}
+
+#choosescore_write .preview .phone .desc .modal{box-shadow: 1px 1px 5px #d1d1d1; height: 20rem; width: 17rem; border-radius: 15px; margin-bottom: 10rem;}
+#choosescore_write .preview .phone .desc .modal .title{font-weight: bold; display: flex; margin: 10px 8px 5px 10px; font-size: 11px;}
+#choosescore_write .preview .phone .desc .modal img{ width: 15rem; height: 7rem; border-radius: 10px;}
+#choosescore_write .preview .phone .desc .modal ul.info{display: flex; justify-content: space-around; margin: 5px; align-items: center;  font-size: 10px;}
+#choosescore_write .preview .phone .desc .modal .date{display: flex; justify-content: center; font-size: 12px; color: rgba(68, 68, 68, 0.667); margin-bottom: 10px;}
+
+#choosescore_write .preview .phone .desc .modal .choose{margin-top: .5rem;}
+#choosescore_write .preview .phone .desc .modal .choose .top{display: flex; justify-content: space-between; padding: 10px 15px; font-size: 13px;}
+#choosescore_write .preview .phone .desc .modal .choose .bottom{display: flex; justify-content: space-around; gap: 8rem; margin-top: 10px; font-size: 13px;}
+#choosescore_write .preview .phone .desc .modal .progress-bar {width:100%;}
+#choosescore_write .preview .phone .desc .modal .progress-bar:after {position:absolute; top:50%; transform:translateY(-50%); left: 6%; width:14.9rem; height:10px; background:#c684ff; z-index:1; content:'';}
+#choosescore_write .preview .phone .desc .modal .progress-bar .top {font-size: 15px; position:absolute; top:30px; left:17%; transform:translateX(-50%);}
+#choosescore_write .preview .phone .desc .modal .progress-bar .bottom {position:absolute; bottom:0; left:50%; transform:translateX(-50%);}
+
 
 #choosescore_write .item .box-wrap {background: #f7f9fb;}
 #choosescore_write .item .box-wrap input[type=text] {background: #fff;}

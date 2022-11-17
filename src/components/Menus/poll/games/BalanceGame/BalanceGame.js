@@ -115,6 +115,17 @@ function BalanceGame(){
 			};
 		});
 	};
+	
+	const [State, setState] = useState();
+	const handleCheck = e => {
+		if(e.target.checked){
+			console.log("CHECK")
+			setState(1);
+		} else{
+			console.log("NO CHECK")
+			setState(0)
+		}
+	}
 
 	const Type = 0;
     const Max_Choice = 1;
@@ -131,8 +142,6 @@ function BalanceGame(){
     const Select_7 =null;
     const Select_Image_8 = null;
     const Select_8 =null;
-
-    const State = 0;
 
     const Scale_start = 0;
     const Scale_End = 0;
@@ -366,7 +375,7 @@ function BalanceGame(){
 						<div className="item">
 							<p className="title">승인</p>
 							<div className="desc">
-							<p className="chkBox"><input type="checkbox" id="agr-chk" name="" /><label htmlFor="agr-chk"></label></p>
+								<p className="chkBox"><input type="checkbox" id="agr-chk" name="" onClick={handleCheck}/><label htmlFor="agr-chk"></label></p>
 							</div>
 						</div>
 					</div>
@@ -377,7 +386,7 @@ function BalanceGame(){
 							<div className="desc">
 								<div className="modal">
 									<ul className="info">
-										<li>리워드: {Rewards === NaN ? 0 : Rewards}</li>
+										<li>리워드: {Rewards}</li>
 										<li>참여 인원수: {Max_Personnel}명</li>
 										<li>밸런스 게임</li>
 									</ul>

@@ -47,17 +47,24 @@ function MulitpleChoice(){
 	const [Title, setTitle] = useState("");
 
 
-	const [Rewards, setRewards] = useState();
+	const [Rewards, setRewards] = useState(Number);
 	const handleRewards = (e) => {
-		setRewards(parseInt(e.target.value));
+		if(!parseInt(e.target.value)){
+			setRewards(0)
+		} else {
+			setRewards(parseInt(e.target.value));
+		}
+		
 	}
 
-	const [Max_Personnel, setMax_Personnel] = useState();
+	const [Max_Personnel, setMax_Personnel] = useState(Number);
 	const handleMax_Personnel = (e) => {
-		if(Type === 4){
-			setMax_Choice(parseInt(1))
+		if(!parseInt(e.target.value)){
+			setMax_Personnel(0)
+		} else {
+			setMax_Personnel(parseInt(e.target.value));
 		}
-		setMax_Personnel(parseInt(e.target.value));
+		
 	}
 
 	const [Image, setImage] = useState("");
@@ -83,7 +90,22 @@ function MulitpleChoice(){
 
 	const [Max_Choice, setMax_Choice] = useState();
 	const handleMax_Choice = (e) => {
+		if(Type === 4){
+			setMax_Choice(parseInt(1))
+		}
+
 		setMax_Choice(parseInt(e.target.value))
+	}
+
+	const [State, setState] = useState();
+	const handleCheck = e => {
+		if(e.target.checked){
+			console.log("CHECK")
+			setState(1);
+		} else{
+			console.log("NO CHECK")
+			setState(0)
+		}
 	}
 	
 	// div 추가
@@ -111,7 +133,6 @@ function MulitpleChoice(){
 	const [Type, setType] = useState("");
 
     const Random = 0;
-    const State = 0;
 
     const Scale_start = 1;
     const Scale_End = 1;
@@ -134,6 +155,8 @@ function MulitpleChoice(){
 	formData.append('files', Select_Image_7)
 	formData.append('files', Select_Image_8)
 	
+	// 이미지 지우기 부분 콘솔
+	console.log(Select_Image_1)
 
 	const onSubmitHandler = async(e) => {
 		e.preventDefault();
@@ -238,8 +261,6 @@ function MulitpleChoice(){
 		alert("등록 되었습니다.");
         //document.location.href="/polltotallist";
 	};
-
-	
 
     return (
         <>
@@ -385,6 +406,12 @@ function MulitpleChoice(){
 								<div><input type="text" className="txtR" onChange={handleMax_Personnel}/><span className="txt">명</span></div>
 							</div>
 						</div>
+						<div className="item">
+							<p className="title">승인</p>
+							<div className="desc">
+								<p className="chkBox"><input type="checkbox" id="agr-chk" name="" onClick={handleCheck}/><label htmlFor="agr-chk"></label></p>
+							</div>
+						</div>
 					</div>
 
 					<div className="right preview">
@@ -404,36 +431,28 @@ function MulitpleChoice(){
 									<p className="title">{Title}</p>
 									<p className="date">날짜</p>
 									
-									
-									{
-										(!Select_1 || !Select_2 || !Select_3 || !Select_4 ||
-											!Select_5 || !Select_6 || !Select_7 || !Select_8  || !Select_Image_1 )
-										 && (!Select_Image_1 || !Select_Image_2 || !Select_Image_3 || !Select_Image_4 ||
-											!Select_Image_5 || !Select_Image_6 || !Select_Image_7 || !Select_Image_8 ) ?(
-											<ul className="multipleTxt">
-												{Select_1 ? <li><label>1</label>{Select_1}</li> : null}
-												{Select_2 ? <li><label>2</label>{Select_2}</li> : null}
-												{Select_3 ? <li><label>3</label>{Select_3}</li> : null}
-												{Select_4 ? <li><label>4</label>{Select_4}</li> : null}
-												{Select_5 ? <li><label>5</label>{Select_5}</li> : null}
-												{Select_6 ? <li><label>6</label>{Select_6}</li> : null}
-												{Select_7 ? <li><label>7</label>{Select_7}</li> : null}
-												{Select_8 ? <li><label>8</label>{Select_8}</li> : null}
-											</ul>
-										): null}
-										{!Select_Image_1 || !Select_Image_2 || !Select_Image_3 || !Select_Image_4 ||
-										!Select_Image_5 || !Select_Image_6 || !Select_Image_7 || !Select_Image_8 ? (
-											<ul className="multipleImg">
-												{Select_Image_1 ? <li>{freeImage1 && <img className="preview-img1" src={freeImage1} alt="preview-img"/>} {Select_1 ? <p>{Select_1}</p> : null}</li> : null}
-												{Select_Image_2 ? <li>{freeImage2 && <img className="preview-img1" src={freeImage2} alt="preview-img"/>} {Select_2 ? <p>{Select_2}</p> : null}</li> : null}
-												{Select_Image_3 ? <li>{freeImage3 && <img className="preview-img1" src={freeImage3} alt="preview-img"/>} {Select_3 ? <p>{Select_3}</p> : null}</li> : null}
-												{Select_Image_4 ? <li>{freeImage4 && <img className="preview-img1" src={freeImage4} alt="preview-img"/>} {Select_4 ? <p>{Select_4}</p> : null}</li> : null}
-												{Select_Image_5 ? <li>{freeImage5 && <img className="preview-img1" src={freeImage5} alt="preview-img"/>} {Select_5 ? <p>{Select_5}</p> : null}</li> : null}
-												{Select_Image_6 ? <li>{freeImage6 && <img className="preview-img1" src={freeImage6} alt="preview-img"/>} {Select_6 ? <p>{Select_6}</p> : null}</li> : null}
-												{Select_Image_7 ? <li>{freeImage7 && <img className="preview-img1" src={freeImage7} alt="preview-img"/>} {Select_7 ? <p>{Select_7}</p> : null}</li> : null}
-												{Select_Image_8 ? <li>{freeImage8 && <img className="preview-img1" src={freeImage8} alt="preview-img"/>} {Select_8 ? <p>{Select_8}</p> : null}</li> : null}
-											</ul>
-										): null}
+									{Select_Image_1 || Select_Image_2 || Select_Image_3 || Select_Image_4 ||
+									Select_Image_5 || Select_Image_6 || Select_Image_7 || Select_Image_8 ? (
+										<ul className="multipleImg">
+											{Select_Image_1 ? <li>{freeImage1 && <img className="preview-img1" src={freeImage1} alt="preview-img"/>} {Select_1 ? <p>{Select_1}</p> : null}</li> : null}
+											{Select_Image_2 ? <li>{freeImage2 && <img className="preview-img1" src={freeImage2} alt="preview-img"/>} {Select_2 ? <p>{Select_2}</p> : null}</li> : null}
+											{Select_Image_3 ? <li>{freeImage3 && <img className="preview-img1" src={freeImage3} alt="preview-img"/>} {Select_3 ? <p>{Select_3}</p> : null}</li> : null}
+											{Select_Image_4 ? <li>{freeImage4 && <img className="preview-img1" src={freeImage4} alt="preview-img"/>} {Select_4 ? <p>{Select_4}</p> : null}</li> : null}
+											{Select_Image_5 ? <li>{freeImage5 && <img className="preview-img1" src={freeImage5} alt="preview-img"/>} {Select_5 ? <p>{Select_5}</p> : null}</li> : null}
+											{Select_Image_6 ? <li>{freeImage6 && <img className="preview-img1" src={freeImage6} alt="preview-img"/>} {Select_6 ? <p>{Select_6}</p> : null}</li> : null}
+											{Select_Image_7 ? <li>{freeImage7 && <img className="preview-img1" src={freeImage7} alt="preview-img"/>} {Select_7 ? <p>{Select_7}</p> : null}</li> : null}
+											{Select_Image_8 ? <li>{freeImage8 && <img className="preview-img1" src={freeImage8} alt="preview-img"/>} {Select_8 ? <p>{Select_8}</p> : null}</li> : null}
+										</ul>
+									): 	<ul className="multipleTxt">
+									{Select_1 ? <li><label>1</label>{Select_1}</li> : null}
+									{Select_2 ? <li><label>2</label>{Select_2}</li> : null}
+									{Select_3 ? <li><label>3</label>{Select_3}</li> : null}
+									{Select_4 ? <li><label>4</label>{Select_4}</li> : null}
+									{Select_5 ? <li><label>5</label>{Select_5}</li> : null}
+									{Select_6 ? <li><label>6</label>{Select_6}</li> : null}
+									{Select_7 ? <li><label>7</label>{Select_7}</li> : null}
+									{Select_8 ? <li><label>8</label>{Select_8}</li> : null}
+								</ul>}
 									{/* <ul className="multipleTxt">
 										<li><label>1</label>{Select_1}</li>
 										<li><label>2</label>{Select_2}</li>

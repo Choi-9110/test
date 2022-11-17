@@ -25,14 +25,22 @@ function UpDown(){
         setSelect_2(e.target.value);
     }
 
-    const [Rewards, setRewards] = useState();
+    const [Rewards, setRewards] = useState(Number);
 	const handleRewards = (e) => {
-		setRewards(parseInt(e.target.value));
+		if(!parseInt(e.target.value)){
+			setRewards(0)
+		} else {
+			setRewards(parseInt(e.target.value));
+		}
 	}
 
-	const [Max_Personnel, setMax_Personnel] = useState();
+	const [Max_Personnel, setMax_Personnel] = useState(Number);
 	const handleMax_Personnel = (e) => {
-		setMax_Personnel(parseInt(e.target.value));
+		if(!parseInt(e.target.value)){
+			setMax_Personnel(0)
+		} else {
+			setMax_Personnel(parseInt(e.target.value));
+		}
 	}
 
     
@@ -57,6 +65,17 @@ function UpDown(){
 		setfreeImage('')
 	}
 
+	const [State, setState] = useState();
+	const handleCheck = e => {
+		if(e.target.checked){
+			console.log("CHECK")
+			setState(1);
+		} else{
+			console.log("NO CHECK")
+			setState(0)
+		}
+	}
+
     const Type = 1;
     const Max_Choice = 1;
     const Random = 0;
@@ -74,8 +93,6 @@ function UpDown(){
     const Select_7 =null;
     const Select_Image_8 = null;
     const Select_8 =null;
-
-    const State = 0;
 
     const Scale_start = 0;
     const Scale_End = 0;
@@ -272,6 +289,12 @@ function UpDown(){
                                 <div><input type="text" className="txtR" onChange={handleMax_Personnel}/><span className="txt">명</span></div>
                             </div>
                         </div>
+						<div className="item">
+							<p className="title">승인</p>
+							<div className="desc">
+								<p className="chkBox"><input type="checkbox" id="agr-chk" name="" onClick={handleCheck}/><label htmlFor="agr-chk"></label></p>
+							</div>
+						</div>
                     </div>
 
                     <div className="right preview">
@@ -280,7 +303,7 @@ function UpDown(){
                             <div className="desc">
 								<div className="modal">
 									<ul className="info">
-										<li>리워드: {Rewards === NaN ? 0 : Rewards}</li>
+										<li>리워드: {Rewards}</li>
 										<li>참여 인원수: {Max_Personnel}명</li>
 										<li>Up&Down</li>
 									</ul>

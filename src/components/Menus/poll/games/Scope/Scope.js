@@ -19,14 +19,24 @@ function Scope(){
 		setTitle(e.target.value);
 	}
 
-	const [Rewards, setRewards] = useState();
+	const [Rewards, setRewards] = useState(Number);
 	const handleRewards = (e) => {
-		setRewards(parseInt(e.target.value));
+		if(!parseInt(e.target.value)){
+			setRewards(0)
+		} else {
+			setRewards(parseInt(e.target.value));
+		}
+		
 	}
 
-	const [Max_Personnel, setMax_Personnel] = useState();
+	const [Max_Personnel, setMax_Personnel] = useState(Number);
 	const handleMax_Personnel = (e) => {
-		setMax_Personnel(parseInt(e.target.value));
+		if(!parseInt(e.target.value)){
+			setMax_Personnel(0)
+		} else {
+			setMax_Personnel(parseInt(e.target.value));
+		}
+		
 	}
 
 	const [Image, setImage] = useState("");
@@ -49,6 +59,17 @@ function Scope(){
 		setfreeImage('')
 	}
 
+	const [State, setState] = useState();
+	const handleCheck = e => {
+		if(e.target.checked){
+			console.log("CHECK")
+			setState(1);
+		} else{
+			console.log("NO CHECK")
+			setState(0)
+		}
+	}
+
 	const Type = 6;
     const Max_Choice = 1;
     const Random = 0;
@@ -68,8 +89,6 @@ function Scope(){
     const Select_7 =null;
     const Select_Image_8 = null;
     const Select_8 =null;
-
-    const State = 0;
 
     const Scale_start = 0;
     const Scale_End = 0;
@@ -260,15 +279,31 @@ function Scope(){
 								<div><input type="text" className="txtR" onChange={handleMax_Personnel}/><span className="txt">명</span></div>
 							</div>
 						</div>
+						<div className="item">
+							<p className="title">승인</p>
+							<div className="desc">
+								<p className="chkBox"><input type="checkbox" id="agr-chk" name="" onClick={handleCheck}/><label htmlFor="agr-chk"></label></p>
+							</div>
+						</div>
 					</div>
 
 					<div className="right preview">
 						<h4>미리보기</h4>
 						<div className="phone">
 							<div className="desc">
-								<div>{Title}</div>
-								<div>{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}</div>
-								<div>{Rewards}<br/>{Max_Personnel}</div>
+								<div className="modal">
+									<ul className="info">
+										<li>리워드: {Rewards}</li>
+										<li>참여 인원수: {Max_Personnel}명</li>
+										<li>별점 선택</li>
+									</ul>
+									<p className="title">{Title}</p>
+									<p className="date">날짜</p>
+									{Image === "" ? null : 
+										<div className="titleImg">
+											{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}
+										</div>}
+								</div>
 							</div>
 						</div>
 					</div>

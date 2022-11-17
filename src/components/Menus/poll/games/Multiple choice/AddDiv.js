@@ -1,7 +1,9 @@
-import React from "react";
-import "../../PollList/Poll1TotalList.css";
+import React, { useState } from "react";
+import Dropzone from 'react-dropzone';
 
 function AddDiv(props){
+    const [array, setArray] = useState([])
+
     return (
         <>
             {props.countDiv.map((i) => (
@@ -39,83 +41,99 @@ function AddDiv(props){
                                             props.setSelect_8(e.target.value);
                                             break;
                                     }
-                                }} placeholder="보기를 입력해주세요." maxLength="30"/>
-                            <label id="btnAtt2"><input type="file" name={i} onChange={(e) =>
-                                 {              
-                                    const reader = new FileReader();
-                                    switch(i){
+                                }} placeholder="보기를 입력해주세요." maxLength="25"/>
+                                <Dropzone onDrop={acceptedFiles => {
 
-                                        case 0 : props.setSelect_Image_1(e.target.files[0]); 
-                                        reader.readAsDataURL(e.target.files[0]);
-                                         new Promise((resolve) => {reader.onload = () => {         
-                                                props.setfreeImage1(reader.result);          
-                                                resolve();
-                                            };
-                                        }); break;
-                                        
-                                        case 1 : props.setSelect_Image_2(e.target.files[0]); 
-                                        reader.readAsDataURL(e.target.files[0]);
+                                    const reader = new FileReader();
+
+                                    switch(i){
+                                        case 0: props.setSelect_Image_1(acceptedFiles[0]); 
+                                        reader.readAsDataURL(acceptedFiles[0]);
                                         new Promise((resolve) => {reader.onload = () => {         
-                                                props.setfreeImage2(reader.result);          
-                                               resolve();
-                                           };
-                                       }); break;
-                                        
-                                       case 2 : props.setSelect_Image_3(e.target.files[0]);
-                                        reader.readAsDataURL(e.target.files[0]);
-                                        new Promise((resolve) => {reader.onload = () => {   
-                                            
-                                                props.setfreeImage3(reader.result);          
-                                               resolve();
-                                           };
-                                       }); break;
-                                        case 3 : props.setSelect_Image_4(e.target.files[0]);
-                                        reader.readAsDataURL(e.target.files[0]);
-                                         new Promise((resolve) => {reader.onload = () => {         
-                                                props.setfreeImage4(reader.result);          
+                                                props.setfreeImage1(reader.result);   
+                                                array[0]=(reader.result)    
                                                 resolve();
                                             };
                                         }); break;
-                                        case 4 : props.setSelect_Image_5(e.target.files[0]);
-                                        reader.readAsDataURL(e.target.files[0]);
+
+                                        case 1: props.setSelect_Image_2(acceptedFiles[0]); 
+                                        reader.readAsDataURL(acceptedFiles[0]);
+                                        new Promise((resolve) => {reader.onload = () => {         
+                                                props.setfreeImage2(reader.result);
+                                                array[1]=(reader.result)          
+                                                resolve();
+                                            };
+                                        }); break;
+
+                                        case 2: props.setSelect_Image_3(acceptedFiles[0]);
+                                        reader.readAsDataURL(acceptedFiles[0]);
                                         new Promise((resolve) => {reader.onload = () => {   
-                                            
-                                                props.setfreeImage5(reader.result);          
-                                               resolve();
-                                           };
-                                       }); break;
-                                        case 5 : props.setSelect_Image_6(e.target.files[0]);
-                                        reader.readAsDataURL(e.target.files[0]);
+                                                props.setfreeImage3(reader.result);          
+                                                array[2]=(reader.result)
+                                                resolve();
+                                            };
+                                        }); break;
+
+                                        case 3: props.setSelect_Image_4(acceptedFiles[0]);
+                                        reader.readAsDataURL(acceptedFiles[0]);
                                         new Promise((resolve) => {reader.onload = () => {   
-                                            
-                                                props.setfreeImage6(reader.result);          
-                                               resolve();
-                                           };
-                                       }); break;
-                                        case 6 : props.setSelect_Image_7(e.target.files[0]);
-                                        reader.readAsDataURL(e.target.files[0]);
+                                                props.setfreeImage4(reader.result);
+                                                array[3]=(reader.result)        
+                                                resolve();
+                                            };
+                                        }); break;
+
+                                        case 4: props.setSelect_Image_5(acceptedFiles[0]);
+                                        reader.readAsDataURL(acceptedFiles[0]);
                                         new Promise((resolve) => {reader.onload = () => {   
-                                            
-                                                props.setfreeImage7(reader.result);          
-                                               resolve();
-                                           };
-                                       }); break;
-                                        case 7 : props.setSelect_Image_8(e.target.files[0]);
-                                        reader.readAsDataURL(e.target.files[0]);
+                                                props.setfreeImage5(reader.result);
+                                                array[4]=(reader.result) 
+                                            resolve();
+                                            };
+                                        }); break;
+                                    
+                                        case 5: props.setSelect_Image_6(acceptedFiles[0]);
+                                        reader.readAsDataURL(acceptedFiles[0]);
                                         new Promise((resolve) => {reader.onload = () => {   
-                                            
-                                                props.setfreeImage8(reader.result);          
-                                               resolve();
-                                           };
-                                       }); break;
+                                                props.setfreeImage6(reader.result);         
+                                                array[5]=(reader.result) 
+                                            resolve();
+                                            };
+                                        }); break;
+
+                                        case 6: props.setSelect_Image_7(acceptedFiles[0]);
+                                        reader.readAsDataURL(acceptedFiles[0]);
+                                        new Promise((resolve) => {reader.onload = () => {   
+                                                props.setfreeImage7(reader.result);         
+                                                array[6]=(reader.result) 
+                                            resolve();
+                                            };
+                                        }); break;
+
+                                        case 7: props.setSelect_Image_8(acceptedFiles[0]);
+                                        reader.readAsDataURL(acceptedFiles[0]);
+                                        new Promise((resolve) => {reader.onload = () => {   
+                                                props.setfreeImage8(reader.result);  
+                                                array[7]=(reader.result)        
+                                            resolve();
+                                            };
+                                        }); break;
                                     }
 
-                               
-                                    
+                                }}>
+                                        
+                                    {({getRootProps, getInputProps}) => (
+                                        <div id="btnAtt2" {...getRootProps()}>
+                                            <input {...getInputProps()}/>
+                                        </div>      
+                                    )}
+                                </Dropzone>
 
-                                }
-                                 
-                                 }/>이미지 추가</label>
+                                {array[i] ? <div id="photo-view">
+										<img className="preview-img" src={array[i]} alt="preview-img"/>
+										<input type="button" value="X" className="deleteImg" onClick={() => {array[i]=""; console.log(array); console.log(props.setSelect_Image_1)}}/>
+									</div> : null}    
+
                             {props.countDiv.length - 1 === 0 ? false : <button onClick={ () =>
                                 {props.onRemove({i})}}>삭제</button>}
                         </div>

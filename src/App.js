@@ -35,11 +35,13 @@ import HistoryMangement from "./components/Menus/Member management/Withdrawal ap
 import MemberInfo from "./components/Menus/Member management/Manage withdrawal members/Withdrawal Member Info/MemberInfo";
 import MemberHistory from "./components/Menus/Member management/Manage withdrawal members/Withdrawal Member History/MemberHistory";
 import Correct from "./components/Menus/poll/PollList/Correct/Correct";
+import ScrollToTop from "./ScrollToTop";
 
 
 function App(){
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route exact path="/" element={<Login />}/>
                 
