@@ -305,53 +305,53 @@ function MulitpleChoice(){
 						</div>
                         <div className="item">
 						    <p className="title">응답옵션을 선택해주세요.</p>
-						<div className="desc">
-							<span><input type="radio" id="answer-1" name="answer"/><label htmlFor="answer-1" onClick={() => {setType(parseInt(4)); setMax_Choice(parseInt(1));}}>단일 선택</label></span>
-							<span><input type="radio" id="answer-2" name="answer"/><label htmlFor="answer-2" onClick={() => setType(parseInt(3))}>다중 선택</label></span>
-							<span><input type="radio" id="answer-3" name="answer"/><label htmlFor="answer-3" onClick={() => setType(parseInt(5))}>순위 선택</label></span>
+							<div className="desc">
+								<span><input type="radio" id="answer-1" name="answer"/><label htmlFor="answer-1" onClick={() => {setType(parseInt(4)); setMax_Choice(parseInt(1));}}>단일 선택</label></span>
+								<span><input type="radio" id="answer-2" name="answer"/><label htmlFor="answer-2" onClick={() => setType(parseInt(3))}>다중 선택</label></span>
+								<span><input type="radio" id="answer-3" name="answer"/><label htmlFor="answer-3" onClick={() => setType(parseInt(5))}>순위 선택</label></span>
+							</div>
 						</div>
-					</div>
-					<div className="item">
-						<p className="title">선택 개수를 입력해주세요.</p>
-						<div className="desc">
-							<div><span className="txt">최대</span><input type="text" className="w100" value={Max_Choice || ""} onChange={handleMax_Choice}/><span className="txt">개</span></div>
+						<div className="item">
+							<p className="title">선택 개수를 입력해주세요.</p>
+							<div className="desc">
+								<div><span className="txt">최대</span><input type="text" className="w100" value={Max_Choice || ""} onChange={handleMax_Choice}/><span className="txt">개</span></div>
+							</div>
 						</div>
-					</div>
-					<div className="item" id="test">
-						<p className="title">보기를 입력해주세요.</p>
-						<div className="desc">
-							<AddDiv
-								countDiv={countDiv}
-								onRemove={onRemove}
-								setSelect_1={setSelect_1}
-								setSelect_2={setSelect_2}
-								setSelect_3={setSelect_3}
-								setSelect_4={setSelect_4}
-								setSelect_5={setSelect_5}
-								setSelect_6={setSelect_6}
-								setSelect_7={setSelect_7}
-								setSelect_8={setSelect_8}
-								setSelect_Image_1={setSelect_Image_1}
-								setSelect_Image_2={setSelect_Image_2}
-								setSelect_Image_3={setSelect_Image_3}
-								setSelect_Image_4={setSelect_Image_4}
-								setSelect_Image_5={setSelect_Image_5}
-								setSelect_Image_6={setSelect_Image_6}
-								setSelect_Image_7={setSelect_Image_7}
-								setSelect_Image_8={setSelect_Image_8}
-								setfreeImage1={setfreeImage1}
-								setfreeImage2={setfreeImage2}
-								setfreeImage3={setfreeImage3}
-								setfreeImage4={setfreeImage4}
-								setfreeImage5={setfreeImage5}
-								setfreeImage6={setfreeImage6}
-								setfreeImage7={setfreeImage7}
-								setfreeImage8={setfreeImage8}
-							/>
+						<div className="item" id="test">
+							<p className="title">보기를 입력해주세요.</p>
+							<div className="desc">
+								<AddDiv
+									countDiv={countDiv}
+									onRemove={onRemove}
+									setSelect_1={setSelect_1}
+									setSelect_2={setSelect_2}
+									setSelect_3={setSelect_3}
+									setSelect_4={setSelect_4}
+									setSelect_5={setSelect_5}
+									setSelect_6={setSelect_6}
+									setSelect_7={setSelect_7}
+									setSelect_8={setSelect_8}
+									setSelect_Image_1={setSelect_Image_1}
+									setSelect_Image_2={setSelect_Image_2}
+									setSelect_Image_3={setSelect_Image_3}
+									setSelect_Image_4={setSelect_Image_4}
+									setSelect_Image_5={setSelect_Image_5}
+									setSelect_Image_6={setSelect_Image_6}
+									setSelect_Image_7={setSelect_Image_7}
+									setSelect_Image_8={setSelect_Image_8}
+									setfreeImage1={setfreeImage1}
+									setfreeImage2={setfreeImage2}
+									setfreeImage3={setfreeImage3}
+									setfreeImage4={setfreeImage4}
+									setfreeImage5={setfreeImage5}
+									setfreeImage6={setfreeImage6}
+									setfreeImage7={setfreeImage7}
+									setfreeImage8={setfreeImage8}
+								/>
 
-							{countDiv.length - 1 < 7 ? <button className="btn-add" onClick={onAddDetailDiv}>보기 추가하기</button> : false}
+								{countDiv.length - 1 < 7 ? <button className="btn-add" onClick={onAddDetailDiv}>보기 추가하기</button> : false}
+							</div>
 						</div>
-					</div>
 						<div className="item">
 							<p className="title">폴 시작일</p>
 							<div className="desc">
@@ -444,46 +444,16 @@ function MulitpleChoice(){
 											{Select_Image_8 ? <li>{freeImage8 && <img className="preview-img1" src={freeImage8} alt="preview-img"/>} {Select_8 ? <p>{Select_8}</p> : null}</li> : null}
 										</ul>
 									): 	<ul className="multipleTxt">
-									{Select_1 ? <li><label>1</label>{Select_1}</li> : null}
-									{Select_2 ? <li><label>2</label>{Select_2}</li> : null}
-									{Select_3 ? <li><label>3</label>{Select_3}</li> : null}
-									{Select_4 ? <li><label>4</label>{Select_4}</li> : null}
-									{Select_5 ? <li><label>5</label>{Select_5}</li> : null}
-									{Select_6 ? <li><label>6</label>{Select_6}</li> : null}
-									{Select_7 ? <li><label>7</label>{Select_7}</li> : null}
-									{Select_8 ? <li><label>8</label>{Select_8}</li> : null}
-								</ul>}
-									{/* <ul className="multipleTxt">
-										<li><label>1</label>{Select_1}</li>
-										<li><label>2</label>{Select_2}</li>
-										<li><label>3</label>{Select_3}</li>
-										<li><label>4</label>{Select_4}</li>
-										<li><label>5</label>{Select_5}</li>
-										<li><label>6</label>{Select_6}</li>
-										<li><label>7</label>{Select_7}</li>
-										<li><label>8</label>{Select_8}</li>
-
-
-										<li>{freeImage1 && <img className="preview-img1" src={freeImage1} alt="preview-img"/>} {Select_1 ? <p>{Select_1}</p> : null}</li>
-										<li>{freeImage2 && <img className="preview-img1" src={freeImage2} alt="preview-img"/>} {Select_2 ? <p>{Select_2}</p> : null}</li>
-										<li>{freeImage3 && <img className="preview-img1" src={freeImage3} alt="preview-img"/>} {Select_3 ? <p>{Select_3}</p> : null}</li>
-										<li>{freeImage4 && <img className="preview-img1" src={freeImage4} alt="preview-img"/>} {Select_4 ? <p>{Select_4}</p> : null}</li>
-										<li>{freeImage5 && <img className="preview-img1" src={freeImage5} alt="preview-img"/>} {Select_5 ? <p>{Select_5}</p> : null}</li>
-										<li>{freeImage6 && <img className="preview-img1" src={freeImage6} alt="preview-img"/>} {Select_6 ? <p>{Select_6}</p> : null}</li>
-										<li>{freeImage7 && <img className="preview-img1" src={freeImage7} alt="preview-img"/>} {Select_7 ? <p>{Select_7}</p> : null}</li>
-										<li>{freeImage8 && <img className="preview-img1" src={freeImage8} alt="preview-img"/>} {Select_8 ? <p>{Select_8}</p> : null}</li>
-									</ul> */}
-
-									{/* <ul className="multipleImg">
-										<li>{freeImage1 && <img className="preview-img1" src={freeImage1} alt="preview-img"/>} <p>{Select_1}</p></li>
-										<li>{freeImage2 && <img className="preview-img1" src={freeImage2} alt="preview-img"/>} <p>{Select_2}</p></li>
-										<li>{freeImage3 && <img className="preview-img1" src={freeImage3} alt="preview-img"/>} <p>{Select_3}</p></li>
-										<li>{freeImage4 && <img className="preview-img1" src={freeImage4} alt="preview-img"/>} <p>{Select_4}</p></li>
-										<li>{freeImage5 && <img className="preview-img1" src={freeImage5} alt="preview-img"/>} <p>{Select_5}</p></li>
-										<li>{freeImage6 && <img className="preview-img1" src={freeImage6} alt="preview-img"/>} <p>{Select_6}</p></li>
-										<li>{freeImage7 && <img className="preview-img1" src={freeImage7} alt="preview-img"/>} <p>{Select_7}</p></li>
-										<li>{freeImage8 && <img className="preview-img1" src={freeImage8} alt="preview-img"/>} <p>{Select_8}</p></li>
-									</ul> */}
+										{Select_1 ? <li><label>1</label>{Select_1}</li> : null}
+										{Select_2 ? <li><label>2</label>{Select_2}</li> : null}
+										{Select_3 ? <li><label>3</label>{Select_3}</li> : null}
+										{Select_4 ? <li><label>4</label>{Select_4}</li> : null}
+										{Select_5 ? <li><label>5</label>{Select_5}</li> : null}
+										{Select_6 ? <li><label>6</label>{Select_6}</li> : null}
+										{Select_7 ? <li><label>7</label>{Select_7}</li> : null}
+										{Select_8 ? <li><label>8</label>{Select_8}</li> : null}
+									</ul>}
+									
 								</div>
 							</div>
 						</div>
