@@ -55,12 +55,20 @@ function Correct() {
 
 	const [Rewards, setRewards] = useState();
 	const handleRewards = (e) => {
-        setRewards(parseInt(e.target.value));	
+        if(!parseInt(e.target.value)){
+			setRewards(0);
+		}else{
+			setRewards(parseInt(e.target.value));
+		}
 	}
 
 	const [Max_Personnel, setMax_Personnel] = useState();
 	const handleMax_Personnel = (e) => {
-        setMax_Personnel(parseInt(e.target.value));
+        if(!parseInt(e.target.value)){
+			setMax_Personnel(0);
+		}else{
+			setMax_Personnel(parseInt(e.target.value));
+		}
 	}
 
     const [Max_Choice, setMax_Choice] = useState();
@@ -158,7 +166,7 @@ function Correct() {
         }
     }
 
-    const [State, setState] = useState();
+    const [State, setState] = useState(0);
 	const Checkhandler = e => {
 		if(e.target.checked){
 			console.log("CHECK")
@@ -208,14 +216,41 @@ function Correct() {
 		setCountDiv(newDiaryList);
 	};
 
-    const [divCount, setDivCount] = useState([])
-
     const location = useLocation();
     const listnum = location.state.data;
     const [polldata, setPolldata] = useState([]);
 	useEffect(() => {
 		client.get(`primary-poll/list/${listnum}`)
 		.then(({data}) => {setPolldata(data);
+            console.log(data)
+            setTitle(data[0].Title)
+            setImage(data[0].Image)
+            setRewards(data[0].Rewards)
+            setMax_Choice(data[0].Max_Choice)
+            setMax_Personnel(data[0].Max_Personnel)
+            setScale_Start(data[0].Scale_Start)
+            setScale_Start_Text(data[0].Scale_Start_Text)
+            setScale_Mid_Text(data[0].Scale_Mid_Text)
+            setScale_End(data[0].Scale_End)
+            setScale_End_Text(data[0].Scale_End_Text)
+            setScale_Unit(data[0].Scale_Unit)
+            setSelect_1(data[0].Select_1)
+            setSelect_2(data[0].Select_2)
+            setSelect_3(data[0].Select_3)
+            setSelect_4(data[0].Select_4)
+            setSelect_5(data[0].Select_5)
+            setSelect_6(data[0].Select_6)
+            setSelect_7(data[0].Select_7)
+            setSelect_8(data[0].Select_8)
+            setSelect_Image_1(data[0].Select_Image_1)
+            setSelect_Image_2(data[0].Select_Image_2)
+            setSelect_Image_3(data[0].Select_Image_3)
+            setSelect_Image_4(data[0].Select_Image_4)
+            setSelect_Image_5(data[0].Select_Image_5)
+            setSelect_Image_6(data[0].Select_Image_6)
+            setSelect_Image_7(data[0].Select_Image_7)
+            setSelect_Image_8(data[0].Select_Image_8)
+
 
             const divarray=[
                 data[0].Select_1, data[0].Select_2, data[0].Select_3, data[0].Select_4,
@@ -257,7 +292,7 @@ function Correct() {
                                                 onChange={setTitle}
                                                 placeholder=""
                                                 maxLength="30"
-                                                value={Title || qdata.Title}
+                                                value={Title}
                                             />
                                         </div>
                                         <p className="comment">30자 이내로 적어주세요.</p>
@@ -295,7 +330,7 @@ function Correct() {
                                     <p className="title">보기를 입력해주세요.</p>
                                     <div className="desc">
                                         <div className="boxs boxsone">
-                                            <input className="ex-box" type="text" onChange={handleSelect_Text_1} placeholder="보기를 입력해주세요." value={Select_1 || qdata.Select_1} />
+                                            <input className="ex-box" type="text" onChange={handleSelect_Text_1} placeholder="보기를 입력해주세요."  value={Select_1 } />
                                             {/* <div id="photo">{qdata.Select_Image_1}</div>
                                             <label id="btnAtt2"><input type="file" onChange={(e) => {handlefreeImage1(e.target.files[0])}}/>이미지 추가</label> */}
 
@@ -321,7 +356,7 @@ function Correct() {
                                         </div>
 
                                         <div className="boxs">
-                                            <input className="ex-box" type="text" onChange={handleSelect_Text_2} placeholder="보기를 입력해주세요." value={Select_2 || qdata.Select_2} />
+                                            <input className="ex-box" type="text" onChange={handleSelect_Text_2} placeholder="보기를 입력해주세요." value={Select_2} />
                                             {/* <div id="photo">{qdata.Select_Image_2}</div>
                                             <label id="btnAtt2"><input type="file" onChange={(e) => {handlefreeImage2(e.target.files[0])}}/>이미지 추가</label> */}
 
@@ -349,8 +384,8 @@ function Correct() {
                                 <div className="item">
                                     <p className="title">응답옵션을 선택해주세요.</p>
                                     <div className="desc">
-                                        <input type="text" className="w180" onChange={handleScale_Start_Text} placeholder="좋아요 (기본값)" value={Scale_Start_Text || qdata.Scale_Start_Text}/>
-                                        <input type="text" className="w180" onChange={handleScale_End_Text} placeholder="싫어요 (기본값)" value={Scale_End_Text || qdata.Scale_End_Text}/>
+                                        <input type="text" className="w180" onChange={handleScale_Start_Text} placeholder="좋아요 (기본값)" value={Scale_Start_Text}/>
+                                        <input type="text" className="w180" onChange={handleScale_End_Text} placeholder="싫어요 (기본값)" value={Scale_End_Text}/>
                                     </div>
                                 </div> : null}
 
@@ -359,7 +394,7 @@ function Correct() {
                                 <div className="item">
                                     <p className="title">척도 단계</p>
                                     <div className="desc">
-                                        <select onChange={(e) => setScale_Unit(parseInt(e.target.value))} value={Scale_Unit || qdata.Scale_Unit}>
+                                        <select onChange={(e) => setScale_Unit(parseInt(e.target.value))} value={Scale_Unit}>
                                             <option value="선택">선택</option>
                                             <option value="3">3점</option>
                                             <option value="4">4점</option>
@@ -379,20 +414,20 @@ function Correct() {
                                     <div className="desc">
                                         <ol className="progress-bar">
                                             <li>
-                                                <div className="top"><input type="text" id="" name="" placeholder="숫자 입력" onChange={handleScale_Start} value={Scale_Start || qdata.Scale_Start}/></div>
-                                                <div className="bottom"><input type="text" id="" name="" placeholder="왼쪽 입력" onChange={handleScale_Start_Text} value={Scale_Start_Text || qdata.Scale_Start_Text}/></div>
+                                                <div className="top"><input type="text" id="" name="" placeholder="숫자 입력" onChange={handleScale_Start} value={Scale_Start || 0}/></div>
+                                                <div className="bottom"><input type="text" id="" name="" placeholder="왼쪽 입력" onChange={handleScale_Start_Text} value={Scale_Start_Text}/></div>
                                             </li>
                                             <li></li>
                                             <li></li>
                                             <li>
                                                 {/* {Scale_Unit || qdata.Scale_Unit % 2 === 1 ? <div className="top">{Math.floor(Scale_Unit || qdata.Scale_Unit / 2 + 1)}</div> : false} */}
-                                                <div className="bottom"><input type="text" placeholder="가운데 입력" onChange={handleScale_Mid_Text} value={Scale_Mid_Text || qdata.Scale_Mid_Text}/></div>
+                                                <div className="bottom"><input type="text" placeholder="가운데 입력" onChange={handleScale_Mid_Text} value={Scale_Mid_Text}/></div>
                                             </li>
                                             <li></li>
                                             <li></li>
                                             <li>
-                                                <div className="top"><input type="text" id="" name="" placeholder="숫자 입력" onChange={handleScale_End} value={Scale_End || qdata.Scale_End}/></div>
-                                                <div className="bottom"><input type="text" id="" name="" placeholder="오른쪽 입력" onChange={handleScale_End_Text} value={Scale_End_Text || qdata.Scale_End_Text}/></div>
+                                                <div className="top"><input type="text" id="" name="" placeholder="숫자 입력" onChange={handleScale_End} value={Scale_End || 0}/></div>
+                                                <div className="bottom"><input type="text" id="" name="" placeholder="오른쪽 입력" onChange={handleScale_End_Text} value={Scale_End_Text}/></div>
                                             </li>
                                         </ol>
                                     </div>
@@ -402,17 +437,17 @@ function Correct() {
                                 {qdata.Type === 3 || qdata.Type === 4 || qdata.Type === 5 ?
                                 <div className="item">
                                     <p className="title">응답옵션을 선택해주세요.</p>
-                                    <div className="desc">
-                                        <span><input type="radio" id="answer-1" name="answer" checked={qdata.Type === 4 && true} readOnly/><label htmlFor="answer-1" onClick={() => {setType(parseInt(4)); setMax_Choice(parseInt(1));}}>단일 선택</label></span>
-                                        <span><input type="radio" id="answer-2" name="answer" checked={qdata.Type === 3 && true} readOnly/><label htmlFor="answer-2" onClick={() => setType(parseInt(3))}>다중 선택</label></span>
-                                        <span><input type="radio" id="answer-3" name="answer" checked={qdata.Type === 5 && true} readOnly/><label htmlFor="answer-3" onClick={() => setType(parseInt(5))}>순위 선택</label></span>
+                                    <div className="desc">                       {/* defaultChecked 문제 (`value` prop on `input` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components.)*/}
+                                        <span><input type="radio" id="answer-1" name="answer" defaultChecked={Type || qdata.Type === 4 && true} readOnly/><label htmlFor="answer-1" onClick={() => {setType(parseInt(4)); setMax_Choice(parseInt(1));}}>단일 선택</label></span>
+                                        <span><input type="radio" id="answer-2" name="answer" defaultChecked={Type || qdata.Type === 3 && true} readOnly/><label htmlFor="answer-2" onClick={() => setType(parseInt(3))}>다중 선택</label></span>
+                                        <span><input type="radio" id="answer-3" name="answer" defaultChecked={Type || qdata.Type === 5 && true} readOnly/><label htmlFor="answer-3" onClick={() => setType(parseInt(5))}>순위 선택</label></span>
                                     </div>
                                 </div> : null}
                                 {qdata.Type === 3 || qdata.Type === 4 || qdata.Type === 5 ?
                                 <div className="item">
                                     <p className="title">선택 개수를 입력해주세요.</p>
                                     <div className="desc">
-                                        <div><span className="txt">최대</span><input type="text" className="w100" value={Max_Choice || qdata.Max_Choice || ""} onChange={handleMax_Choice}/><span className="txt">개</span></div>
+                                        <div><span className="txt">최대</span><input type="text" className="w100" value={Max_Choice} onChange={handleMax_Choice}/><span className="txt">개</span></div>
                                     </div>
                                 </div> : null}
                                 
@@ -440,14 +475,6 @@ function Correct() {
                                             Select_6={Select_6}
                                             Select_7={Select_7}
                                             Select_8={Select_8}
-                                            qSelect_1={qdata.Select_1}
-                                            qSelect_2={qdata.Select_2}
-                                            qSelect_3={qdata.Select_3}
-                                            qSelect_4={qdata.Select_4}
-                                            qSelect_5={qdata.Select_5}
-                                            qSelect_6={qdata.Select_6}
-                                            qSelect_7={qdata.Select_7}
-                                            qSelect_8={qdata.Select_8}
                                             setSelect_Image_1={setSelect_Image_1}
                                             setSelect_Image_2={setSelect_Image_2}
                                             setSelect_Image_3={setSelect_Image_3}
@@ -525,7 +552,7 @@ function Correct() {
                                 <div className="item">
                                     <p className="title">지급 포인트</p>
                                     <div className="desc">
-                                        <div><input type="text" className="txtR" onChange={handleRewards} value={Rewards || qdata.Rewards}/><span className="txt">P</span></div>
+                                        <div><input type="text" className="txtR" onChange={handleRewards} value={Rewards}/><span className="txt">P</span></div>
                                     </div>
                                 </div>
                                     
@@ -533,7 +560,7 @@ function Correct() {
                                 <div className="item">
                                     <p className="title">참여 인원수</p>
                                     <div className="desc">
-                                        <div><input type="text" className="txtR" onChange={handleMax_Personnel} value={Max_Personnel || qdata.Max_Personnel}/><span className="txt">명</span></div>
+                                        <div><input type="text" className="txtR" onChange={handleMax_Personnel} value={Max_Personnel}/><span className="txt">명</span></div>
                                     </div>
                                 </div> : null}
 
@@ -542,7 +569,7 @@ function Correct() {
                                 <div className="item">
                                     <p className="title">참여 인원수</p>
                                     <div className="desc">
-                                        <div><input type="text" className={!check ? "txtR" : "txtR no"} value={qdata.Max_Personnel || ''} onChange={handleMax_Personnel} readOnly={!check ? false : true}/><span className="txt">명</span></div>
+                                        <div><input type="text" className={!check ? "txtR" : "txtR no"} value={Max_Personnel} onChange={handleMax_Personnel} readOnly={!check ? false : true}/><span className="txt">명</span></div>
                                         <p className="chkBox"><input type="checkbox" id="agr-chk" name="" onClick={handlecheck}/><label htmlFor="agr-chk">참여 인원수 제한 없음</label></p>
                                     </div>
                                 </div> : null}
@@ -550,7 +577,7 @@ function Correct() {
                                 <div className="item">
                                     <p className="title">승인</p>
                                     <div className="desc">
-                                        <p className="chkBox2"><input type="checkbox" id="agr-chk2" name="" onClick={Checkhandler}/><label htmlFor="agr-chk2"></label></p>
+                                        <p className="chkBox2"><input type="checkbox" id="agr-chk2" name="" onClick={Checkhandler} checked={State || qdata.State === "CHECK" ? true : false} readOnly/><label htmlFor="agr-chk2"></label></p>
                                     </div>
                                 </div>
                             </div>
@@ -572,11 +599,11 @@ function Correct() {
                                             
                                             <p className="date">날짜</p>
 
-                                            {Image || qdata.Image === "" ? null : 
+                                            {qdata.Image === "" ? null : 
                                                 <div className={qdata.Type === 0 ? "b-titleImg" : qdata.Type === 1 ? "u-titleImg" : qdata.Type === 2 ? "c-titleImg" :
                                                     qdata.Type === 3 || qdata.Type === 4 || qdata.Type === 5 ? "m-titleImg" : qdata.Type === 6 && "s-titleImg"}
                                                 >
-                                                    {freeImage || qdata.Image && <img className="preview-img" src={freeImage || qdata.Image} alt="preview-img"/>}
+                                                    {qdata.Image && <img className="preview-img" src={qdata.Image} alt="preview-img"/>}
                                                 </div>}
 
                                             {qdata.Type === 3 || qdata.Type === 4 || qdata.Type === 5 ? <p className="title">{Title || qdata.Title}</p> : null}
@@ -616,24 +643,24 @@ function Correct() {
                                                 qdata.Select_Image_1 || qdata.Select_Image_2 || qdata.Select_Image_3 || qdata.Select_Image_4 ||
                                                 qdata.Select_Image_5 || qdata.Select_Image_6 || qdata.Select_Image_7 || qdata.Select_Image_8 ? (
                                                 <ul className="multipleImg">
-                                                    {Select_Image_1 || qdata.Select_Image_1 ? <li>{Select_Image_1 || qdata.Select_Image_1 && <img className="preview-img1" src={Select_Image_1 || qdata.Select_Image_1} alt="preview-img"/>} {qdata.Select_1 ? <p>{qdata.Select_1}</p> : null}</li> : null}
-                                                    {Select_Image_2 || qdata.Select_Image_2 ? <li>{Select_Image_2 || qdata.Select_Image_2 && <img className="preview-img1" src={Select_Image_2 || qdata.Select_Image_2} alt="preview-img"/>} {qdata.Select_2 ? <p>{qdata.Select_2}</p> : null}</li> : null}
-                                                    {Select_Image_3 || qdata.Select_Image_3 ? <li>{Select_Image_3 || qdata.Select_Image_3 && <img className="preview-img1" src={Select_Image_3 || qdata.Select_Image_3} alt="preview-img"/>} {qdata.Select_3 ? <p>{qdata.Select_3}</p> : null}</li> : null}
-                                                    {Select_Image_4 || qdata.Select_Image_4 ? <li>{Select_Image_4 || qdata.Select_Image_4 && <img className="preview-img1" src={Select_Image_4 || qdata.Select_Image_4} alt="preview-img"/>} {qdata.Select_4 ? <p>{qdata.Select_4}</p> : null}</li> : null}
-                                                    {Select_Image_5 || qdata.Select_Image_5 ? <li>{Select_Image_5 || qdata.Select_Image_5 && <img className="preview-img1" src={Select_Image_5 || qdata.Select_Image_5} alt="preview-img"/>} {qdata.Select_5 ? <p>{qdata.Select_5}</p> : null}</li> : null}
-                                                    {Select_Image_6 || qdata.Select_Image_6 ? <li>{Select_Image_6 || qdata.Select_Image_6 && <img className="preview-img1" src={Select_Image_6 || qdata.Select_Image_6} alt="preview-img"/>} {qdata.Select_6 ? <p>{qdata.Select_6}</p> : null}</li> : null}
-                                                    {Select_Image_7 || qdata.Select_Image_7 ? <li>{Select_Image_7 || qdata.Select_Image_7 && <img className="preview-img1" src={Select_Image_7 || qdata.Select_Image_7} alt="preview-img"/>} {qdata.Select_7 ? <p>{qdata.Select_7}</p> : null}</li> : null}
-                                                    {Select_Image_8 || qdata.Select_Image_8 ? <li>{Select_Image_8 || qdata.Select_Image_8 && <img className="preview-img1" src={Select_Image_8 || qdata.Select_Image_8} alt="preview-img"/>} {qdata.Select_8 ? <p>{qdata.Select_8}</p> : null}</li> : null}
+                                                    {qdata.Select_Image_1 ? <li>{qdata.Select_Image_1 && <img className="preview-img1" src={qdata.Select_Image_1} alt="preview-img"/>} {Select_1 ? <p>{Select_1}</p> : null}</li> : null}
+                                                    {qdata.Select_Image_2 ? <li>{qdata.Select_Image_2 && <img className="preview-img1" src={qdata.Select_Image_2} alt="preview-img"/>} {Select_2 ? <p>{Select_2}</p> : null}</li> : null}
+                                                    {qdata.Select_Image_3 ? <li>{qdata.Select_Image_3 && <img className="preview-img1" src={qdata.Select_Image_3} alt="preview-img"/>} {Select_3 ? <p>{Select_3}</p> : null}</li> : null}
+                                                    {qdata.Select_Image_4 ? <li>{qdata.Select_Image_4 && <img className="preview-img1" src={qdata.Select_Image_4} alt="preview-img"/>} {Select_4 ? <p>{Select_4}</p> : null}</li> : null}
+                                                    {qdata.Select_Image_5 ? <li>{qdata.Select_Image_5 && <img className="preview-img1" src={qdata.Select_Image_5} alt="preview-img"/>} {Select_5 ? <p>{Select_5}</p> : null}</li> : null}
+                                                    {qdata.Select_Image_6 ? <li>{qdata.Select_Image_6 && <img className="preview-img1" src={qdata.Select_Image_6} alt="preview-img"/>} {Select_6 ? <p>{Select_6}</p> : null}</li> : null}
+                                                    {qdata.Select_Image_7 ? <li>{qdata.Select_Image_7 && <img className="preview-img1" src={qdata.Select_Image_7} alt="preview-img"/>} {Select_7 ? <p>{Select_7}</p> : null}</li> : null}
+                                                    {qdata.Select_Image_8 ? <li>{qdata.Select_Image_8 && <img className="preview-img1" src={qdata.Select_Image_8} alt="preview-img"/>} {Select_8 ? <p>{Select_8}</p> : null}</li> : null}
                                                 </ul>
                                             ) : <ul className="multipleTxt">
-                                                {Select_1 || qdata.Select_1 ? <li><label>1</label>{Select_1 || qdata.Select_1}</li> : null}
-                                                {Select_2 || qdata.Select_2 ? <li><label>2</label>{Select_2 || qdata.Select_2}</li> : null}
-                                                {Select_3 || qdata.Select_3 ? <li><label>3</label>{Select_3 || qdata.Select_3}</li> : null}
-                                                {Select_4 || qdata.Select_4 ? <li><label>4</label>{Select_4 || qdata.Select_4}</li> : null}
-                                                {Select_5 || qdata.Select_5 ? <li><label>5</label>{Select_5 || qdata.Select_5}</li> : null}
-                                                {Select_6 || qdata.Select_6 ? <li><label>6</label>{Select_6 || qdata.Select_6}</li> : null}
-                                                {Select_7 || qdata.Select_7 ? <li><label>7</label>{Select_7 || qdata.Select_7}</li> : null}
-                                                {Select_8 || qdata.Select_8 ? <li><label>8</label>{Select_8 || qdata.Select_8}</li> : null}
+                                                {Select_1 ? <li><label>1</label>{Select_1}</li> : null}
+                                                {Select_2 ? <li><label>2</label>{Select_2}</li> : null}
+                                                {Select_3 ? <li><label>3</label>{Select_3}</li> : null}
+                                                {Select_4 ? <li><label>4</label>{Select_4}</li> : null}
+                                                {Select_5 ? <li><label>5</label>{Select_5}</li> : null}
+                                                {Select_6 ? <li><label>6</label>{Select_6}</li> : null}
+                                                {Select_7 ? <li><label>7</label>{Select_7}</li> : null}
+                                                {Select_8 ? <li><label>8</label>{Select_8}</li> : null}
                                             </ul>}
 
 

@@ -47,7 +47,7 @@ function MulitpleChoice(){
 	const [Title, setTitle] = useState("");
 
 
-	const [Rewards, setRewards] = useState(Number);
+	const [Rewards, setRewards] = useState();
 	const handleRewards = (e) => {
 		if(!parseInt(e.target.value)){
 			setRewards(0)
@@ -57,7 +57,7 @@ function MulitpleChoice(){
 		
 	}
 
-	const [Max_Personnel, setMax_Personnel] = useState(Number);
+	const [Max_Personnel, setMax_Personnel] = useState();
 	const handleMax_Personnel = (e) => {
 		if(!parseInt(e.target.value)){
 			setMax_Personnel(0)
@@ -97,7 +97,7 @@ function MulitpleChoice(){
 		setMax_Choice(parseInt(e.target.value))
 	}
 
-	const [State, setState] = useState();
+	const [State, setState] = useState(0);
 	const handleCheck = e => {
 		if(e.target.checked){
 			console.log("CHECK")

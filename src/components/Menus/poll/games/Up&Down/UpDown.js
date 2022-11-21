@@ -25,7 +25,7 @@ function UpDown(){
         setScale_End_Text(e.target.value);
     }
 
-    const [Rewards, setRewards] = useState(Number);
+    const [Rewards, setRewards] = useState();
 	const handleRewards = (e) => {
 		if(!parseInt(e.target.value)){
 			setRewards(0)
@@ -34,7 +34,7 @@ function UpDown(){
 		}
 	}
 
-	const [Max_Personnel, setMax_Personnel] = useState(Number);
+	const [Max_Personnel, setMax_Personnel] = useState();
 	const handleMax_Personnel = (e) => {
 		if(!parseInt(e.target.value)){
 			setMax_Personnel(0)
@@ -65,7 +65,7 @@ function UpDown(){
 		setfreeImage('')
 	}
 
-	const [State, setState] = useState();
+	const [State, setState] = useState(0);
 	const handleCheck = e => {
 		if(e.target.checked){
 			console.log("CHECK")

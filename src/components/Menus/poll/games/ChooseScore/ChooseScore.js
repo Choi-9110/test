@@ -55,7 +55,7 @@ function ChooseScore(){
 		setfreeImage('')
 	}
 
-    const [Scale_Start, setScale_Start] = useState(Number);
+    const [Scale_Start, setScale_Start] = useState();
     const handleScale_Start = (e) => {
 		if(!parseInt(e.target.value)){
 			setScale_Start(0)
@@ -64,7 +64,7 @@ function ChooseScore(){
 		}
     }
 
-    const [Scale_End, setScale_End] = useState(Number);
+    const [Scale_End, setScale_End] = useState();
 	const handleScale_End = (e) => {
 		if(!parseInt(e.target.value)){
 			setScale_End(0)
@@ -101,7 +101,7 @@ function ChooseScore(){
         }
     }
 
-	const [State, setState] = useState();
+	const [State, setState] = useState(0);
 	const Checkhandler = e => {
 		if(e.target.checked){
 			console.log("CHECK")

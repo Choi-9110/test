@@ -13,15 +13,6 @@ function MultiCorrect(props){
     imgArray[6]=props.qSelect_Image_7;
     imgArray[7]=props.qSelect_Image_8;
 
-    const [txtArray, setTxtArray] = useState([])
-    txtArray[0]=props.qSelect_1;
-    txtArray[1]=props.qSelect_2;
-    txtArray[2]=props.qSelect_3;
-    txtArray[3]=props.qSelect_4;
-    txtArray[4]=props.qSelect_5;
-    txtArray[5]=props.qSelect_6;
-    txtArray[6]=props.qSelect_7;
-    txtArray[7]=props.qSelect_8;
 
     const [text, setText] = useState([])
     text[0]=props.Select_1
@@ -33,6 +24,8 @@ function MultiCorrect(props){
     text[6]=props.Select_7
     text[7]=props.Select_8
 
+    console.log(props)
+
     return (
         <>
             {props.countDiv.map((i) => (
@@ -43,7 +36,7 @@ function MultiCorrect(props){
                         >
                         <div className="tit">
                             <input className="ex-box" type="text" name={i}
-                            value={text[i] || txtArray[i]}
+                            value={text[i]}
                             onChange={(e) => {
                                     switch( i ){
                                         case 0 :
