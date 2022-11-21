@@ -15,14 +15,14 @@ function UpDown(){
 
     const [Title, setTitle] = useState("");
 
-    const [Select_1, setSelect_1] = useState("좋아요");
-    const handleSelect_Text_1 = (e) => {
-        setSelect_1(e.target.value);
+    const [Scale_Start_Text, setScale_Start_Text] = useState("좋아요");
+    const handleScale_Start_Text = (e) => {
+        setScale_Start_Text(e.target.value);
     }
 
-    const [Select_2, setSelect_2] = useState("싫어요");
-    const handleSelect_Text_2 = (e) => {
-        setSelect_2(e.target.value);
+    const [Scale_End_Text, setScale_End_Text] = useState("싫어요");
+    const handleScale_End_Text = (e) => {
+        setScale_End_Text(e.target.value);
     }
 
     const [Rewards, setRewards] = useState(Number);
@@ -80,7 +80,9 @@ function UpDown(){
     const Max_Choice = 1;
     const Random = 0;
 	const Select_Image_1 = null;
+	const Select_1 = null;
 	const Select_Image_2 = null;
+	const Select_2 = null;
     const Select_Image_3 = null;
     const Select_3 =null;
     const Select_Image_4 = null;
@@ -98,8 +100,6 @@ function UpDown(){
     const Scale_End = 0;
     const Scale_Unit = 0;
 
-    const Scale_Start_Text = null;
-    const Scale_End_Text = null;
     const Scale_Mid_Text = null;
 	const Is_Using_Others = 0;
 	const Regist_M_Idx = null;
@@ -231,8 +231,8 @@ function UpDown(){
                         <div className="item">
                             <p className="title">응답옵션을 선택해주세요.</p>
                             <div className="desc">
-                                <input type="text" className="w180" onChange={handleSelect_Text_1} placeholder="좋아요 (기본값)" />
-                                <input type="text" className="w180" onChange={handleSelect_Text_2} placeholder="싫어요 (기본값)" />
+                                <input type="text" className="w180" onChange={handleScale_Start_Text} placeholder="좋아요 (기본값)" />
+                                <input type="text" className="w180" onChange={handleScale_End_Text} placeholder="싫어요 (기본값)" />
                             </div>
                         </div>
                         <div className="item">

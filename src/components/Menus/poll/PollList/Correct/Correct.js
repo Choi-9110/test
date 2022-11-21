@@ -5,7 +5,7 @@ import Sidebar from "../../../../sidebarmenu/Sidebar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {ko} from 'date-fns/esm/locale';
-import InputEmoji, { propTypes } from "react-input-emoji";
+import InputEmoji from "react-input-emoji";
 import client from "../../../../client";
 import "./Correct.css";
 import moment from "moment";
@@ -187,7 +187,7 @@ function Correct() {
 	}
 
     // div 추가
-	const [countDiv, setCountDiv] = useState([0]);
+	const [countDiv, setCountDiv] = useState([]);
 
 	const onAddDetailDiv = () => {	
 		let countArr = [...countDiv]
@@ -208,12 +208,32 @@ function Correct() {
 		setCountDiv(newDiaryList);
 	};
 
+    const [divCount, setDivCount] = useState([])
+
     const location = useLocation();
     const listnum = location.state.data;
     const [polldata, setPolldata] = useState([]);
 	useEffect(() => {
 		client.get(`primary-poll/list/${listnum}`)
-		.then(({data}) => {setPolldata(data)})
+		.then(({data}) => {setPolldata(data);
+
+            const divarray=[
+                data[0].Select_1, data[0].Select_2, data[0].Select_3, data[0].Select_4,
+                data[0].Select_5, data[0].Select_6, data[0].Select_7, data[0].Select_8
+            ]
+            const divImgarray=[
+                data[0].Select_Image_1, data[0].Select_Image_2, data[0].Select_Image_3, data[0].Select_Image_4,
+                data[0].Select_Image_5, data[0].Select_Image_6, data[0].Select_Image_7, data[0].Select_Image_8
+            ]
+            
+            
+            for(let i=0; i<=8; i++){
+                if(divarray[i] || divImgarray[i]){
+                    countDiv.push(i)
+                }
+            }
+            
+        })
 	}, [])
 
     return (
@@ -237,7 +257,7 @@ function Correct() {
                                                 onChange={setTitle}
                                                 placeholder=""
                                                 maxLength="30"
-                                                value={qdata.Title || Title}
+                                                value={Title || qdata.Title}
                                             />
                                         </div>
                                         <p className="comment">30자 이내로 적어주세요.</p>
@@ -257,11 +277,11 @@ function Correct() {
                                                 {({getRootProps, getInputProps}) => (
                                                     <div id="btnAtt" {...getRootProps()}>
                                                         <input {...getInputProps()} />
-                                                    </div>      
+                                                    </div>
                                                 )}
                                             </Dropzone>
-                                            {qdata.Image ? <div id="photo-view">
-                                                <img className="preview-img" src={qdata.Image} alt="preview-img"/>
+                                            {freeImage || qdata.Image ? <div id="photo-view">
+                                                <img className="preview-img" src={freeImage || qdata.Image} alt="preview-img"/>
                                                 <input type="button" value="X" className="deleteImg" onClick={removeImg}/>
                                             </div> : null}
                                         </div>
@@ -289,8 +309,8 @@ function Correct() {
                                                     </div>      
                                                 )}
                                             </Dropzone>
-                                            {qdata.Select_Image_1 ? <div id="photo-view">
-                                                <img className="preview-img" src={qdata.Select_Image_1} alt="preview-img"/>
+                                            {freeImage1 || qdata.Select_Image_1 ? <div id="photo-view">
+                                                <img className="preview-img" src={freeImage1 || qdata.Select_Image_1} alt="preview-img"/>
                                                 <input type="button" value="X" id={qdata.Select_Image_1} className="deleteImg" onClick={async() => {
                                                     console.log('click')
                                                     qdata.Select_Image_1 =  "";
@@ -315,8 +335,8 @@ function Correct() {
                                                     </div>      
                                                 )}
                                             </Dropzone>
-                                            {qdata.Select_Image_2 ? <div id="photo-view">
-                                                <img className="preview-img" src={qdata.Select_Image_2} alt="preview-img"/>
+                                            {freeImage2 || qdata.Select_Image_2 ? <div id="photo-view">
+                                                <img className="preview-img" src={freeImage2 || qdata.Select_Image_2} alt="preview-img"/>
                                                 <input type="button" value="X" className="deleteImg" onClick={removeSelectImg2}/>
                                             </div> : null}
                                             <p className="comment">권장 크기: 1,000 x 1,000</p>
@@ -329,8 +349,8 @@ function Correct() {
                                 <div className="item">
                                     <p className="title">응답옵션을 선택해주세요.</p>
                                     <div className="desc">
-                                        <input type="text" className="w180" onChange={handleSelect_Text_1} placeholder="좋아요 (기본값)" value={Select_1 || qdata.Select_1}/>
-                                        <input type="text" className="w180" onChange={handleSelect_Text_2} placeholder="싫어요 (기본값)" value={Select_2 || qdata.Select_2}/>
+                                        <input type="text" className="w180" onChange={handleScale_Start_Text} placeholder="좋아요 (기본값)" value={Scale_Start_Text || qdata.Scale_Start_Text}/>
+                                        <input type="text" className="w180" onChange={handleScale_End_Text} placeholder="싫어요 (기본값)" value={Scale_End_Text || qdata.Scale_End_Text}/>
                                     </div>
                                 </div> : null}
 
@@ -392,7 +412,7 @@ function Correct() {
                                 <div className="item">
                                     <p className="title">선택 개수를 입력해주세요.</p>
                                     <div className="desc">
-                                        <div><span className="txt">최대</span><input type="text" className="w100" value={Max_Choice || qdata.Max_Choice} onChange={handleMax_Choice}/><span className="txt">개</span></div>
+                                        <div><span className="txt">최대</span><input type="text" className="w100" value={Max_Choice || qdata.Max_Choice || ""} onChange={handleMax_Choice}/><span className="txt">개</span></div>
                                     </div>
                                 </div> : null}
                                 
@@ -552,11 +572,11 @@ function Correct() {
                                             
                                             <p className="date">날짜</p>
 
-                                            {qdata.Image === "" ? null : 
+                                            {Image || qdata.Image === "" ? null : 
                                                 <div className={qdata.Type === 0 ? "b-titleImg" : qdata.Type === 1 ? "u-titleImg" : qdata.Type === 2 ? "c-titleImg" :
                                                     qdata.Type === 3 || qdata.Type === 4 || qdata.Type === 5 ? "m-titleImg" : qdata.Type === 6 && "s-titleImg"}
                                                 >
-                                                    {qdata.Image && <img className="preview-img" src={qdata.Image} alt="preview-img"/>}
+                                                    {freeImage || qdata.Image && <img className="preview-img" src={freeImage || qdata.Image} alt="preview-img"/>}
                                                 </div>}
 
                                             {qdata.Type === 3 || qdata.Type === 4 || qdata.Type === 5 ? <p className="title">{Title || qdata.Title}</p> : null}
@@ -576,8 +596,8 @@ function Correct() {
                                             ) : qdata.Type === 1 ? (
                                                 <div className="updowns">
                                                     <ul className="updown">
-                                                        <li>{Select_1 || qdata.Select_1}</li>
-                                                        <li>{Select_2 || qdata.Select_2}</li>
+                                                        <li>{Scale_Start_Text || qdata.Scale_Start_Text}</li>
+                                                        <li>{Scale_End_Text || qdata.Scale_End_Text}</li>
                                                     </ul>
                                                 </div>
                                             ) : qdata.Type === 2 ? (
@@ -596,24 +616,24 @@ function Correct() {
                                                 qdata.Select_Image_1 || qdata.Select_Image_2 || qdata.Select_Image_3 || qdata.Select_Image_4 ||
                                                 qdata.Select_Image_5 || qdata.Select_Image_6 || qdata.Select_Image_7 || qdata.Select_Image_8 ? (
                                                 <ul className="multipleImg">
-                                                    {qdata.Select_Image_1 ? <li>{qdata.Select_Image_1 && <img className="preview-img1" src={qdata.Select_Image_1} alt="preview-img"/>} {qdata.Select_1 ? <p>{qdata.Select_1}</p> : null}</li> : null}
-                                                    {qdata.Select_Image_2 ? <li>{qdata.Select_Image_2 && <img className="preview-img1" src={qdata.Select_Image_2} alt="preview-img"/>} {qdata.Select_2 ? <p>{qdata.Select_2}</p> : null}</li> : null}
-                                                    {qdata.Select_Image_3 ? <li>{qdata.Select_Image_3 && <img className="preview-img1" src={qdata.Select_Image_3} alt="preview-img"/>} {qdata.Select_3 ? <p>{qdata.Select_3}</p> : null}</li> : null}
-                                                    {qdata.Select_Image_4 ? <li>{qdata.Select_Image_4 && <img className="preview-img1" src={qdata.Select_Image_4} alt="preview-img"/>} {qdata.Select_4 ? <p>{qdata.Select_4}</p> : null}</li> : null}
-                                                    {qdata.Select_Image_5 ? <li>{qdata.Select_Image_5 && <img className="preview-img1" src={qdata.Select_Image_5} alt="preview-img"/>} {qdata.Select_5 ? <p>{qdata.Select_5}</p> : null}</li> : null}
-                                                    {qdata.Select_Image_6 ? <li>{qdata.Select_Image_6 && <img className="preview-img1" src={qdata.Select_Image_6} alt="preview-img"/>} {qdata.Select_6 ? <p>{qdata.Select_6}</p> : null}</li> : null}
-                                                    {qdata.Select_Image_7 ? <li>{qdata.Select_Image_7 && <img className="preview-img1" src={qdata.Select_Image_7} alt="preview-img"/>} {qdata.Select_7 ? <p>{qdata.Select_7}</p> : null}</li> : null}
-                                                    {qdata.Select_Image_8 ? <li>{qdata.Select_Image_8 && <img className="preview-img1" src={qdata.Select_Image_8} alt="preview-img"/>} {qdata.Select_8 ? <p>{qdata.Select_8}</p> : null}</li> : null}
+                                                    {Select_Image_1 || qdata.Select_Image_1 ? <li>{Select_Image_1 || qdata.Select_Image_1 && <img className="preview-img1" src={Select_Image_1 || qdata.Select_Image_1} alt="preview-img"/>} {qdata.Select_1 ? <p>{qdata.Select_1}</p> : null}</li> : null}
+                                                    {Select_Image_2 || qdata.Select_Image_2 ? <li>{Select_Image_2 || qdata.Select_Image_2 && <img className="preview-img1" src={Select_Image_2 || qdata.Select_Image_2} alt="preview-img"/>} {qdata.Select_2 ? <p>{qdata.Select_2}</p> : null}</li> : null}
+                                                    {Select_Image_3 || qdata.Select_Image_3 ? <li>{Select_Image_3 || qdata.Select_Image_3 && <img className="preview-img1" src={Select_Image_3 || qdata.Select_Image_3} alt="preview-img"/>} {qdata.Select_3 ? <p>{qdata.Select_3}</p> : null}</li> : null}
+                                                    {Select_Image_4 || qdata.Select_Image_4 ? <li>{Select_Image_4 || qdata.Select_Image_4 && <img className="preview-img1" src={Select_Image_4 || qdata.Select_Image_4} alt="preview-img"/>} {qdata.Select_4 ? <p>{qdata.Select_4}</p> : null}</li> : null}
+                                                    {Select_Image_5 || qdata.Select_Image_5 ? <li>{Select_Image_5 || qdata.Select_Image_5 && <img className="preview-img1" src={Select_Image_5 || qdata.Select_Image_5} alt="preview-img"/>} {qdata.Select_5 ? <p>{qdata.Select_5}</p> : null}</li> : null}
+                                                    {Select_Image_6 || qdata.Select_Image_6 ? <li>{Select_Image_6 || qdata.Select_Image_6 && <img className="preview-img1" src={Select_Image_6 || qdata.Select_Image_6} alt="preview-img"/>} {qdata.Select_6 ? <p>{qdata.Select_6}</p> : null}</li> : null}
+                                                    {Select_Image_7 || qdata.Select_Image_7 ? <li>{Select_Image_7 || qdata.Select_Image_7 && <img className="preview-img1" src={Select_Image_7 || qdata.Select_Image_7} alt="preview-img"/>} {qdata.Select_7 ? <p>{qdata.Select_7}</p> : null}</li> : null}
+                                                    {Select_Image_8 || qdata.Select_Image_8 ? <li>{Select_Image_8 || qdata.Select_Image_8 && <img className="preview-img1" src={Select_Image_8 || qdata.Select_Image_8} alt="preview-img"/>} {qdata.Select_8 ? <p>{qdata.Select_8}</p> : null}</li> : null}
                                                 </ul>
-                                            ): <ul className="multipleTxt">
-                                                {qdata.Select_1 ? <li><label>1</label>{qdata.Select_1}</li> : null}
-                                                {qdata.Select_2 ? <li><label>2</label>{qdata.Select_2}</li> : null}
-                                                {qdata.Select_3 ? <li><label>3</label>{qdata.Select_3}</li> : null}
-                                                {qdata.Select_4 ? <li><label>4</label>{qdata.Select_4}</li> : null}
-                                                {qdata.Select_5 ? <li><label>5</label>{qdata.Select_5}</li> : null}
-                                                {qdata.Select_6 ? <li><label>6</label>{qdata.Select_6}</li> : null}
-                                                {qdata.Select_7 ? <li><label>7</label>{qdata.Select_7}</li> : null}
-                                                {qdata.Select_8 ? <li><label>8</label>{qdata.Select_8}</li> : null}
+                                            ) : <ul className="multipleTxt">
+                                                {Select_1 || qdata.Select_1 ? <li><label>1</label>{Select_1 || qdata.Select_1}</li> : null}
+                                                {Select_2 || qdata.Select_2 ? <li><label>2</label>{Select_2 || qdata.Select_2}</li> : null}
+                                                {Select_3 || qdata.Select_3 ? <li><label>3</label>{Select_3 || qdata.Select_3}</li> : null}
+                                                {Select_4 || qdata.Select_4 ? <li><label>4</label>{Select_4 || qdata.Select_4}</li> : null}
+                                                {Select_5 || qdata.Select_5 ? <li><label>5</label>{Select_5 || qdata.Select_5}</li> : null}
+                                                {Select_6 || qdata.Select_6 ? <li><label>6</label>{Select_6 || qdata.Select_6}</li> : null}
+                                                {Select_7 || qdata.Select_7 ? <li><label>7</label>{Select_7 || qdata.Select_7}</li> : null}
+                                                {Select_8 || qdata.Select_8 ? <li><label>8</label>{Select_8 || qdata.Select_8}</li> : null}
                                             </ul>}
 
 

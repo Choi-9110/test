@@ -33,8 +33,6 @@ function MultiCorrect(props){
     text[6]=props.Select_7
     text[7]=props.Select_8
 
-    console.log(props)
-
     return (
         <>
             {props.countDiv.map((i) => (

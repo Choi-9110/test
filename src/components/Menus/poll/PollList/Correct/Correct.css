@@ -62,9 +62,14 @@
 #correct_write .preview .phone .desc .modal > .balances > .vs{ float: left;}
 #correct_write .preview .phone .desc .modal > .balances > .vs{padding-bottom: 30px; font-size: 12px;}
 #correct_write .preview .phone .desc .modal .balances > .balance > li > img{width: 6rem; border-radius: 5px;}
-#correct_write .preview .phone .desc .modal .balances > .balance > li > p{margin-top: .5rem; font-size: 9px;}
+#correct_write .preview .phone .desc .modal .balances > .balance > li > p{margin: .5rem 0; font-size: 9px;}
 #correct_write .preview .phone .desc .modal .balances > .balance > li > p,
 #correct_write .preview .phone .desc .modal .balances > .vs{font-weight: bold;}
+
+/* 업다운 */
+#correct_write .preview .phone .desc .modal .updowns{margin-top: 2rem;}
+#correct_write .preview .phone .desc .modal .updowns .updown{display: flex; justify-content: space-between; padding: 0 50px; margin-bottom: 20px; font-size: 12px;}
+#correct_write .preview .phone .desc .modal .u-titleImg > img{ width: 13rem; height: 7.5rem; border-radius: 5px;}
 
 /* 객관식 */
 #correct_write .preview .phone .desc .modal .m-titleImg > img{ width: 14rem; height: 8rem; border-radius: 10px;}
@@ -104,11 +109,6 @@
 #correct_write .m-item .desc p.comment {font-size:0.75rem; color:#35b256; margin-top:10px;}
 #correct_write .m-item .box-wrap input[type=text] { background: #fff;}
 
-/* 업다운 */
-#correct_write .preview .phone .desc .modal .updowns{margin-top: 2rem;}
-#correct_write .preview .phone .desc .modal .updowns .updown{display: flex; justify-content: space-between; padding: 0 50px; font-size: 12px;}
-#correct_write .preview .phone .desc .modal .u-titleImg > img{ width: 13rem; height: 7.5rem; border-radius: 5px;}
-
 /* 별점 */
 #correct_write .preview .phone .desc .modal .s-titleImg > img{ width: 13rem; height: 7.5rem; border-radius: 5px;}
 
@@ -116,7 +116,7 @@
 #correct_write .preview .phone .desc .modal .c-titleImg > img{ width: 13rem; height: 7.5rem; border-radius: 5px;}
 #correct_write .preview .phone .desc .modal .choose{margin-top: .5rem;}
 #correct_write .preview .phone .desc .modal .choose .top{display: flex; justify-content: space-between; padding: 10px 15px; font-size: 13px;}
-#correct_write .preview .phone .desc .modal .choose .bottom{display: flex; justify-content: space-around; gap: 9rem; margin-top: 10px; font-size: 13px;}
+#correct_write .preview .phone .desc .modal .choose .bottom{display: flex; justify-content: space-around; gap: 9rem; margin: 10px 0 15px 0; font-size: 13px;}
 #correct_write .preview .phone .desc .modal .progress-bar {width:100%;}
 #correct_write .preview .phone .desc .modal .progress-bar:after {position:absolute; top:50%; transform:translateY(-50%); left: 6%; width:14.9rem; height:10px; background:#c684ff; z-index:1; content:'';}
 #correct_write .preview .phone .desc .modal .progress-bar .top {font-size: 15px; position:absolute; top:30px; left:17%; transform:translateX(-50%);}
