@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./Point.css";
 import DatePicker from "react-datepicker";
 import {ko} from 'date-fns/esm/locale';
@@ -27,6 +27,13 @@ function PointData(){
             handleSearch();
         }
     }
+
+	useEffect(() => {
+
+		
+	}, [])
+
+
 
     return (
         <div className="contents">

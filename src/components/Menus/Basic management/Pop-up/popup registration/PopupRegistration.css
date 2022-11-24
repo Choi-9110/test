@@ -37,11 +37,12 @@ input[type=email][disabled] {
 #registration_write .item .desc input[type=text].w80 { width: 80%;}
 
 #registration_write .item .desc input[type=file] { display: none;}
-#registration_write .item .desc #btnAtt { position: relative; width: 280px; height: 140px; display: inline-block; vertical-align: top; border: 1px dashed #e8e8e8; cursor: pointer;}
-#registration_write .item .desc #btnAtt:before { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 2px; height: 28px; background: #e8e8e8; content: '';}
-#registration_write .item .desc #btnAtt:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 28px; height: 2px; background: #e8e8e8; content: '';}
-
-#registration_write .item .desc #photo-view { display: inline-block;}
+#registration_write .item .desc #btnAtt { position: relative; width: 280px; height: 140px; display: inline-block; vertical-align: top; border: 1px dashed #ddd; cursor: pointer;}
+#registration_write .item .desc #btnAtt:before { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 2px; height: 28px; background: #ddd; content: '';}
+#registration_write .item .desc #btnAtt:after { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 28px; height: 2px; background: #ddd; content: '';}
+#registration_write .item .desc .img-photo #photo-view {position: absolute; left: 2rem; top: auto; display: inline-block;}
+#registration_write .item .desc .img-photo #photo-view .preview-img{width: 280px; height: 140px; object-fit: cover;}
+#registration_write .item .desc .img-photo #photo-view input[type=button].deleteImg {position: absolute; width: 280px; height: 2.3rem; bottom: 0; left: 0; background: black; color: white; font-size: 1rem; opacity: 0.7; cursor: pointer;}
 
 #registration_btn-wrap {text-align: center; margin-top: 50px;}
 #registration_btn-wrap a {cursor: pointer; min-width: 210px; display: inline-block; font-family: 'scdream5'; color: #fff; line-height: 56px; padding: 0 20px; margin: 0 5px; background: #cf7afe; transition: all 0.5s;}

@@ -6,80 +6,113 @@ import client from "../../../../client";
 import { Link } from "react-router-dom";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Dropzone from 'react-dropzone';
 
 function NoticeEditData(){
     const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
-	const [select, setSelect] = useState("");
+	const [Select, setSelect] = useState("선택");
 
-	const [Title, setTitle] = useState("");
+	const [Title, setTitle] = useState(null);
 	const handleTitle = (e) => {
 		setTitle(e.target.value);
 	}
 	
-	const [Thumbnail_Image_Uri, setThumbnail_Image_Uri] = useState("")
-	const [freeImage2, setfreeImage2] = useState('');
-	const handlefreeImage2 = (fileBlob) => {       
-		const reader = new FileReader();         
-		reader.readAsDataURL(fileBlob);
-		setThumbnail_Image_Uri(fileBlob.name);       
-		return new Promise((resolve) => {        
-			reader.onload = () => {         
-				setfreeImage2(reader.result);      
-				resolve();
-			};
-		});
-	};
+	const [Thumbnail_Image_Uri, setThumbnail_Image_Uri] = useState(null)
+	const [freeThumbnail, setfreeThumbnail] = useState('');
+	const handlefreeThumbnail = (fileBlob) => {
+		const reader = new FileReader();
+		if(fileBlob){
+			reader.readAsDataURL(fileBlob);
+			setThumbnail_Image_Uri(fileBlob);
+		}
 
-	const [Image_Uri, setImage_Uri] = useState("");
-	
-	const [Image, setImage] = useState("");
-	const [freeImage, setfreeImage] = useState('');
-	const handlefreeImage = (fileBlob) => {       
-		const reader = new FileReader();         
-		reader.readAsDataURL(fileBlob);
-		setImage(fileBlob.name);
-		setImage_Uri(fileBlob.name);    
-		return new Promise((resolve) => {        
-			reader.onload = () => {         
-				setfreeImage(reader.result);    
+		return new Promise((resolve) => {
+			reader.onload = () => {
+				setfreeThumbnail(reader.result);
 				resolve();
 			};
-		});
+		});	
 	};
+	const removeThumbnail = () => {
+		setThumbnail_Image_Uri('')
+		setfreeThumbnail('')
+	}
+
+	const [Image_Url, setImage_Url] = useState(null);
+	
+	const [Image, setImage] = useState(null);
+	const [freeImage, setfreeImage] = useState('');
+	const handlefreeImage = (fileBlob) => {
+		const reader = new FileReader();
+		if(fileBlob){
+			reader.readAsDataURL(fileBlob);
+			setImage(fileBlob);
+			setImage_Url(fileBlob);
+		}
+
+		return new Promise((resolve) => {
+			reader.onload = () => {
+				setfreeImage(reader.result);
+				resolve();
+			};
+		});	
+	};
+	const removeImg = () => {
+		setImage('')
+		setfreeImage('')
+	}
 
 	const [Content, setContent] = useState("");
-	console.log(Content)
 
 	const [endcheck, setEndcheck] = useState(false);
+
+	const [Type, setType] = useState(null)
 
 	const Hit = 0;
 
 	const onSubmitHandler = async(e) => {
-		e.preventDefault();
-		if(select === 0){
-			await client.post('notice-board/create', {
-				Title,
-				Image,
-				Content,
-				Hit
-			})
-		} else if(select === 1){
-			await client.post('event-board/create', {
-				Title,
-				Content,
-				Start_Date,
-				End_Date,
-				Thumbnail_Image_Uri,
-				Image_Uri
-			}).then(({data}) => console.log(data))	
-		} else if(select !== 0 || 1){
-			alert("분류를 선택해주세요.");
-			return false	
+		console.log("분류: ", Select)
+		console.log("제목: ", Title)
+		console.log("내용: ", Content)
+		if(Select === "이벤트"){
+			console.log("썸네일: ", Thumbnail_Image_Uri)
+			console.log("이미지: ", Image_Url)
+		} else {
+			console.log("이미지: ", Image)
 		}
-		alert("등록 되었습니다.");
-		document.location.href="/noticeevent";
+		console.log("게시 기간: ", Start_Date)
+		if(!endcheck){
+			console.log('게시 끝나는 기간: ', End_Date)
+		}
+		console.log("게시 상태: ", Type)
+		console.log("히트(Hit):", Hit)
+
+
+		// e.preventDefault();
+		// if(select === "공지사항"){
+		// 	await client.post('notice-board/create', {
+		// 		Title,
+		// 		Image,
+		// 		Content,
+		// 		Hit
+		// 	})
+		// } else if(select === "이벤트"){
+		// 	await client.post('event-board/create', {
+		// 		Title,
+		// 		Content,
+		// 		Start_Date,
+		// 		End_Date,
+		// 		Thumbnail_Image_Uri,
+		// 		Image_Uri
+		// 	}).then(({data}) => console.log(data))	
+		// } else if(select === "선택"){
+		// 	alert("분류를 선택해주세요.");
+		// 	return false	
+		// }
+		// alert("등록 되었습니다.");
+		// document.location.href="/noticeevent";
 	}
 
     return (
@@ -90,10 +123,10 @@ function NoticeEditData(){
 				<div className="item">
 					<p className="title">분류를 선택해주세요.</p>
 					<div className="desc">
-						<select onChange={(e) => setSelect(parseInt(e.target.value))}>
+						<select onChange={(e) => setSelect(e.target.value)}>
 							<option value="선택">선택</option>
-							<option value="0">공지사항</option>
-							<option value="1">이벤트</option>
+							<option value="공지사항">공지사항</option>
+							<option value="이벤트">이벤트</option>
 						</select>
 					</div>
 				</div>
@@ -104,16 +137,30 @@ function NoticeEditData(){
 						<p className="comment">30자 이내로 적어주세요.</p>
 					</div>
 				</div>
-				<div className="item">
-					<p className="title">이벤트 썸네일 이미지 첨부해주세요.</p>
-					<div className="desc">
-						<div className="img-photo">
-							<label id='btnAtt'><input type='file' multiple={true} onChange={(e) => {handlefreeImage(e.target.files[0])}}/></label>
-							<div id="photo-view">{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}</div>
+				{Select === "이벤트" ? (
+					<div className="item">
+						<p className="title">이벤트 썸네일 이미지 첨부해주세요.</p>
+						<div className="desc">
+							<div className="img-photo">
+								<Dropzone onDrop={acceptedFiles => {
+									setThumbnail_Image_Uri(acceptedFiles[0]);
+									handlefreeThumbnail(acceptedFiles[0]);
+									}}>
+									{({getRootProps, getInputProps}) => (
+										<div id="btnAtt" {...getRootProps()}>
+											<input {...getInputProps()} />
+										</div>      
+									)}
+								</Dropzone>
+								{freeThumbnail ? <div id="photo-view">
+									<img className="preview-img" src={freeThumbnail} alt="preview-img"/>
+									<input type="button" value="X" className="deleteImg" onClick={removeThumbnail}/>
+								</div> : null}
+							</div>
+							<p className="comment">권장 크기 : 1000 x 500</p>
 						</div>
-						<p className="comment">권장 크기 : 1000 x 500</p>
 					</div>
-				</div>
+				) : null}
 				<div className="item">
 					<p className="title">내용을 입력해주세요.</p>
 					<div className="desc">
@@ -124,9 +171,9 @@ function NoticeEditData(){
 									placeholder: "내용을 입력하세요.",
 								}}
 
-								onReady={editor => {
-									console.log('Editor is ready to use!', editor);
-								}}
+								// onReady={editor => {
+								// 	console.log('Editor is ready to use!', editor);
+								// }}
 								
 								onChange={(event, editor) => {
 									const data = editor.getData();
@@ -149,8 +196,20 @@ function NoticeEditData(){
 					<p className="title">본문 이미지 첨부해주세요.</p>
 					<div className="desc">
 						<div className="img-photo">
-							<label id='btnAtt'><input type='file' multiple={true} onChange={(e) => {handlefreeImage2(e.target.files[0])}}/></label>
-							<div id="photo-view">{freeImage2 && <img className="preview-img" src={freeImage2} alt="preview-img"/>}</div>
+							<Dropzone onDrop={acceptedFiles => {
+								{Select === "공지사항" ? setImage(acceptedFiles[0]) : setImage_Url(acceptedFiles[0])}
+								handlefreeImage(acceptedFiles[0]);
+								}}>
+								{({getRootProps, getInputProps}) => (
+									<div id="btnAtt" {...getRootProps()}>
+										<input {...getInputProps()} />
+									</div>      
+								)}
+							</Dropzone>
+							{freeImage ? <div id="photo-view">
+								<img className="preview-img" src={freeImage} alt="preview-img"/>
+								<input type="button" value="X" className="deleteImg" onClick={removeImg}/>
+							</div> : null}
 						</div>
 						<p className="comment">권장 크기 : 1000 x 500</p>
 					</div>
@@ -245,9 +304,9 @@ function NoticeEditData(){
 				<div className="item">
 					<p className="title">게시 상태를 체크해주세요.</p>
 					<div className="desc">
-						<span><input type="radio" id="type-1" name="type" /><label className="type2" htmlFor="type-1">게시 대기</label></span>
-						<span><input type="radio" id="type-2" name="type" /><label className="type2" htmlFor="type-2">게시 중</label></span>
-						<span><input type="radio" id="type-3" name="type" /><label className="type2" htmlFor="type-3">게시 중지</label></span>
+						<span><input type="radio" id="type-1" name="type" /><label className="type2" htmlFor="type-1" onClick={e => setType(e.target.innerText)}>게시 대기</label></span>
+						<span><input type="radio" id="type-2" name="type" /><label className="type2" htmlFor="type-2" onClick={e => setType(e.target.innerText)}>게시 중</label></span>
+						<span><input type="radio" id="type-3" name="type" /><label className="type2" htmlFor="type-3" onClick={e => setType(e.target.innerText)}>게시 중지</label></span>
 					</div>
 				</div>
 			</section>

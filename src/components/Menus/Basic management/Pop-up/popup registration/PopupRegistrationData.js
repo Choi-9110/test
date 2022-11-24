@@ -3,42 +3,65 @@ import "./PopupRegistration.css";
 import DatePicker from "react-datepicker";
 import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
+import Dropzone from 'react-dropzone';
 
 function PopupRegistrationData(){
     const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
-	const [select, setSelect] = useState(0);
+	const [Select, setSelect] = useState("선택");
 
-	const [Title, setTitle] = useState();
+	const [Title, setTitle] = useState(null);
 
-	const [Image, setImage] = useState();
+	const [Image, setImage] = useState(null);
+
+	// 임시
+	const [Type, setType] = useState(null);
+	const [Key, setKey] = useState(null);
+	const [Value, setValue] = useState(null);
+	const [Link, setLink] = useState(null);
 
 	const [freeImage, setfreeImage] = useState('');
-	const handlefreeImage = (fileBlob) => {       
-		const reader = new FileReader();         
-		reader.readAsDataURL(fileBlob);
-		setImage(fileBlob.name);       
-		return new Promise((resolve) => {        
-			reader.onload = () => {         
-				setfreeImage(reader.result);          
+	const handlefreeImage = (fileBlob) => {
+		const reader = new FileReader();
+		if(fileBlob){
+			reader.readAsDataURL(fileBlob);
+			setImage(fileBlob);
+		}
+
+		return new Promise((resolve) => {
+			reader.onload = () => {
+				setfreeImage(reader.result);
 				resolve();
 			};
-		});
+		});	
 	};
+	const removeImg = () => {
+		setImage('')
+		setfreeImage('')
+	}
 
-	const OnSubmithandler = async(e) => {
+	const onSubmithandler = async(e) => {
 		e.preventDefault();
-		if(select === 2){
-			await client.post('/banner/create', {
-				Title,
-				Image
-			})
-			alert("등록 성공");
-			document.location.href='/popuplist';
-		} else{
-			throw new Error('에러!');
-		}
+
+		console.log("분류: ", Select)
+		console.log("제목: ", Title)
+		console.log("시작 시간: ", Start_Date)
+		console.log("종료 시간: ", End_Date)
+		console.log("게시 기간: ", Type)
+		console.log("링크 (앱): ", Key, "--", Value)
+		console.log("링크 (웹): ", Link)
+		console.log("이미지", Image)
+		// if(Select === "배너"){
+		// 	await client.post('/banner/create', {
+		// 		Title,
+		// 		Image
+		// 	})
+		// 	alert("등록 성공");
+		// 	document.location.href='/popuplist';
+		// } else{
+		// 	throw new Error('에러!');
+		// }
 		
 	}
 
@@ -49,11 +72,11 @@ function PopupRegistrationData(){
 			<section id="registration_write">
 				<div className="item">
 					<p className="title">분류를 선택해주세요.</p>
-					<div className="desc" onChange={e => setSelect(parseInt(e.target.value))}>
-						<select>
-							<option value="0">선택</option>
-							<option value="1">팝업</option>
-							<option value="2">배너</option>
+					<div className="desc">
+						<select onChange={e => setSelect(e.target.value)}>
+							<option value="선택">선택</option>
+							<option value="팝업">팝업</option>
+							<option value="배너">배너</option>
 						</select>
 					</div>
 				</div>
@@ -157,9 +180,9 @@ function PopupRegistrationData(){
 				<div className="item">
 					<p className="title">게시 상태를 체크해주세요.</p>
 					<div className="desc">
-						<span><input type="radio" id="type-1" name="type" /><label className="type2" htmlFor="type-1">게시 대기</label></span>
-						<span><input type="radio" id="type-2" name="type" /><label className="type2" htmlFor="type-2">게시 중</label></span>
-						<span><input type="radio" id="type-3" name="type" /><label className="type2" htmlFor="type-3">게시 중지</label></span>
+						<span><input type="radio" id="type-1" name="type" /><label className="type2" htmlFor="type-1" onClick={e => setType(e.target.innerText)}>게시 대기</label></span>
+						<span><input type="radio" id="type-2" name="type" /><label className="type2" htmlFor="type-2" onClick={e => setType(e.target.innerText)}>게시 중</label></span>
+						<span><input type="radio" id="type-3" name="type" /><label className="type2" htmlFor="type-3" onClick={e => setType(e.target.innerText)}>게시 중지</label></span>
 					</div>
 				</div>
 				<div className="item">
@@ -167,20 +190,32 @@ function PopupRegistrationData(){
 					<div className="desc">
 						<p>
 							<span className="txt">앱 링크</span>
-							<input type="text" className="w180" placeholder="Key" /> <input type="text" className="w180"  placeholder="Value" />
+							<input type="text" className="w180" placeholder="Key" onChange={e => setKey(e.target.value)}/> <input type="text" className="w180"  placeholder="Value" onChange={e => setValue(e.target.value)}/>
 						</p>
 						<p>
 							<span className="txt">웹 링크</span>
-							<input type="text" className="w80" placeholder="http://" />
+							<input type="text" className="w80" placeholder="http://" onChange={e => setLink(e.target.value)}/>
 						</p>
 					</div>
 				</div>
 				<div className="item">
-					<p className="title">팝업 이미지를 입력해주세요.</p>
+					<p className="title">{Select === 1 || Select === 0 ? "팝업 이미지를 입력해주세요." : "배너 이미지를 입력해주세요."}</p>
 					<div className="desc">
 						<div className="img-photo">
-							<label id='btnAtt'><input type='file' multiple={true} onChange={(e) => {handlefreeImage(e.target.files[0])}} /></label>
-							<div id="photo-view">{freeImage && <img className="preview-img" src={freeImage} alt="preview-img"/>}</div>
+							<Dropzone onDrop={acceptedFiles => {
+								setImage(acceptedFiles[0]);
+								handlefreeImage(acceptedFiles[0]);
+								}}>
+								{({getRootProps, getInputProps}) => (
+									<div id="btnAtt" {...getRootProps()}>
+										<input {...getInputProps()} />
+									</div>      
+								)}
+							</Dropzone>
+							{freeImage ? <div id="photo-view">
+								<img className="preview-img" src={freeImage} alt="preview-img"/>
+								<input type="button" value="X" className="deleteImg" onClick={removeImg}/>
+							</div> : null}
 						</div>
 						<p className="comment">권장 크기 : 1000 x 500</p>
 					</div>
@@ -189,7 +224,7 @@ function PopupRegistrationData(){
 
 			<section id="registration_btn-wrap">
 				<a href="#" className="btn btnL">목록보기</a>
-				<a className="btn btnCF" onClick={OnSubmithandler}>등록/수정</a>
+				<a className="btn btnCF" onClick={onSubmithandler}>등록/수정</a>
 			</section>
 		</div>
     )
