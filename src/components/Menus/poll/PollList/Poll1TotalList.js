@@ -8,8 +8,6 @@ import {ko} from 'date-fns/esm/locale';
 import { useNavigate } from "react-router-dom";
 
 function Poll1TotalList(){
-	const [polldata, setpolldata] = useState();
-
 	const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
@@ -154,20 +152,16 @@ function Poll1TotalList(){
 					<tbody>
 						{polllist.map((qdata, Q_Idx)=>(
 							<tr key={Q_Idx} name={Q_Idx} onClick={() => {
-
 								navigate("/polltotallist/pollcorrect", {
 									state: {
 										data: qdata.Q_Idx
 									}
 								})
-								}}
-							>
+							}}>
 								<td className="num">{qdata.Q_Idx}</td>
 								<td className="state"><span className={qdata.State === 0 ? "state state" : qdata.State === 1 ? "state ongoing" : "state complete"}>{qdata.State === 0 ? "작성중" : qdata.State === 1 ? "진행중" : "완료"}</span></td>
 								<td>{qdata.Title}</td>
 								<td className="type">{qdata.Type === 0 ? "밸런스 게임" : qdata.Type === 1 ? "업다운 게임" : qdata.Type === 2 ? "점수 선택" : qdata.Type === 3 ? "객관식 복수" : qdata.Type === 4 ? "객관식 단일" : qdata.Type === 5 ? "객관식 순차" : qdata.Type === 6 && "별점 리뷰"}</td>
-								
-
 								<td className="date">{moment(qdata.Start_Date).format("YYYY/MM/DD")} ~ {moment(qdata.End_Date).format("YYYY/MM/DD")}</td>
 								<td className="reward">{qdata.Rewards}</td>
 								<td className="people"><span className="member">3명<em>{qdata.Max_Personnel}명</em></span></td>

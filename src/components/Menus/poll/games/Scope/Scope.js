@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
 import "./Scope.css";
-import InputEmoji from "react-input-emoji";
 import Dropzone from 'react-dropzone';
 
 function Scope(){
@@ -15,9 +14,6 @@ function Scope(){
 	
 
 	const [Title, setTitle] = useState("");
-	const handleTitle = (e) => {
-		setTitle(e.target.value);
-	}
 
 	const [Rewards, setRewards] = useState();
 	const handleRewards = (e) => {
@@ -192,13 +188,7 @@ function Scope(){
 						<div className="item">
 							<p className="title">질문을 입력해주세요.</p>
 							<div className="desc">
-								<div>
-									<InputEmoji
-										onChange={e => setTitle(e)}
-										placeholder=""
-										maxLength="30"
-									/>
-								</div>
+								<div><input type="text" id="" name="" placeholder="" onChange={e => setTitle(e.target.value)}/></div>
 								<p className="comment">30자 이내로 적어주세요.</p>
 							</div>
 						</div>

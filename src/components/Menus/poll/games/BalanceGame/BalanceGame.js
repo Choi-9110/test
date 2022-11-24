@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import {ko} from 'date-fns/esm/locale';
 import client from "../../../../client";
 import "./BalanceGame.css";
-import InputEmoji from "react-input-emoji";
 import Dropzone from 'react-dropzone';
 
 function BalanceGame(){
@@ -242,13 +241,7 @@ function BalanceGame(){
 						<div className="item">
 							<p className="title">질문을 입력해주세요.</p>
 							<div className="desc">
-								<div>
-									<InputEmoji
-										onChange={e => setTitle(e)}
-										placeholder=""
-										maxLength="30"
-									/>
-								</div>
+								<div><input type="text" id="" name="" placeholder="" onChange={e => setTitle(e.target.value)}/></div>
 								<p className="comment">30자 이내로 적어주세요.</p>
 							</div>
 						</div>

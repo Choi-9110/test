@@ -4,16 +4,35 @@ import "./Correct.css";
 
 function MultiCorrect(props){
     const [imgArray, setImgArray] = useState([])
-    imgArray[0]=props.qSelect_Image_1;
-    imgArray[1]=props.qSelect_Image_2;
-    imgArray[2]=props.qSelect_Image_3;
-    imgArray[3]=props.qSelect_Image_4;
-    imgArray[4]=props.qSelect_Image_5;
-    imgArray[5]=props.qSelect_Image_6;
-    imgArray[6]=props.qSelect_Image_7;
-    imgArray[7]=props.qSelect_Image_8;
+    imgArray[0]=props.freeImage1;
+    imgArray[1]=props.freeImage2;
+    imgArray[2]=props.freeImage3;
+    imgArray[3]=props.freeImage4;
+    imgArray[4]=props.freeImage5;
+    imgArray[5]=props.freeImage6;
+    imgArray[6]=props.freeImage7;
+    imgArray[7]=props.freeImage8;
 
+    const [delSelArray, setDelSelArray] = useState([])
+    delSelArray[0]=props.setSelect_Image_1;
+    delSelArray[1]=props.setSelect_Image_2;
+    delSelArray[2]=props.setSelect_Image_3;
+    delSelArray[3]=props.setSelect_Image_4;
+    delSelArray[4]=props.setSelect_Image_5;
+    delSelArray[5]=props.setSelect_Image_6;
+    delSelArray[6]=props.setSelect_Image_7;
+    delSelArray[7]=props.setSelect_Image_8;
 
+    const [delfreArray, setDelfreArray] = useState([])
+    delfreArray[0]=props.setfreeImage1;
+    delfreArray[1]=props.setfreeImage2;
+    delfreArray[2]=props.setfreeImage3;
+    delfreArray[3]=props.setfreeImage4;
+    delfreArray[4]=props.setfreeImage5;
+    delfreArray[5]=props.setfreeImage6;
+    delfreArray[6]=props.setfreeImage7;
+    delfreArray[7]=props.setfreeImage8;
+    
     const [text, setText] = useState([])
     text[0]=props.Select_1
     text[1]=props.Select_2
@@ -23,9 +42,7 @@ function MultiCorrect(props){
     text[5]=props.Select_6
     text[6]=props.Select_7
     text[7]=props.Select_8
-
-    console.log(props)
-
+    
     return (
         <>
             {props.countDiv.map((i) => (
@@ -36,11 +53,12 @@ function MultiCorrect(props){
                         >
                         <div className="tit">
                             <input className="ex-box" type="text" name={i}
-                            value={text[i]}
+                            value={text[i] || ""}
                             onChange={(e) => {
                                     switch( i ){
                                         case 0 :
                                             props.setSelect_1(e.target.value);
+                                            e.target.value="";
                                             break;
                                         case 1 :
                                             props.setSelect_2(e.target.value);
@@ -71,6 +89,7 @@ function MultiCorrect(props){
 
                                     switch(i){
                                         case 0: props.setSelect_Image_1(acceptedFiles[0]);
+                                        props.setfreeImage1(acceptedFiles[0]);
                                         reader.readAsDataURL(acceptedFiles[0]);
                                         new Promise((resolve) => {reader.onload = () => {
                                                 props.setfreeImage1(reader.result);
@@ -146,11 +165,11 @@ function MultiCorrect(props){
 
                                 {imgArray[i] ? <div id="photo-view">
 										<img className="preview-img" src={imgArray[i]} alt="preview-img"/>
-										<input type="button" value="X" className="deleteImg"/>
+										<input type="button" value="X" className="deleteImg" onClick={() => props.ondelete({i})}/>
 									</div> : null}    
 
                             {props.countDiv.length - 1 === 0 ? false : <button onClick={ () =>
-                                {props.onRemove({i})}}>삭제</button>}
+                                {props.onRemove({i}); props.deleteAll({i});}}>삭제</button>}
                         </div>
                         <p className="comment">권장 크기: 1,000 x 1,000</p>
                     </div>
