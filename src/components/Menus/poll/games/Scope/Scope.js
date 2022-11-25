@@ -66,6 +66,16 @@ function Scope(){
 		}
 	}
 
+	const [check, setCheck] = useState(false);
+    const handlecheck = () => {
+        setCheck(!check)
+        if(!check){
+            setMax_Personnel(parseInt(999999))
+        }else{
+            setMax_Personnel(parseInt(0))
+        }
+    }
+
 	const Type = 6;
     const Max_Choice = 1;
     const Random = 0;
@@ -219,7 +229,19 @@ function Scope(){
 							<p className="title">폴 시작일</p>
 							<div className="desc">
 								<div className="input-group">
-									<DatePicker
+									<input
+										type="date"
+										className="form-control start-date date"
+										format="yyyy-MM-dd"
+										locale={ko}
+										min={new Date().toISOString().slice(0, 10)}
+										onChange={(e) => setStart_Date(e.target.value)}
+										name="datepicker"
+										value={Start_Date}
+										placehoder="폴 시작일"
+									/>
+
+									{/* <DatePicker
 										className="form-control start-date date"
 										selected={Start_Date}
 										onChange={date => setStart_Date(date)}
@@ -231,7 +253,7 @@ function Scope(){
 										minDate={new Date()}
 										placeholderText="폴 시작일"
 										closeOnScroll={true}
-									/>
+									/> */}
 									<input type="text" className="timepicker clock" name="timepicker" placeholder="시간"/>
 								</div>
 							</div>
@@ -240,7 +262,19 @@ function Scope(){
 							<p className="title">폴 종료일</p>
 							<div className="desc">
 								<div className="input-group">
-									<DatePicker
+									<input
+										type="date"
+										className="form-control end-date date"
+										format="yyyy-MM-dd"
+										name="datepicker"
+										min={new Date().toISOString().slice(0, 10)}
+                  						value={End_Date}
+										placehoder="폴 종료일"
+										locale={ko}
+										onChange={(e) => setEnd_Date(e.target.value)}
+									/>
+
+									{/* <DatePicker
 										className="form-control end-date date"
 										selected={End_Date}
 										onChange={date => setEnd_Date(date)}
@@ -252,7 +286,7 @@ function Scope(){
 										dateFormat="yyyy년 MM월 dd일 (eee)"
 										placeholderText="폴 종료일"
 										closeOnScroll={true}
-									/>
+									/> */}
 									<input type="text" className="timepicker clock" name="timepicker" placeholder="시간"/>
 								</div>
 							</div>
@@ -266,13 +300,14 @@ function Scope(){
 						<div className="item">
 							<p className="title">참여 인원수</p>
 							<div className="desc">
-								<div><input type="text" className="txtR" onChange={handleMax_Personnel}/><span className="txt">명</span></div>
+								<div><input type="text" className={!check ? "txtR" : "txtR no"} value={Max_Personnel || ''} onChange={handleMax_Personnel} readOnly={!check ? false : true}/><span className="txt">명</span></div>
+                                <p className="chkBox"><input type="checkbox" id="agr-chk" name="" onClick={handlecheck}/><label htmlFor="agr-chk">참여 인원수 제한 없음</label></p>
 							</div>
 						</div>
 						<div className="item">
 							<p className="title">승인</p>
 							<div className="desc">
-								<p className="chkBox"><input type="checkbox" id="agr-chk" name="" onClick={handleCheck}/><label htmlFor="agr-chk"></label></p>
+								<p className="chkBox"><input type="checkbox" id="agr-chk2" name="" onClick={handleCheck}/><label htmlFor="agr-chk2"></label></p>
 							</div>
 						</div>
 					</div>

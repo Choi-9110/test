@@ -53,7 +53,19 @@ function PushData(){
 
 							<div>
 								<h4>발송일</h4>
-								<DatePicker
+								<input
+									type="date"
+									className="form-control start-date date"
+									format="yyyy-MM-dd"
+									locale={ko}
+									min={new Date().toISOString().slice(0, 10)}
+									onChange={(e) => setStart_Date(e.target.value)}
+									name="datepicker"
+									value={Start_Date}
+									placehoder="폴 시작일"
+								/>
+
+								{/* <DatePicker
                                     className="w180 form-control start-date date"
                                     selected={Start_Date}
                                     onChange={date => setStart_Date(date)}
@@ -64,9 +76,21 @@ function PushData(){
                                     dateFormat="yyyy년 MM월 dd일 (eee)"
                                     minDate={new Date()}
                                     closeOnScroll={true}
-							    />
+							    /> */}
 								<span>~</span>
-								<DatePicker
+								<input
+									type="date"
+									className="form-control end-date date"
+									format="yyyy-MM-dd"
+									name="datepicker"
+									min={new Date().toISOString().slice(0, 10)}
+									value={End_Date}
+									placehoder="폴 종료일"
+									locale={ko}
+									onChange={(e) => setEnd_Date(e.target.value)}
+								/>
+
+								{/* <DatePicker
 									className="form-control end-date date"
 									selected={End_Date}
 									onChange={date => setEnd_Date(date)}
@@ -77,7 +101,7 @@ function PushData(){
 									locale={ko}
 									dateFormat="yyyy년 MM월 dd일 (eee)"
 									closeOnScroll={true}
-								/>
+								/> */}
 							</div>
 						</li>
 					</ul>
@@ -97,7 +121,19 @@ function PushData(){
 				<div className={as ? "sch-all" : "sch-all no"}>
 					<div>
 						<h4>등록일</h4>
-						<DatePicker
+						<input
+							type="date"
+							className="form-control start-date date"
+							format="yyyy-MM-dd"
+							locale={ko}
+							min={new Date().toISOString().slice(0, 10)}
+							onChange={(e) => setStart_Date(e.target.value)}
+							name="datepicker"
+							value={Start_Date}
+							placehoder="폴 시작일"
+						/>
+
+						{/* <DatePicker
                             className="w180 form-control start-date date"
                             selected={Start_Date2}
                             onChange={date => setStart_Date2(date)}
@@ -109,9 +145,21 @@ function PushData(){
                             minDate={new Date()}
                             closeOnScroll={true}
                             placeholderText="폴 시작일"
-                        />
+                        /> */}
 						<span>~</span>
-						<DatePicker
+						<input
+							type="date"
+							className="form-control end-date date"
+							format="yyyy-MM-dd"
+							name="datepicker"
+							min={new Date().toISOString().slice(0, 10)}
+							value={End_Date}
+							placehoder="폴 종료일"
+							locale={ko}
+							onChange={(e) => setEnd_Date(e.target.value)}
+						/>
+
+						{/* <DatePicker
                             className="form-control end-date date"
                             selected={End_Date2}
                             onChange={date => setEnd_Date2(date)}
@@ -123,7 +171,7 @@ function PushData(){
                             dateFormat="yyyy년 MM월 dd일 (eee)"
                             closeOnScroll={true}
                             placeholderText="폴 종료일"
-                        />
+                        /> */}
 					</div>
 					<div>
 						<h4>플랫폼</h4>

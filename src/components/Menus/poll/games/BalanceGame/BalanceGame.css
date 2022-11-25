@@ -47,7 +47,7 @@
 #balancegame_write .item .desc button.btn-add { display: block; font-family: 'scdream5'; width: 100%; font-weight: bold; line-height: 54px; color: #c684ff; text-align: center; margin-top: 10px; border: 1px solid #c684ff; background: none; cursor: pointer;}
 
 #balancegame_write .item .desc .chkBox { position: relative; font-family: 'scdream3'; font-size: 0.875rem; margin-top: 10px;}
-#balancegame_write .item .desc input[type=checkbox] + label:before { position: absolute; left: 0; top: -10px; width: 22px; height: 22px; border: 1px solid #ddd; background: #fff; content: '';}
+#balancegame_write .item .desc input[type=checkbox] + label:before { position: absolute; left: 0; top: 0; width: 22px; height: 22px; border: 1px solid #ddd; background: #fff; content: '';}
 #balancegame_write .item .desc input[type=checkbox] + label { position: relative; line-height: 22px; padding-left: 35px; display: inline-block; vertical-align: top;}
 #balancegame_write .item .desc input[type=checkbox] {display: none;}
 #balancegame_write .item .desc input[type=checkbox]:checked + label:after { position: absolute; top: 55%; left: 1px; transform: translateY(-45%); width: 20px; height: 20px; background-color: #b46ef0; background-size: 100%; content: '';}
