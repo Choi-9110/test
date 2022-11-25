@@ -139,7 +139,7 @@ function MemberHistoryData(){
 			</section>
 
 			<section id="member-history_btn-wrap">
-				<Link to="/withdrawalmember/memberinformation" className="btn btnL">뒤로</Link>
+				<Link to="/withdrawal-member/member-information" className="btn btnL">뒤로</Link>
 			</section>
 		</div>
     )

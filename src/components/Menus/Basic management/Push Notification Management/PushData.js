@@ -204,7 +204,7 @@ function PushData(){
 							<td className="num">700</td>
 							<td className="num">-</td>
 							<td className="management">
-								<Link to="/pushnotification/pushreport" className="btn btnReport">리포트</Link>
+								<Link to="/push-notification/push-report" className="btn btnReport">리포트</Link>
 								<a href="#" className="btn btnCopy2">복사</a>
 								<a href="#" className="btn btnDel">삭제</a>
 							</td>
@@ -251,7 +251,7 @@ function PushData(){
 				</table>
 			</section>
 			<section id="push_btn-wrap">
-				<Link to="/pushnotification/pushsending" className="btn btnCF">푸시발송 생성</Link>
+				<Link to="/push-notification/push-sending" className="btn btnCF">푸시발송 생성</Link>
 			</section>
 		</div>
     )

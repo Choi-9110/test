@@ -135,7 +135,7 @@ function WithdrawalApplicationData(){
 							<td className="state">2,000</td>
 							<td className="state"><span className="state writ">대기</span></td>
 							<td className="management">
-								<Link to="/withdrawal/withdrawalmanagement" className="btn btnCF">보기</Link>
+								<Link to="/withdrawal/withdrawal-management" className="btn btnCF">보기</Link>
 								<a href="#" className="btn btnL">삭제</a>
 							</td>
 						</tr>

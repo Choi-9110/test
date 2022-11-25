@@ -181,7 +181,7 @@ function PointData(){
 			</section>
 
 			<section id="point_btn-wrap">
-				<Link to="/point/createnewpoint" className="btn btnCF">신규 내역 생성</Link>
+				<Link to="/point/create-newpoint" className="btn btnCF">신규 내역 생성</Link>
 			</section>
 		</div>
     )

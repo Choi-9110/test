@@ -9,8 +9,6 @@ function PopupRegistrationData(){
     const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
-	const [Select, setSelect] = useState("선택");
-
 	const [Title, setTitle] = useState(null);
 
 	const [Image, setImage] = useState(null);
@@ -19,7 +17,7 @@ function PopupRegistrationData(){
 	const [Type, setType] = useState(null);
 	const [Key, setKey] = useState(null);
 	const [Value, setValue] = useState(null);
-	const [Link, setLink] = useState(null);
+	const [link, setLink] = useState(null);
 
 	const [freeImage, setfreeImage] = useState('');
 	const handlefreeImage = (fileBlob) => {
@@ -44,42 +42,21 @@ function PopupRegistrationData(){
 	const onSubmithandler = async(e) => {
 		e.preventDefault();
 
-		console.log("분류: ", Select)
 		console.log("제목: ", Title)
 		console.log("시작 시간: ", Start_Date)
 		console.log("종료 시간: ", End_Date)
 		console.log("게시 기간: ", Type)
 		console.log("링크 (앱): ", Key, "--", Value)
-		console.log("링크 (웹): ", Link)
+		console.log("링크 (웹): ", link)
 		console.log("이미지", Image)
-		// if(Select === "배너"){
-		// 	await client.post('/banner/create', {
-		// 		Title,
-		// 		Image
-		// 	})
-		// 	alert("등록 성공");
-		// 	document.location.href='/popuplist';
-		// } else{
-		// 	throw new Error('에러!');
-		// }
 		
 	}
 
     return (
         <div className="contents">
-			<h3 className="registration_h">팝업/배너 등록/수정</h3>
+			<h3 className="registration_h">배너 등록/수정</h3>
 
 			<section id="registration_write">
-				<div className="item">
-					<p className="title">분류를 선택해주세요.</p>
-					<div className="desc">
-						<select onChange={e => setSelect(e.target.value)}>
-							<option value="선택">선택</option>
-							<option value="팝업">팝업</option>
-							<option value="배너">배너</option>
-						</select>
-					</div>
-				</div>
 				<div className="item">
 					<p className="title">제목을 입력해주세요.</p>
 					<div className="desc">
@@ -199,7 +176,7 @@ function PopupRegistrationData(){
 					</div>
 				</div>
 				<div className="item">
-					<p className="title">{Select === 1 || Select === 0 ? "팝업 이미지를 입력해주세요." : "배너 이미지를 입력해주세요."}</p>
+					<p className="title">배너 이미지를 입력해주세요.</p>
 					<div className="desc">
 						<div className="img-photo">
 							<Dropzone onDrop={acceptedFiles => {

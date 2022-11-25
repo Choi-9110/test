@@ -9,6 +9,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Dropzone from 'react-dropzone';
 
 function NoticeEditData(){
+	const formData = new FormData();
+
     const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
@@ -40,7 +42,7 @@ function NoticeEditData(){
 		setfreeThumbnail('')
 	}
 
-	const [Image_Url, setImage_Url] = useState(null);
+	const [Image_Uri, setImage_Uri] = useState(null);
 	
 	const [Image, setImage] = useState(null);
 	const [freeImage, setfreeImage] = useState('');
@@ -49,7 +51,7 @@ function NoticeEditData(){
 		if(fileBlob){
 			reader.readAsDataURL(fileBlob);
 			setImage(fileBlob);
-			setImage_Url(fileBlob);
+			setImage_Uri(fileBlob);
 		}
 
 		return new Promise((resolve) => {
@@ -72,13 +74,20 @@ function NoticeEditData(){
 
 	const Hit = 0;
 
+	
+
 	const onSubmitHandler = async(e) => {
+		// 폼데이터 담기.
+		formData.append('files',Thumbnail_Image_Uri)
+		formData.append('files',Image_Uri)
+		formData.append('files',Image)
+		
 		console.log("분류: ", Select)
 		console.log("제목: ", Title)
 		console.log("내용: ", Content)
 		if(Select === "이벤트"){
 			console.log("썸네일: ", Thumbnail_Image_Uri)
-			console.log("이미지: ", Image_Url)
+			console.log("이미지: ", Image_Uri)
 		} else {
 			console.log("이미지: ", Image)
 		}
@@ -90,29 +99,51 @@ function NoticeEditData(){
 		console.log("히트(Hit):", Hit)
 
 
-		// e.preventDefault();
-		// if(select === "공지사항"){
-		// 	await client.post('notice-board/create', {
-		// 		Title,
-		// 		Image,
-		// 		Content,
-		// 		Hit
-		// 	})
-		// } else if(select === "이벤트"){
-		// 	await client.post('event-board/create', {
-		// 		Title,
-		// 		Content,
-		// 		Start_Date,
-		// 		End_Date,
-		// 		Thumbnail_Image_Uri,
-		// 		Image_Uri
-		// 	}).then(({data}) => console.log(data))	
-		// } else if(select === "선택"){
-		// 	alert("분류를 선택해주세요.");
-		// 	return false	
-		// }
-		// alert("등록 되었습니다.");
-		// document.location.href="/noticeevent";
+		e.preventDefault();
+		if(Select === "공지사항"){
+
+			client.post('/uploads/noticeFileups', formData).then((res) =>{
+				
+				const Image =res.data.returnValue[0]
+				
+			
+			 client.post('/notice-board/create', {
+				Title,
+				Image,
+				Content,
+				Hit
+			}).then(({data}) =>
+			console.log(data)
+		   )	
+		})
+
+		} else if(Select === "이벤트"){
+
+			client.post('/uploads/eventFileups', formData).then((res) =>{
+				
+				const Thumbnail_Image_Uri =res.data.returnValue[0]
+				const Image_Uri =res.data.returnValue[1]
+				
+				client.post('/event-board/create', {
+					Title,
+					Content,
+					Start_Date,
+					End_Date,
+					Thumbnail_Image_Uri,
+					Image_Uri
+				}).then(({data}) =>
+				 console.log(data)
+				)	
+
+			})
+			
+
+		} else if(Select === "선택"){
+			alert("분류를 선택해주세요.");
+			return false	
+		}
+		alert("등록 되었습니다.");
+		//document.location.href="/noticeevent";
 	}
 
     return (
@@ -197,7 +228,7 @@ function NoticeEditData(){
 					<div className="desc">
 						<div className="img-photo">
 							<Dropzone onDrop={acceptedFiles => {
-								{Select === "공지사항" ? setImage(acceptedFiles[0]) : setImage_Url(acceptedFiles[0])}
+								{Select === "공지사항" ? setImage(acceptedFiles[0]) : setImage_Uri(acceptedFiles[0])}
 								handlefreeImage(acceptedFiles[0]);
 								}}>
 								{({getRootProps, getInputProps}) => (
@@ -312,7 +343,7 @@ function NoticeEditData(){
 			</section>
 
 			<section id="notice-edit_btn-wrap">
-				<Link to="/noticeevent" className="btn btnL">목록보기</Link>
+				<Link to="/notice-event" className="btn btnL">목록보기</Link>
 				<form className="btn btnCF" onClick={onSubmitHandler}><a>등록/수정</a></form>
 			</section>
 		</div>

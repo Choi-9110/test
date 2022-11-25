@@ -152,7 +152,7 @@ function Poll1TotalList(){
 					<tbody>
 						{polllist.map((qdata, Q_Idx)=>(
 							<tr key={Q_Idx} name={Q_Idx} onClick={() => {
-								navigate("/polltotallist/pollcorrect", {
+								navigate("/poll-totallist/poll-correct", {
 									state: {
 										data: qdata.Q_Idx
 									}
@@ -177,7 +177,7 @@ function Poll1TotalList(){
 			</section>
 
 			<section id="poll1_btn-wrap">
-				<Link to='pollgamelist' className="btn btnCF">1차 폴 생성</Link>
+				<Link to='poll-gamelist' className="btn btnCF">1차 폴 생성</Link>
 				<a href="#" className="btn btnCF">2차 폴 생성</a>
 			</section>
 		</div>

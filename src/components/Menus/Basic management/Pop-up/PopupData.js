@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Popup.css";
 import client from "../../../client";
 import DatePicker from "react-datepicker";
@@ -9,6 +9,8 @@ import {ko} from 'date-fns/esm/locale';
 import moment from "moment";
 
 function PopupData(){
+    const navigate = useNavigate();
+
     const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
@@ -136,7 +138,13 @@ function PopupData(){
 
                         <tbody>
                             {bannerlist.map((bdata, Banner_Idx) => (
-                                <tr key={Banner_Idx}>
+                                <tr key={Banner_Idx} onClick={() => {
+                                    navigate("/popup-list/popup-correct", {
+                                        state: {
+                                            data: bdata.Banner_Idx
+                                        }
+                                    })
+                                }}>
                                     <td className="num">{bdata.Banner_Idx}</td>
                                     <td className="num">-</td>
                                     <td>{bdata.Title}</td>
@@ -210,7 +218,7 @@ function PopupData(){
                 </section>
 
                 <section id="popup_btn-wrap">
-                    <Link to="/popuplist/popupregistration" className="btn btnCF">배너 등록</Link>
+                    <Link to="/popup-list/popup-registration" className="btn btnCF">배너 등록</Link>
                 </section>
 
 

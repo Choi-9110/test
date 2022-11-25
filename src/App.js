@@ -36,7 +36,9 @@ import MemberInfo from "./components/Menus/Member management/Manage withdrawal m
 import MemberHistory from "./components/Menus/Member management/Manage withdrawal members/Withdrawal Member History/MemberHistory";
 import Correct from "./components/Menus/poll/PollList/Correct/Correct";
 import ScrollToTop from "./ScrollToTop";
-
+import ECorrect from "./components/Menus/Basic management/Notice Event/Notice Edit/Correct/ECorrect";
+import NCorrect from "./components/Menus/Basic management/Notice Event/Notice Edit/Correct/NCorrect";
+import PopupCorrect from "./components/Menus/Basic management/Pop-up/Correct.js/PopupCorrect";
 
 function App(){
     return (
@@ -47,49 +49,52 @@ function App(){
                 
                 {/* 기본 관리 */}
                 <Route path="dashboard" element={<Dashboard />}/>
-                    <Route path="sitebasics" element={<Site/>}/>
-                    <Route path="popuplist" element={<Popup/>}/>
-                        <Route path="popuplist/popupregistration" element={<PopupRegistration/>}/>
+                    <Route path="site-basics" element={<Site/>}/>
+                    <Route path="popup-list" element={<Popup/>}/>
+                        <Route path="popup-list/popup-registration" element={<PopupRegistration/>}/>
+                        <Route path="popup-list/popup-correct" element={<PopupCorrect/>}/>
 
-                    <Route path="pushnotification" element={<Push/>}/>
-                        <Route path="pushnotification/pushreport" element={<PushReport/>}/>
-                        <Route path="pushnotification/pushsending" element={<PushSending/>}/>
+                    <Route path="push-notification" element={<Push/>}/>
+                        <Route path="push-notification/push-report" element={<PushReport/>}/>
+                        <Route path="push-notification/push-sending" element={<PushSending/>}/>
 
-                    <Route path="noticeevent" element={<Notice/>}/>
-                        <Route path="noticeevent/noticeedit" element={<NoticeEdit/>}/>
+                    <Route path="notice-event" element={<Notice/>}/>
+                        <Route path="notice-event/notice-edit" element={<NoticeEdit/>}/>
+                        <Route path="notice-event/event-correct" element={<ECorrect/>}/>
+                        <Route path="notice-event/notice-correct" element={<NCorrect/>}/>
 
-                    <Route path="forbiddenwords" element={<ForbiddenWords/>}/>
+                    <Route path="forbidden-words" element={<ForbiddenWords/>}/>
 
                 {/* 회원 관리*/}
                 <Route path="member" element={<Fullmember/>}/>
-                    <Route path="member/memberinformation" element={<MemberInformation/>}/>
+                    <Route path="member/member-information" element={<MemberInformation/>}/>
                     <Route path="point" element={<Point/>}/>
-                        <Route path="point/createnewpoint" element={<CreateNewPoint/>}/>
+                        <Route path="point/create-newpoint" element={<CreateNewPoint/>}/>
                         <Route path="point/history" element={<History/>}/>
 
                     <Route path="withdrawal" element={<WithdrawalApplication/>}/>
-                        <Route path="withdrawal/withdrawalmanagement" element={<HistoryMangement/>}/>
+                        <Route path="withdrawal/withdrawal-management" element={<HistoryMangement/>}/>
                     <Route path="log" element={<Log/>}/>
-                    <Route path="withdrawalmember" element={<WithdrawalMembers/>}/>
-                        <Route path="withdrawalmember/memberinformation" element={<MemberInfo/>}/>
-                        <Route path="withdrawalmember/memberinformation/memberhistory" element={<MemberHistory/>}/>
+                    <Route path="withdrawal-member" element={<WithdrawalMembers/>}/>
+                        <Route path="withdrawal-member/member-information" element={<MemberInfo/>}/>
+                        <Route path="withdrawal-member/member-information/member-history" element={<MemberHistory/>}/>
 
                 {/* 1차 폴 */}
-                <Route path="polltotallist" element={<Poll1/>}/>
-                    <Route path="polltotallist/pollgamelist" element={<Tabmenu/>}/>
-                    <Route path="polltotallist/pollcorrect" element={<Correct/>}/>
+                <Route path="poll-totallist" element={<Poll1/>}/>
+                    <Route path="poll-totallist/poll-gamelist" element={<Tabmenu/>}/>
+                    <Route path="poll-totallist/poll-correct" element={<Correct/>}/>
 
-                <Route path="fulllist1" element={<FullList/>}/>
-                <Route path="waitinglist1" element={<WaitingList/>}/>
-                <Route path="inglist1" element={<ProgressingList/>}/>
-                <Route path="closedlist1" element={<ClosedList/>}/>
-                <Route path="applicationlist1" element={<ApplicationList/>}/>
+                <Route path="full-list1" element={<FullList/>}/>
+                <Route path="waiting-list1" element={<WaitingList/>}/>
+                <Route path="ing-list1" element={<ProgressingList/>}/>
+                <Route path="closed-list1" element={<ClosedList/>}/>
+                <Route path="application-list1" element={<ApplicationList/>}/>
 
                 {/* 2차 폴 */}
-                <Route path="fulllist2" element={<FullList2/>}/>
-                <Route path="waitinglist2" element={<WaitingList2/>}/>
-                <Route path="inglist2" element={<ProgressingList2/>}/>
-                <Route path="closedlist2" element={<ClosedList2/>}/>
+                <Route path="full-list2" element={<FullList2/>}/>
+                <Route path="waiting-list2" element={<WaitingList2/>}/>
+                <Route path="ing-list2" element={<ProgressingList2/>}/>
+                <Route path="closed-list2" element={<ClosedList2/>}/>
 
                 <Route
                     path="*"

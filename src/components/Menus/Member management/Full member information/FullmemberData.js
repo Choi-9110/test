@@ -135,7 +135,7 @@ function FullmemberData(){
 							<td className="date">2022.10.01</td>
 							<td className="num">500</td>
 							<td className="management">
-								<Link to="/member/memberinformation" className="btn btnCF">보기</Link>
+								<Link to="/member/member-information" className="btn btnCF">보기</Link>
 								<a href="#" className="btn btnL">삭제</a>
 							</td>
 						</tr>

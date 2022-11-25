@@ -125,7 +125,7 @@ function WithdrawalMembersData(){
 							<td className="state">2022-10-01</td>
 							<td className="state">1,000</td>
 							<td className="management">
-								<Link to="/withdrawalmember/memberinformation" className="btn btnCF">보기</Link>
+								<Link to="/withdrawal-member/member-information" className="btn btnCF">보기</Link>
 								<a href="#" className="btn btnL">삭제</a>
 							</td>
 						</tr>

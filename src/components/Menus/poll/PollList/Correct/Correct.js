@@ -390,6 +390,7 @@ function Correct() {
 	useEffect(() => {
 		client.get(`primary-poll/list/${listnum}`)
 		.then(({data}) => {setPolldata(data);
+            console.log(data)
             setTitle(data[0].Title); setImage(data[0].Image);
             setRewards(data[0].Rewards); setMax_Choice(data[0].Max_Choice); setMax_Personnel(data[0].Max_Personnel);
             setScale_Start(data[0].Scale_Start); setScale_Start_Text(data[0].Scale_Start_Text);

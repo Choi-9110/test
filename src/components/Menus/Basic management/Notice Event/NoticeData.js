@@ -5,8 +5,11 @@ import "./Notice.css";
 import { Link } from "react-router-dom";
 import client from "../../../client";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 function NoticeData(){
+	const navigate = useNavigate();
+
     const [Start_Date, setStart_Date] = useState(null);
 	const [End_Date, setEnd_Date] = useState(null);
 
@@ -43,13 +46,18 @@ function NoticeData(){
 		// }
 	}, [])
 
+	const Relist = e => {
+		setValue(e.target.value)
+		console.log(e.target.value)
+	}
+
     return (
         <div className="contents">
 			<section id="notice_search">
 				<div className="search-form">
 					<ul>
 						<li>
-							<select onChange={(e) => setValue(e.target.value)}>
+							<select onChange={Relist}>
 								<option value="분류">분류</option>
 								<option value="공지사항">공지사항</option>
 								<option value="이벤트">이벤트</option>
@@ -148,9 +156,14 @@ function NoticeData(){
 					</thead>
 
 					<tbody>
-
-						{eventlist.map((edata, E_Idx) => (
-							<tr key={E_Idx}>
+						{value === "분류" || value === "이벤트" ? eventlist.map((edata, E_Idx) => (
+							<tr key={E_Idx} onClick={() => {
+								navigate("/notice-event/event-correct", {
+									state: {
+										data: edata.E_Idx
+									}
+								})
+							}}>
 								<td className="num"><input type="checkbox" id="chk1" name="chk"/><label htmlFor="chk1"></label></td>
 								<td className="num">{edata.E_Idx}</td>
 								<td className="state">이벤트</td>
@@ -167,8 +180,33 @@ function NoticeData(){
 									<a className="btn btnCopy">복사</a>
 								</td>
 							</tr>
-						))}
+						)) : null}
 
+						{value === "분류" || value === "공지사항" ? noticelist.map((ndata, N_Idx) => (
+							<tr key={N_Idx} onClick={() => {
+								navigate("/notice-event/notice-correct", {
+									state: {
+										data: ndata.N_Idx
+									}
+								})
+							}}>
+								<td className="num"><input type="checkbox" id="chk1" name="chk"/><label htmlFor="chk1"></label></td>
+								<td className="num">{ndata.N_Idx}</td>
+								<td className="state">공지사항</td>
+								<td>{ndata.Title}</td>
+								<td className="state"><span className="state writ">-</span></td>
+								<td className="date">{moment(ndata.Start_Date).format('YYYY/MM/DD')}</td>
+								<td className="date">{moment(ndata.End_Date).format('YYYY/MM/DD')}</td>
+								<td className="num">-</td>
+								<td className="management">
+									<a href="공지사항_이벤트_글쓰기.html" className="btn btnCF">수정</a>
+									<a href="#" className="btn btnL">삭제</a>
+								</td>
+								<td className="state">
+									<a className="btn btnCopy">복사</a>
+								</td>
+							</tr>
+						)) : null}
 						
 
 						
@@ -257,7 +295,7 @@ function NoticeData(){
 			</section>
 
 			<section id="notice_btn-wrap">
-				<Link to="/noticeevent/noticeedit" className="btn btnCF">게시글 작성</Link>
+				<Link to="/notice-event/notice-edit" className="btn btnCF">게시글 작성</Link>
 			</section>
 		</div>
     )

@@ -13,27 +13,27 @@ const SidebarData = [
             {
                 id: 1,
                 title:"사이트 기본 정보",
-                path:"/sitebasics"
+                path:"/site-basics"
             },
             {
                 id: 2,
                 title:"팝업/리스트 관리",
-                path:"/popuplist"
+                path:"/popup-list"
             },
             {
                 id: 3,
                 title:"푸시 알림 관리",
-                path:"/pushnotification"
+                path:"/push-notification"
             },
             {
                 id: 4,
                 title:"공지사항/이벤트",
-                path:"/noticeevent"
+                path:"/notice-event"
             },
             {
                 id: 5,
                 title:"금지어 관리",
-                path:"/forbiddenwords"
+                path:"/forbidden-words"
             }
         ]
     },
@@ -64,39 +64,39 @@ const SidebarData = [
             {
                 id: 5,
                 title:"탈퇴 회원 관리",
-                path:"/withdrawalmember"
+                path:"/withdrawal-member"
             }
         ]
     },
     {
         title:"1차 폴",
         icon: <AiIcons.AiOutlineUnorderedList size="22"/>,
-        path:"/polltotallist",
+        path:"/poll-totallist",
         childrens:[
             {
                 id: 1,
                 title:"전체 리스트",
-                path:"/fulllist1"
+                path:"/full-list1"
             },
             {
                 id: 2,
                 title:"대기중 리스트",
-                path:"/waitinglist1"
+                path:"/waiting-list1"
             },
             {
                 id: 3,
                 title:"진행중 리스트",
-                path:"/inglist1"
+                path:"/ing-list1"
             },
             {
                 id: 4,
                 title:"종료된 리스트",
-                path:"/closedlist1"
+                path:"/closed-list1"
             },
             {
                 id: 5,
                 title:"신청 리스트",
-                path:"/applicationlist1"
+                path:"/application-list1"
             }
         ]
     },
@@ -107,22 +107,22 @@ const SidebarData = [
             {
                 id: 1,
                 title:"전체 리스트",
-                path:"/fulllist2"
+                path:"/full-list2"
             },
             { 
                 id: 2,
                 title:"대기중 리스트",
-                path:"/waitinglist2"
+                path:"/waiting-list2"
             },
             {
                 id: 3,
                 title:"진행중 리스트",
-                path:"/inglist2"
+                path:"/ing-list2"
             },
             {
                 id: 4,
                 title:"종료된 리스트",
-                path:"/closedlist2"
+                path:"/closed-list2"
             }
         ]
     },

@@ -75,7 +75,7 @@ function MemberInfoData(){
 				</div>
 				<div className="item">
 					<p className="title">참여한 테스트</p>
-					<div className="desc"><Link to="/withdrawalmember/memberinformation/memberhistory" className="bnt user-pop">내역 보기</Link></div>
+					<div className="desc"><Link to="/withdrawal-member/member-information/member-history" className="bnt user-pop">내역 보기</Link></div>
 				</div>
 				<div className="item">
 					<p className="title">IP</p>
