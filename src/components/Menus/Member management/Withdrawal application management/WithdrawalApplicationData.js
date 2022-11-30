@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
+import client from "../../../client";
 import DatePicker from "react-datepicker";
 import {ko} from 'date-fns/esm/locale';
 import "./WithdrawalApplication.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 function WithdrawalApplicationData(){
@@ -28,6 +29,23 @@ function WithdrawalApplicationData(){
         }
     }
 
+
+	
+	const [outlist , setoutlist] = useState([]);
+	useEffect(() => {
+		async function listData() {
+			const response = await client.get("/point/outlist")
+			setoutlist(response.data)
+			}
+			listData()
+		},[])
+
+	console.log(outlist);
+	console.log("콘솔확인하고 데이터 넣어주세요 : ) ");
+
+	const navigate = useNavigate();
+	
+
     return (
         <div className="contents">
 			<section id="application_search">
@@ -42,7 +60,19 @@ function WithdrawalApplicationData(){
 
 							<div>
 								<h4>날짜</h4>
-								<DatePicker
+								<input
+									type="date"
+									className="form-control start-date date"
+									format="yyyy-MM-dd"
+									locale={ko}
+									min={new Date().toISOString().slice(0, 10)}
+									onChange={(e) => setStart_Date(e.target.value)}
+									name="datepicker"
+									value={Start_Date || ''}
+									placehoder="폴 시작일"
+								/>
+
+								{/* <DatePicker
                                     className="w180 form-control start-date date"
                                     selected={Start_Date}
                                     onChange={date => setStart_Date(date)}
@@ -53,9 +83,21 @@ function WithdrawalApplicationData(){
                                     dateFormat="yyyy년 MM월 dd일 (eee)"
                                     minDate={new Date()}
                                     closeOnScroll={true}
-                                />
+                                /> */}
 								<span>~</span>
-								<DatePicker
+								<input
+									type="date"
+									className="form-control end-date date"
+									format="yyyy-MM-dd"
+									name="datepicker"
+									min={new Date().toISOString().slice(0, 10)}
+									value={End_Date || ''}
+									placehoder="폴 종료일"
+									locale={ko}
+									onChange={(e) => setEnd_Date(e.target.value)}
+								/>
+
+								{/* <DatePicker
                                     className="form-control end-date date"
                                     selected={End_Date}
                                     onChange={date => setEnd_Date(date)}
@@ -66,7 +108,7 @@ function WithdrawalApplicationData(){
                                     locale={ko}
                                     dateFormat="yyyy년 MM월 dd일 (eee)"
                                     closeOnScroll={true}
-                                />
+                                /> */}
 							</div>
 						</li>
 					</ul>
@@ -126,6 +168,32 @@ function WithdrawalApplicationData(){
 					</thead>
 
 					<tbody>
+
+						{outlist.map((pdata, Point_Idx) => (
+							<tr key={Point_Idx} onClick={() => {
+								navigate("/withdrawal/withdrawal-management", {
+									state: {
+										data: pdata.Point_Idx
+									}
+								})
+							}}>
+								<td className="num">{pdata.Point_Idx}</td>
+								<td className="state"><span className={pdata.Point_Name === "제휴 포인트 전환" ? "state ongoing" : pdata.Point_Name === "리워드 출금" && "state complete"}>{pdata.Point_Name}</span></td>
+								<td>{pdata.Nickname}</td>
+								<td className="state">일단 공란</td>
+								<td className="state">{moment(pdata.Submit_Date).format("YYYY-MM-DD HH:mm:ss")}</td>
+								<td className="state">{pdata.Point_Reward}</td>
+								<td className="state"><span className={pdata.Point_State === 0 ? "state writ" : pdata.Point_State === 1 && "state ongoing"}>{pdata.Point_State === 0 ? "대기" : pdata.Point_State === 1 && "완료"}</span></td>
+								<td className="management">
+									<a href="#" className="btn btnCF">보기</a>
+									<a href="#" className="btn btnL">삭제</a>
+								</td>
+							</tr>
+						))}
+
+
+
+
 						<tr>
 							<td className="num">03</td>
 							<td className="state"><span className="state ongoing">포인트 전환(네이버페이)</span></td>

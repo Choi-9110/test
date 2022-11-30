@@ -22,9 +22,14 @@
 
 #notice-edit_write .item .desc span.txt { display: inline-block; font-family: 'scdream6'; font-size: 0.875rem; line-height: 46px; margin: 0 10px;}
 
+#notice-edit_write .item .desc .input-group > input[type=date]{width: 200px;}
+#notice-edit_write .item .desc .input-group > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
+#notice-edit_write .item .desc .input-group > div > .aa{margin: 0 10px;}
+#notice-edit_write .item .desc .input-group > div > input[type=date]{width: 200px;}
+#notice-edit_write .item .desc .input-group > div > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
+
 #notice-edit_write .item .desc .input-group>div{display: inline-block;}
 #notice-edit_write .item .desc .input-group>div.no{display: none;}
-#notice-edit_write .item .desc .input-group>div>.aa{margin-right: 10px;}
 #notice-edit_write .item .desc .input-group>.react-datepicker-wrapper, #notice-edit_write .item .desc .input-group>div>.react-datepicker-wrapper{width: 200px; margin-right: 10px; background: url(../../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #notice-edit_write .item .desc .input-group>div>.react-datepicker__tab-loop{position: fixed; z-index: 1000;}
 

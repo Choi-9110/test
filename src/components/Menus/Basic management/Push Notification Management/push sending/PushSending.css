@@ -47,6 +47,9 @@ input[type=radio], input[type=checkbox] {position: absolute;visibility: hidden;}
 #push-sending_write .item .desc input[type=text].w180{width: 180px;}
 #push-sending_write .item .desc input[type=text].w80{width: 80%;}
 
+#push-sending_write .item .desc > input[type=date]{width: 200px;}
+#push-sending_write .item .desc > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
+
 #push-sending_write .item .desc > div > input[type=text]{width: 100%;}
 #push-sending_write .item .desc > div > div > input[type=text]{width: 200px;}
 #push-sending_write .item .desc > .react-datepicker-wrapper{width: 200px;}

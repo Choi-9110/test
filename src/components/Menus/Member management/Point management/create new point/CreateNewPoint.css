@@ -27,6 +27,8 @@ address, cite, code, em {
 #create-point_write .item .desc input[type=text] {width: 100%;}
 #create-point_write .item .desc span.txt { display: inline-block; font-family: 'scdream6'; font-size: 0.875rem; line-height: 46px; margin: 0 10px;}
 
+#create-point_write .item .desc > .input-group > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
+#create-point_write .item .desc > .input-group > input[type=date]{width: 200px;}
 #create-point_write .item .desc > .input-group > .react-datepicker-wrapper{width: 200px; background: url(../../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #create-point_write .item .desc > .input-group > .react-datepicker__tab-loop{display: inline-flex; z-index: 1000;}
 #create-point_write .item .desc > .input-group > .aa{margin: 0 10px;}

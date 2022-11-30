@@ -57,33 +57,57 @@ function Poll1TotalList(){
 
 							<div>
 								<h4>검색 기간</h4>
-								<DatePicker
-										className="form-control start-date date"
-										selected={Start_Date}
-										onChange={date => setStart_Date(date)}
-										selectsStart
-										startDate={Start_Date}
-										endDate={End_Date}
-										locale={ko}
-										dateFormat="yyyy년 MM월 dd일 (eee)"
-										minDate={new Date()}
-										placeholderText="폴 시작일"
-										closeOnScroll={true}                                       
-									/>
+								<input
+									type="date"
+									className="form-control start-date date"
+									format="yyyy-MM-dd"
+									locale={ko}
+									min={new Date().toISOString().slice(0, 10)}
+									onChange={(e) => setStart_Date(e.target.value)}
+									name="datepicker"
+									value={Start_Date || ''}
+									placehoder="폴 시작일"
+								/>
+
+								{/* <DatePicker
+									className="form-control start-date date"
+									selected={Start_Date}
+									onChange={date => setStart_Date(date)}
+									selectsStart
+									startDate={Start_Date}
+									endDate={End_Date}
+									locale={ko}
+									dateFormat="yyyy년 MM월 dd일 (eee)"
+									minDate={new Date()}
+									placeholderText="폴 시작일"
+									closeOnScroll={true}                                       
+								/> */}
 								<span>~</span>
-								<DatePicker
-										className="form-control end-date date"
-										selected={End_Date}
-										onChange={date => setEnd_Date(date)}
-										selectsEnd
-										startDate={Start_Date}
-										endDate={End_Date}
-										minDate={Start_Date}
-										locale={ko}
-										dateFormat="yyyy년 MM월 dd일 (eee)"
-										placeholderText="폴 종료일"
-										closeOnScroll={true}
-									/>
+								<input
+									type="date"
+									className="form-control end-date date"
+									format="yyyy-MM-dd"
+									name="datepicker"
+									min={new Date().toISOString().slice(0, 10)}
+									value={End_Date || ''}
+									placehoder="폴 종료일"
+									locale={ko}
+									onChange={(e) => setEnd_Date(e.target.value)}
+								/>
+
+								{/* <DatePicker
+									className="form-control end-date date"
+									selected={End_Date}
+									onChange={date => setEnd_Date(date)}
+									selectsEnd
+									startDate={Start_Date}
+									endDate={End_Date}
+									minDate={Start_Date}
+									locale={ko}
+									dateFormat="yyyy년 MM월 dd일 (eee)"
+									placeholderText="폴 종료일"
+									closeOnScroll={true}
+								/> */}
 							</div>
 						</li>
 

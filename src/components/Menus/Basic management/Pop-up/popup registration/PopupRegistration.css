@@ -29,6 +29,8 @@ input[type=email][disabled] {
 #registration_write .item .desc input[type=radio]:checked + label.type2 { color: #c684ff; background: none;}
 
 #registration_write .item .desc .input-group > input[type=text]{width: 200px;}
+#registration_write .item .desc .input-group > input[type=date]{width: 200px;}
+#registration_write .item .desc .input-group > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
 #registration_write .item .desc .input-group > .react-datepicker-wrapper{width: 200px; background: url(../../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #registration_write .item .desc .input-group > .react-datepicker__tab-loop{display: inline-flex; z-index: 1000;}
 #registration_write .item .desc > .input-group > .aa { margin: 0 10px;}

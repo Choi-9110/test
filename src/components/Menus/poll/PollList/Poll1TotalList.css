@@ -69,6 +69,8 @@ input[type=file], input[type=url], input[type=number], input[type=date], textare
 #poll1_search .search-form li {margin-bottom:30px;}
 #poll1_search .search-form li > div {display:inline-block; }
 #poll1_search .search-form li > div > span{margin: 0 5px;}
+#poll1_search .search-form li > div > input[type=date]{width: 200px;}
+#poll1_search .search-form li > div > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
 #poll1_search .search-form li > div > div > div > input[type=text]{width: 200px;}
 #poll1_search .search-form li > div > .react-datepicker-wrapper{width: 200px; background: url(../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #poll1_search .search-form li > div > .react-datepicker__tab-loop{position: fixed; z-index: 1000;}

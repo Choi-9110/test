@@ -1,11 +1,97 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import client from "../../../../client";
+import { Link, useLocation } from "react-router-dom";
 import "./MemberInformation.css";
+import Dropzone from 'react-dropzone';
 
 function MemberInformationData(){
-    return (
+
+	const [freeImage, setfreeImage] = useState('');
+	const handlefreeImage = (fileBlob) => {
+		const reader = new FileReader();
+		if(fileBlob){
+			reader.readAsDataURL(fileBlob);
+			setProfile_Image_Uri(fileBlob);
+		}
+
+		return new Promise((resolve) => {
+			reader.onload = () => {
+				setfreeImage(reader.result);
+				resolve();
+			};
+		});	
+	};
+
+	const removeImg = () => {
+		setProfile_Image_Uri('')
+		setfreeImage('')
+	}
+
+	const location = useLocation();
+    const listnum = location.state.data;
+
+	console.log(listnum);
+	
+	const [M_Idx, setM_Idx] = useState(0);
+	const [Nickname, setNickname] = useState("");
+	const [Phone, setPhone] = useState("");
+	const [Year_Of_Birth, setYear_Of_Birth] = useState(null);
+	const [Zipcode, setZipcode] = useState(null);
+	const [Address, setAddress] = useState(null);
+	const [Privacy_Consent, setPrivacy_Consent] = useState("");
+	const [App_Consent, setApp_Consent] = useState("");
+	const [Referral_Code, setReferral_Code] = useState(null);
+	const [Id, setId] = useState("");
+	const [Pw, setPw] = useState("");
+	const [Name, setName] = useState("");
+	const [Gender, setGender] = useState("");
+	const [Profile_Image_Uri, setProfile_Image_Uri] = useState(null)
+	const [Panel, setPanel] = useState(0);
+	const [Interests_1, setInterests_1] = useState(null);
+	const [Interests_2, setInterests_2] = useState(null);
+	const [Interests_3, setInterests_3] = useState(null);
+	const [Is_Delete, setIs_Delete] = useState("");
+	const [Delete_Date, setDelete_Date] = useState(null);
+	const [Delete_Reason, setDelete_Reason] = useState(null);
+
+// 문수씨 여기입니다 : ) 여기 데이터 맞춰서 할당해주세요~!!!
+
+
+	const [info , setInfo] = useState([])
+	useEffect(() => {
+		client.get(`member/info/${listnum}`)
+		.then(({data}) => {setInfo(data);
+			console.log(data);
+			setM_Idx(data[0].M_Idx);
+			setNickname(data[0].Nickname);
+			setPhone(data[0].Phone);
+			setYear_Of_Birth(data[0].Year_Of_Birth);
+			setZipcode(data[0].Zipcode);
+			setAddress(data[0].Address);
+			setPrivacy_Consent(data[0].Privacy_Consent);
+			setApp_Consent(data[0].App_Consent);
+			setReferral_Code(data[0].Referral_Code);
+			setId(data[0].Id);
+			setPw(data[0].Pw);
+			setName(data[0].Name);
+			setGender(data[0].Gender);
+			setProfile_Image_Uri(data[0].Profile_Image_Uri);
+			setPanel(data[0].Panel);
+			setInterests_1(data[0].Interests_1);
+			setInterests_2(data[0].Interests_2);
+			setInterests_3(data[0].Interests_3);
+			setIs_Delete(data[0].Is_Delete);
+			setDelete_Date(data[0].Delete_Date);
+			setDelete_Reason(data[0].Delete_Reason);
+		})
+	}, [])
+
+	console.log(Address)
+	console.log("INFO INFO INFO INFO", info)
+
+    return (		
         <div className="contents">
 			<h3 className="member-info_h">회원 정보 관리</h3>
-
 			<section id="member-info_write">
 				<div className="item type2">
 					<p className="title">기본 정보</p>
@@ -17,58 +103,69 @@ function MemberInformationData(){
 				<div className="item">
 					<p className="title">아이디</p>
 					<div className="desc">
-						<div><input type="text" value="wish_poll@gamil.com" disabled /></div>
+						<div><input type="text" value={Id || ""} readOnly /></div>
 					</div>
 				</div>
 				<div className="item">
 					<p className="title">비밀번호</p>
 					<div className="desc">
-						<div><input type="password" /></div>
+						<div><input type="password" value={Pw || ""}/></div>
 					</div>
 				</div>
 				<div className="item">
 					<p className="title">닉네임</p>
 					<div className="desc">
-						<div><input type="text" value="김뿡뿡" /></div>
+						<div><input type="text" value={Nickname || ""} /></div>
 					</div>
 				</div>
 				<div className="item">
 					<p className="title">휴대폰 번호</p>
 					<div className="desc">
-						<div><input type="text" value="010-1234-5678" disabled /></div>
+						<div><input type="text" value={Phone || ""} readOnly /></div>
 					</div>
 				</div>
 				<div className="item">
 					<p className="title">출생년도</p>
 					<div className="desc">
-						<select>
-							<option value="2022">2022</option>
-							<option value="2021">2021</option>
-							<option value="2020">2020</option>
-						</select>
+						<div><input type="text" value={Year_Of_Birth || ""}/></div>
 					</div>
 				</div>
 				<div className="item">
 					<p className="title">성별</p>
 					<div className="desc">
-						<span><input type="radio" id="sex-1" name="sex" /><label htmlFor="sex-1">남성</label></span>
-						<span><input type="radio" id="sex-2" name="sex" /><label htmlFor="sex-2">여성</label></span>
+						<span><input type="radio" id="sex-1" name="sex" checked={Gender === "M"} readOnly/><label htmlFor="sex-1">남성</label></span>
+						<span><input type="radio" id="sex-2" name="sex" checked={Gender === "F"} readOnly/><label htmlFor="sex-2">여성</label></span>
 					</div>
 				</div>
 				<div className="item">
 					<p className="title">추천인 코드</p>
-					<div className="desc">abcdfg123</div>
+					<div className="desc">{Referral_Code}</div>
 				</div>
 				<div className="item">
 					<p className="title">프로필 사진</p>
 					<div className="desc">
 						<div className="img-photo">
-							<label id='btnAtt'><input type='file' multiple='multiple' /></label>
-							<div id="photo-view"></div>
+							<Dropzone onDrop={acceptedFiles => {
+								console.log(acceptedFiles)
+								setProfile_Image_Uri(acceptedFiles[0]);
+								handlefreeImage(acceptedFiles[0]);
+								}}>
+								{({getRootProps, getInputProps}) => (
+									<div id="btnAtt" {...getRootProps()}>
+										<input {...getInputProps()} />
+									</div>      
+								)}
+							</Dropzone>
+							{freeImage ? <div id="photo-view">
+								<img className="preview-img" src={freeImage} alt="preview-img"/>
+								<input type="button" value="X" className="deleteImg" onClick={removeImg}/>
+							</div> : null}
 						</div>
 						<p className="comment">권장 크기 : 1000 x 500</p>
 					</div>
 				</div>
+				{/* ----------------------------------------------------------------- */}
+				{/* 밑부분 db에 없음 */}
 				<div className="item">
 					<p className="title">보유 포인트</p>
 					<div className="desc">3,500</div>
@@ -159,7 +256,6 @@ function MemberInformationData(){
 					</div>
 				</div>
 			</section>
-
 			<section id="member-info_btn-wrap">
 				<a href="#" className="btn btnL">목록보기</a>
 				<a href="#" className="btn btnCF">등록/수정</a>

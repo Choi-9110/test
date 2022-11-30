@@ -65,6 +65,8 @@ input[type=file], input[type=url], input[type=number], input[type=date], textare
 option { font-weight: normal; display: block; white-space: nowrap; min-height: 1.2em; padding: 0px 2px 1px;}
 #Log_search .search-form li > div { max-width: 90%; display: inline-block;}
 #Log_search .search-form li > div > span{margin: 0 5px;}
+#Log_search .search-form li > div > input[type=date]{width: 200px;}
+#Log_search .search-form li > div > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
 #Log_search .search-form li > div > div > div > input[type=text]{width: 200px;}
 #Log_search .search-form li > div > .react-datepicker-wrapper{width: 200px; background: url(../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #Log_search .search-form li > div > .react-datepicker__tab-loop{position: fixed; z-index: 1000;}

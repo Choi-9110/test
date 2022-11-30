@@ -11,6 +11,8 @@ ul, ol, li { list-style: none;}
 #member-history_search .search-form li > div { margin-top: 20px; display: inline-block; min-width: 48%;}
 
 #member-history_search .search-form span.aa { margin: 0 5px;}
+#member-history_search .search-form input[type=date]{width: 200px;}
+#member-history_search .search-form input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
 #member-history_search .search-form input[type=text]{width: 200px;}
 #member-history_search .search-form .react-datepicker-wrapper{width: 200px; background: url(../../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #member-history_search .search-form .react-datepicker__tab-loop{display: inline-flex; z-index: 1000;}

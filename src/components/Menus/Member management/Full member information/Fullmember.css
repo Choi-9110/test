@@ -43,6 +43,7 @@ input[type=file], input[type=url], input[type=number], input[type=date], textare
 #full-member_list table .people {width:8%;}
 #full-member_list table .management {width:11%;}
 #full-member_list table thead th {font-family:'scdream6'; font-size:0.875rem; line-height:70px; border-bottom:1px solid #e8e8e8;}
+#full-member_list table tbody tr{cursor: pointer;}
 #full-member_list table td {min-height:70px; font-size:0.875rem; text-align:center; padding:15px 0; border-bottom:1px solid #e8e8e8;}
 #full-member_list table span.state {color:#b2b2b2; font-weight: bold;}
 #full-member_list table span.state.stand {color:#1f2233;}
@@ -62,6 +63,8 @@ input[type=file], input[type=url], input[type=number], input[type=date], textare
 #full-member_search .search-form select{margin-right: 50px;}
 #full-member_search .search-form li > div { max-width: 90%; display: inline-block;}
 #full-member_search .search-form li > div > span{margin: 0 5px;}
+#full-member_search .search-form li > div > input[type=date]{width: 200px;}
+#full-member_search .search-form li > div > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
 #full-member_search .search-form li > div > div > div > input[type=text]{width: 200px;}
 #full-member_search .search-form li > div > .react-datepicker-wrapper{width: 200px; background: url(../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #full-member_search .search-form li > div > .react-datepicker__tab-loop{position: fixed; z-index: 1000;}

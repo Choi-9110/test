@@ -182,34 +182,32 @@ function PushSendingData(){
 					<div className="item">
 						<p className="title">발송 시간을 입력해주세요.</p>
 						<div className="desc">
-							<div className="input-group">
-								<input
-									type="date"
-									className="form-control start-date date"
-									format="yyyy-MM-dd"
-									locale={ko}
-									min={new Date().toISOString().slice(0, 10)}
-									onChange={(e) => setStart_Date(e.target.value)}
-									name="datepicker"
-									value={Start_Date}
-									placehoder="폴 시작일"
-								/>
+							<input
+								type="date"
+								className="form-control start-date date"
+								format="yyyy-MM-dd"
+								locale={ko}
+								min={new Date().toISOString().slice(0, 10)}
+								onChange={(e) => setStart_Date(e.target.value)}
+								name="datepicker"
+								value={Start_Date || ''}
+								placehoder="폴 시작일"
+							/>
 
 
-                            	{/* <DatePicker
-                                    className="form-control start-date date"
-                                    selected={Start_Date}
-                                    onChange={date => setStart_Date(date)}
-                                    selectsStart
-                                    startDate={Start_Date}
-                                    endDate={End_Date}
-                                    locale={ko}
-                                    dateFormat="yyyy년 MM월 dd일 (eee)"
-                                    minDate={new Date()}
-                                    closeOnScroll={true}
-							    /> */}
-								{/* <input type="text" className="w180 timepicker clock" name="timepicker" /> */}
-							</div>
+							{/* <DatePicker
+								className="form-control start-date date"
+								selected={Start_Date}
+								onChange={date => setStart_Date(date)}
+								selectsStart
+								startDate={Start_Date}
+								endDate={End_Date}
+								locale={ko}
+								dateFormat="yyyy년 MM월 dd일 (eee)"
+								minDate={new Date()}
+								closeOnScroll={true}
+							/> */}
+							{/* <input type="text" className="w180 timepicker clock" name="timepicker" /> */}
 						</div>
 					</div>
 					<div className="item">
@@ -244,7 +242,7 @@ function PushSendingData(){
 								format="yyyy-MM-dd"
 								name="datepicker"
 								min={new Date().toISOString().slice(0, 10)}
-								value={End_Date}
+								value={End_Date || ''}
 								placehoder="폴 종료일"
 								locale={ko}
 								onChange={(e) => setEnd_Date(e.target.value)}

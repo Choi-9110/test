@@ -39,6 +39,8 @@ ul, ol, li {
 #popup_search .search-form li > div {display: inline-block; min-width: 48%;}
 #popup_search .search-form h4, #popup_search .sch-all h4 {font-family: 'scdream6'; font-size: 0.875rem; line-height: 46px; margin-right: 10px; display: inline-block; vertical-align: top;}
 #popup_search .search-form input[type=text]{width: 200px;}
+#popup_search .search-form input[type=date]{width: 200px;}
+#popup_search .search-form input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
 #popup_search .search-form .react-datepicker-wrapper{width: 200px; background: url(../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #popup_search .search-form .react-datepicker__tab-loop{display: inline-flex; z-index: 1000;}
 #popup_search .search-form li > div > span {margin: 0 5px;}

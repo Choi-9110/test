@@ -5,6 +5,8 @@
 #correct_write .item {margin-top:10px; border:1px solid #e8e8e8; background:#fff;}
 #correct_write .item .title {font-family: 'scdream6'; font-size:0.95rem; line-height:64px; padding:0 30px; border-bottom:1px solid #e8e8e8; font-weight: bold;}
 #correct_write .item .desc {padding:20px 30px;}
+#correct_write .item .desc input[type=date] {outline-color: #c684ff; width:100%; height: 46px; font-size: 0.75rem; color: #1f2233; padding: 0 20px; border: 1px solid #ddd; transition: all 0.5s; vertical-align: middle; box-sizing: border-box; background: transparent;}
+#correct_write .item .desc input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
 #correct_write .item .desc input[type=text] {outline-color: #c684ff; width:100%; height: 46px; font-size: 0.75rem; color: #1f2233; padding: 0 20px; border: 1px solid #ddd; transition: all 0.5s; vertical-align: middle; box-sizing: border-box; background: transparent;}
 #correct_write .item .desc input.w180{width: 180px; margin-right: 10px;}
 #correct_write .item .desc #btnAtt {position:relative; width:280px; height:140px; display:inline-block; vertical-align:top; cursor:pointer; border: 1px dashed #e8e8e8;}

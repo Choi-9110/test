@@ -201,21 +201,28 @@ function Correct() {
     // div 추가
 	const [countDiv, setCountDiv] = useState([]);
 	const onAddDetailDiv = () => {
-		let countArr = [...countDiv]
+        let countArr = [...countDiv]
+        let counter = countArr.slice(-1)[0]
 
-        let len = countDiv.length+1
+		counter += 1;
+		countArr.push(counter)
+		setCountDiv(countArr)
 
-        const resetDiv = [];
-        for(let i=0; i<len; i++){
-            resetDiv.push(i);
-        }
+		// let countArr = [...countDiv]
 
-        console.log("!!!!!RESET!!!!!", resetDiv)
+        // let len = countDiv.length+1
 
-		countArr.push(len)
-        console.log("length", countDiv.length)
-        console.log("COUNT ARR!!", countArr)
-		setCountDiv(resetDiv)
+        // const resetDiv = [];
+        // for(let i=0; i<len; i++){
+        //     resetDiv.push(i);
+        // }
+
+        // console.log("!!!!!RESET!!!!!", resetDiv)
+
+		// countArr.push(len)
+        // console.log("length", countDiv.length)
+        // console.log("COUNT ARR!!", countArr)
+		// setCountDiv(resetDiv)
 	}
 
 	const onRemove = (targetId) => {
@@ -226,219 +233,184 @@ function Correct() {
 		setCountDiv(newDiaryList);
 	};
 
-    const SelectArray = []
-    const rearray = []
+    // const SelectArray = []
+    // const rearray = []
     
     const deleteAll = ({i}) => {
+        // 배열 초기화 자리
+        
 
-        console.log("------SWITCH END------");
+        console.log(i)
 
-        console.log("SELECT-ARRAY PUSH START");
-        SelectArray.push(Select_1);
-        SelectArray.push(Select_2);
-        SelectArray.push(Select_3);
-        SelectArray.push(Select_4);
-        SelectArray.push(Select_5);
-        SelectArray.push(Select_6);
-        SelectArray.push(Select_7);
-        SelectArray.push(Select_8);
-
-        for(let j=0; j<8; j++){
-            if(SelectArray[j]){
-                console.log("asdasdasdasdasdasdasd",SelectArray);
-
-                rearray.push(SelectArray[j]);
-            }
+        if(i === 0){
+            setSelect_1(null);
+            setSelect_Image_1(null);
+            setfreeImage1("");
+        } else if(i === 1){
+            setSelect_2(null);
+            setSelect_Image_2(null);
+            setfreeImage2("");
+        } else if(i === 2){
+            setSelect_3(null);
+            setSelect_Image_3(null);
+            setfreeImage3("");
+        } else if(i === 3){
+            setSelect_4(null);
+            setSelect_Image_4(null);
+            setfreeImage4("");
+        } else if(i === 4){
+            setSelect_5(null);
+            setSelect_Image_5(null);
+            setfreeImage5("");
+        } else if(i === 5){
+            setSelect_6(null);
+            setSelect_Image_6(null);
+            setfreeImage6("");
+        } else if(i === 6){
+            setSelect_7(null);
+            setSelect_Image_7(null);
+            setfreeImage7("");
+        } else if(i === 7){
+            setSelect_8(null);
+            setSelect_Image_8(null);
+            setfreeImage8("");
         }
 
-        for(let a=0; a<rearray.length; a++){
-            console.log("wwwwwwwwwwwwwwwwwwwwww", rearray)
-            switch(a){
-                case 0:
-                    setSelect_1(rearray[a]);
-                    break;
-                case 1:
-                    setSelect_2(rearray[a]);
-                    break;
-                case 2:
-                    setSelect_3(rearray[a]);
-                    break;
-                case 3:
-                    setSelect_4(rearray[a]);
-                    break;
-                case 4:
-                    setSelect_5(rearray[a]);
-                    break;
-                case 5:
-                    setSelect_6(rearray[a]);
-                    break;
-                case 6:
-                    setSelect_7(rearray[a]);
-                    break;
-                case 7:
-                    setSelect_8(rearray[a]);
-                    break;
-            }
-        }
-
+        console.log("-----------------------------------")
         console.log(Select_1)
+        console.log(Select_Image_1)
+        console.log(Select_2)
+        console.log(Select_Image_2)
+        console.log(Select_3)
+        console.log(Select_Image_3)
+        console.log(Select_4)
+        console.log(Select_Image_4)
+        console.log(Select_5)
+        console.log(Select_Image_5)
+        console.log(Select_6)
+        console.log(Select_Image_6)
+        console.log(Select_7)
+        console.log(Select_Image_7)
+        console.log(Select_8)
+        console.log(Select_Image_8)
+        console.log("-----------------------------------")
 
-        switch(i){
-            case 0:
-                // setSelect_1(null);
-                // setSelect_Image_1(null);
-                // setfreeImage("");
-                // break;
-                return (
-                    setSelect_1(null),
-                    setSelect_Image_1(null),
-                    setfreeImage("")
-                )
-            case 1:
-                // setSelect_2(null);
-                // setSelect_Image_2(null);
-                // setfreeImage2("");
-                // break;
-                return (
-                    setSelect_2(null),
-                    setSelect_Image_2(null),
-                    setfreeImage2("")
-                )
-            case 2:
-                // setSelect_3(null);
-                // setSelect_Image_3(null);
-                // setfreeImage3("");
-                // break;
-                return (
-                    setSelect_3(null),
-                    setSelect_Image_3(null),
-                    setfreeImage3("")
-                )
-            case 3:
-                // setSelect_4(null);
-                // setSelect_Image_4(null);
-                // setfreeImage4("");
-                // break;
-                return (
-                    setSelect_4(null),
-                    setSelect_Image_4(null),
-                    setfreeImage4("")
-                )
-            case 4:
-                // setSelect_5(null);
-                // setSelect_Image_5(null);
-                // setfreeImage5("");
-                // break;
-                return (
-                    setSelect_5(null),
-                    setSelect_Image_5(null),
-                    setfreeImage5("")
-                )
-            case 5:
-                // setSelect_6(null);
-                // setSelect_Image_6(null);
-                // setfreeImage6("");
-                // break;
-                return (
-                    setSelect_6(null),
-                    setSelect_Image_6(null),
-                    setfreeImage6("")
-                )
-            case 6:
-                // setSelect_7(null);
-                // setSelect_Image_7(null);
-                // setfreeImage7("");
-                // break;
-                return (
-                    setSelect_7(null),
-                    setSelect_Image_7(null),
-                    setfreeImage7("")
-                )
-            case 7:
-                // setSelect_8(null);
-                // setSelect_Image_8(null);
-                // setfreeImage8("");
-                // break;
-                return (
-                    setSelect_8(null),
-                    setSelect_Image_8(null),
-                    setfreeImage8("")
-                )
-        }
+        // console.log("------SWITCH END------");
+
+        // console.log("SELECT-ARRAY PUSH START");
+        // SelectArray.push(Select_1);
+        // SelectArray.push(Select_2);
+        // SelectArray.push(Select_3);
+        // SelectArray.push(Select_4);
+        // SelectArray.push(Select_5);
+        // SelectArray.push(Select_6);
+        // SelectArray.push(Select_7);
+        // SelectArray.push(Select_8);
+
+        // for(let j=0; j<8; j++){
+        //     if(SelectArray[j]){
+        //         console.log("asdasdasdasdasdasdasd",SelectArray);
+
+        //         rearray.push(SelectArray[j]);
+        //     }
+        // }
+
+        // for(let a=0; a<rearray.length; a++){
+        //     console.log("wwwwwwwwwwwwwwwwwwwwww", rearray)
+        //     switch(a){
+        //         case 0:
+        //             setSelect_1(rearray[a]);
+        //             break;
+        //         case 1:
+        //             setSelect_2(rearray[a]);
+        //             break;
+        //         case 2:
+        //             setSelect_3(rearray[a]);
+        //             break;
+        //         case 3:
+        //             setSelect_4(rearray[a]);
+        //             break;
+        //         case 4:
+        //             setSelect_5(rearray[a]);
+        //             break;
+        //         case 5:
+        //             setSelect_6(rearray[a]);
+        //             break;
+        //         case 6:
+        //             setSelect_7(rearray[a]);
+        //             break;
+        //         case 7:
+        //             setSelect_8(rearray[a]);
+        //             break;
+        //     }
+        // }
+
+        // console.log(Select_1)
     }
 
     const ondelete = ({i}) => {
         switch(i){
             case 0 :
-                setSelect_Image_1("");
+                setSelect_Image_1(null);
                 setfreeImage1("");
                 break;
             case 1:
-                setSelect_Image_2("");
+                setSelect_Image_2(null);
                 setfreeImage2("");
                 break;
             case 2:
-                setSelect_Image_3("");
+                setSelect_Image_3(null);
                 setfreeImage3("");
                 break;
             case 3 :
-                setSelect_Image_4("");
+                setSelect_Image_4(null);
                 setfreeImage4("");
                 break;
             case 4:
-                setSelect_Image_5("");
+                setSelect_Image_5(null);
                 setfreeImage5("");
                 break;
             case 5:
-                setSelect_Image_6("");
+                setSelect_Image_6(null);
                 setfreeImage6("");
                 break;
             case 0 :
-                setSelect_Image_7("");
+                setSelect_Image_7(null);
                 setfreeImage7("");
                 break;
             case 1:
-                setSelect_Image_8("");
+                setSelect_Image_8(null);
                 setfreeImage8("");
                 break;
         }
-        
-
     }
 
     const location = useLocation();
     const listnum = location.state.data;
     const [polldata, setPolldata] = useState([]);
-    const [Q_Idx, setQ_Idx] = useState(0);
-
 	useEffect(() => {
 		client.get(`primary-poll/list/${listnum}`)
 		.then(({data}) => {setPolldata(data);
-
-            
-            // console.log(Date(Date.parse((data[0].Start_Date))));
-            // console.log(data[0].Start_Date)
-
-            setQ_Idx(data[0].Q_Idx)            ;
+            setQ_Idx(data[0].Q_Idx);
             setStart_Date(moment(data[0].Start_Date).format('YYYY-MM-DD'));
             setEnd_Date(moment(data[0].End_Date).format('YYYY-MM-DD'));
-
             setTitle(data[0].Title); setImage(data[0].Image);
             setRewards(data[0].Rewards); setMax_Choice(data[0].Max_Choice); setMax_Personnel(data[0].Max_Personnel);
             setScale_Start(data[0].Scale_Start); setScale_Start_Text(data[0].Scale_Start_Text);
-            setScale_Mid_Text(data[0].Scale_Mid_Text)
+            setScale_Mid_Text(data[0].Scale_Mid_Text);
             setScale_End(data[0].Scale_End); setScale_End_Text(data[0].Scale_End_Text);
-            setScale_Unit(data[0].Scale_Unit)
-            setType(data[0].Type); setState(data[0].State)
+            setScale_Unit(data[0].Scale_Unit);
+            setRegist_M_Idx(data[0].Regist_M_Idx);
+            setType(data[0].Type); setState(data[0].State);
             setSelect_1(data[0].Select_1); setSelect_5(data[0].Select_5);
             setSelect_2(data[0].Select_2); setSelect_6(data[0].Select_6);
             setSelect_3(data[0].Select_3); setSelect_7(data[0].Select_7);
             setSelect_4(data[0].Select_4); setSelect_8(data[0].Select_8);
-            setSelect_Image_1(data[0].Select_Image_1); setSelect_Image_5(data[0].Select_Image_5)
-            setSelect_Image_2(data[0].Select_Image_2); setSelect_Image_6(data[0].Select_Image_6)
-            setSelect_Image_3(data[0].Select_Image_3); setSelect_Image_7(data[0].Select_Image_7)
-            setSelect_Image_4(data[0].Select_Image_4); setSelect_Image_8(data[0].Select_Image_8)
-            setfreeImage(data[0].Image)
+            setSelect_Image_1(data[0].Select_Image_1); setSelect_Image_5(data[0].Select_Image_5);
+            setSelect_Image_2(data[0].Select_Image_2); setSelect_Image_6(data[0].Select_Image_6);
+            setSelect_Image_3(data[0].Select_Image_3); setSelect_Image_7(data[0].Select_Image_7);
+            setSelect_Image_4(data[0].Select_Image_4); setSelect_Image_8(data[0].Select_Image_8);
+            setfreeImage(data[0].Image);
             setfreeImage1(data[0].Select_Image_1); setfreeImage5(data[0].Select_Image_5);
             setfreeImage2(data[0].Select_Image_2); setfreeImage6(data[0].Select_Image_6);
             setfreeImage3(data[0].Select_Image_3); setfreeImage7(data[0].Select_Image_7);
@@ -462,10 +434,8 @@ function Correct() {
             
         })
 	}, [])
-    console.log("============")
-    console.log(Title)
-    console.log(Start_Date)
 
+    const [Q_Idx, setQ_Idx] = useState(0);
     const [Random, setRandom] = useState(0);
     const [Is_Using_Others, setIs_Using_Others] = useState(0);
     const [Regist_M_Idx, setRegist_M_Idx] = useState(0);
@@ -525,7 +495,6 @@ function Correct() {
             })
         });
     }
-
 
     return (
         <>
@@ -744,24 +713,31 @@ function Correct() {
                                     <p className="title">폴 시작일</p>
                                     <div className="desc">
                                         <div className="input-group">
-                                            
-                                            <input type="date" className="form-control start-date date" locale={ko} 
-                                            min={new Date().toISOString().slice(0, 10)}
-                                            onChange={(e) => setStart_Date(e.target.value)}
-                                            name="datepicker" value={Start_Date || qdata.Start_Date} /> 
+                                            <input
+                                                type="date"
+                                                className="form-control start-date date"
+                                                format="yyyy-MM-dd"
+                                                locale={ko}
+                                                min={new Date().toISOString().slice(0, 10)}
+                                                onChange={(e) => setStart_Date(e.target.value)}
+                                                name="datepicker"
+                                                value={Start_Date}
+                                                placehoder="폴 시작일"
+                                            />
+
                                             {/* <DatePicker
                                                 className="form-control start-date date"
                                                 selected={Start_Date}
                                                 onChange={date => setStart_Date(date)}
-                                                // selectsStart
-                                                // startDate={Start_Date}
-                                                // endDate={End_Date}
-                                                minDate={new Date()}
+                                                selectsStart
+                                                startDate={Start_Date}
+                                                endDate={End_Date}
                                                 locale={ko}
                                                 dateFormat="yyyy년 MM월 dd일 (eee)"
-                                                // placeholderText="폴 시작일"
-                                                // closeOnScroll={true}
-                                                value={Start_Date}
+                                                minDate={new Date()}
+                                                placeholderText="폴 시작일"
+                                                closeOnScroll={true}
+                                                value={Start_Date || moment(qdata.Start_Date).format("YYYY년 MM월 DD일 (ddd)")}
                                             /> */}
                                             <input type="text" className="timepicker clock" name="timepicker" placeholder="시간"/>
                                         </div>
@@ -771,21 +747,31 @@ function Correct() {
                                     <p className="title">폴 종료일</p>
                                     <div className="desc">
                                         <div className="input-group">
-                                            <input type="date" className="form-control end-date date" onChange={(e) => setEnd_Date(e.target.value)} 
-                                            min={new Date().toISOString().slice(0, 10)} name="datepicker" value={End_Date} /> 
+                                            <input
+                                                type="date"
+                                                className="form-control end-date date"
+                                                format="yyyy-MM-dd"
+                                                name="datepicker"
+                                                min={new Date().toISOString().slice(0, 10)}
+                                                value={End_Date}
+                                                placehoder="폴 종료일"
+                                                locale={ko}
+                                                onChange={(e) => setEnd_Date(e.target.value)}
+                                            />
+
                                             {/* <DatePicker
                                                 className="form-control end-date date"
                                                 selected={End_Date}
                                                 onChange={date => setEnd_Date(date)}
-                                                // selectsEnd
-                                                // startDate={Start_Date}
-                                                // endDate={End_Date}
+                                                selectsEnd
+                                                startDate={Start_Date}
+                                                endDate={End_Date}
                                                 minDate={Start_Date}
                                                 locale={ko}
                                                 dateFormat="yyyy년 MM월 dd일 (eee)"
-                                                // placeholderText="폴 종료일"
-                                                // closeOnScroll={true}
-                                                value={moment(qdata.End_Date).format("YYYY년 MM월 DD일 (ddd)")}
+                                                placeholderText="폴 종료일"
+                                                closeOnScroll={true}
+                                                value={End_Date || moment(qdata.End_Date).format("YYYY년 MM월 DD일 (ddd)")}
                                             /> */}
                                             <input type="text" className="timepicker clock" name="timepicker" placeholder="시간"/>
                                         </div>
@@ -797,29 +783,17 @@ function Correct() {
                                         <div><input type="text" className="txtR" onChange={handleRewards} value={Rewards}/><span className="txt">P</span></div>
                                     </div>
                                 </div>
-                                    
-                                {Type !== 2 ?
-                                <div className="item">
-                                    <p className="title">참여 인원수</p>
-                                    <div className="desc">
-                                        <div><input type="text" className="txtR" onChange={handleMax_Personnel} value={Max_Personnel}/><span className="txt">명</span></div>
-                                    </div>
-                                </div> : null}
-
-                                {/* 척도 */}
-                                {Type === 2 ?
                                 <div className="item">
                                     <p className="title">참여 인원수</p>
                                     <div className="desc">
                                         <div><input type="text" className={!check ? "txtR" : "txtR no"} value={Max_Personnel} onChange={handleMax_Personnel} readOnly={!check ? false : true}/><span className="txt">명</span></div>
                                         <p className="chkBox"><input type="checkbox" id="agr-chk" name="" onClick={handlecheck} defaultChecked={qdata.Max_Personnel === 999999 && true} readOnly/><label htmlFor="agr-chk">참여 인원수 제한 없음</label></p>
                                     </div>
-                                </div> : null}
-
+                                </div>
                                 <div className="item">
                                     <p className="title">승인</p>
                                     <div className="desc">
-                                        <p className="chkBox2"><input type="checkbox" id="agr-chk2" name="" onClick={Checkhandler} defaultChecked={qdata.State === "CHECK" && true} readOnly/><label htmlFor="agr-chk2"></label></p>
+                                        <p className="chkBox2"><input type="checkbox" id="agr-chk2" name="" onClick={Checkhandler} defaultChecked={qdata.State === 1 && true} readOnly/><label htmlFor="agr-chk2"></label></p>
                                     </div>
                                 </div>
                             </div>
@@ -881,9 +855,9 @@ function Correct() {
                                                         <div className="endbottom">{Scale_End_Text}</div>
                                                     </section>
                                                 </div>
-                                            ) : Type === 3 && Type === 4 && Type === 5 && 
-                                                Select_Image_1 || Select_Image_2 || Select_Image_3 || Select_Image_4 ||
-                                                Select_Image_5 || Select_Image_6 || Select_Image_7 || Select_Image_8 ? (
+                                            ) : (Type === 3 || Type === 4 || Type === 5) && 
+                                                (Select_Image_1 || Select_Image_2 || Select_Image_3 || Select_Image_4 ||
+                                                Select_Image_5 || Select_Image_6 || Select_Image_7 || Select_Image_8) ? (
                                                 <ul className="multipleImg">
                                                     <li>{freeImage1 && <img className="preview-img1" src={freeImage1} alt="preview-img"/>}{Select_1 ? <p>{Select_1}</p> : null}</li>
                                                     <li>{freeImage2 && <img className="preview-img1" src={freeImage2} alt="preview-img"/>}{Select_2 ? <p>{Select_2}</p> : null}</li>
@@ -894,9 +868,9 @@ function Correct() {
                                                     <li>{freeImage7 && <img className="preview-img1" src={freeImage7} alt="preview-img"/>}{Select_7 ? <p>{Select_7}</p> : null}</li>
                                                     <li>{freeImage8 && <img className="preview-img1" src={freeImage8} alt="preview-img"/>}{Select_8 ? <p>{Select_8}</p> : null}</li>
                                                 </ul>
-                                            ) : Type === 3 && Type === 4 && Type === 5 &&
-                                                Select_1 || Select_2 || Select_3 || Select_4 ||
-                                                Select_5 || Select_6 || Select_7 || Select_8 ? (
+                                            ) : (Type === 3 || Type === 4 || Type === 5) &&
+                                                (Select_1 || Select_2 || Select_3 || Select_4 ||
+                                                Select_5 || Select_6 || Select_7 || Select_8) ? (
                                                 <ul className="multipleTxt">
                                                     {Select_1 ? <li><label>1</label>{Select_1}</li> : null}
                                                     {Select_2 ? <li><label>2</label>{Select_2}</li> : null}

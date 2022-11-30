@@ -61,7 +61,7 @@ function PushData(){
 									min={new Date().toISOString().slice(0, 10)}
 									onChange={(e) => setStart_Date(e.target.value)}
 									name="datepicker"
-									value={Start_Date}
+									value={Start_Date || ''}
 									placehoder="폴 시작일"
 								/>
 
@@ -84,7 +84,7 @@ function PushData(){
 									format="yyyy-MM-dd"
 									name="datepicker"
 									min={new Date().toISOString().slice(0, 10)}
-									value={End_Date}
+									value={End_Date || ''}
 									placehoder="폴 종료일"
 									locale={ko}
 									onChange={(e) => setEnd_Date(e.target.value)}

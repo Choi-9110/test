@@ -62,7 +62,8 @@ input[type=file], input[type=url], input[type=number], input[type=date], textare
 #push_search .search-form select{margin-right: 50px;}
 #push_search .search-form li > div { min-width: 48%; display: inline-block;}
 #push_search .search-form li > div > span{margin: 0 5px;}
-#push_search .search-form li > div > div > div > input[type=text]{width: 200px;}
+#push_search .search-form li > div > input[type=date]{width: 200px;}
+#push_search .search-form li > div > input[type=date]::-webkit-calendar-picker-indicator{ font-size: 1.5rem;}
 #push_search .search-form li > div > .react-datepicker-wrapper{width: 200px; background: url(../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #push_search .search-form li > div > .react-datepicker__tab-loop{position: fixed; z-index: 1000;}
 #push_search .search-form li:last-child {margin-bottom:0;}
@@ -75,6 +76,7 @@ input[type=file], input[type=url], input[type=number], input[type=date], textare
 #push_search .sch-all.no{opacity: 0; position: absolute;}
 #push_search .sch-all {opacity: 1; height: 100%; margin-top: 20px; transition: all 0.3s;}
 #push_search .sch-all > div{display: inline-block; vertical-align: top; margin-right: 50px;}
+#push_search .sch-all > div > input[type=date]{width: 200px;}
 #push_search .sch-all > div > div > div > input[type=text]{width: 200px;}
 #push_search .sch-all > div > .react-datepicker-wrapper{width: 200px; background: url(../../../../img/ico_calendar.svg) white right 20px center no-repeat; background-size: 20px;}
 #push_search .sch-all > div > .react-datepicker__tab-loop{position: fixed; z-index: 1000;}

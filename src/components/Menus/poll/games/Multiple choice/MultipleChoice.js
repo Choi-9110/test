@@ -167,23 +167,25 @@ function MulitpleChoice(){
     }
 
 	const [Is_Using_Others, setIs_Using_Others] = useState(0)
+	
 	const Clickhandler = (e) => {
 		if(e.target.checked){
-			console.log("CHECK")
-			setIs_Using_Others(1);
+			
+			setIs_Using_Others(parseInt(1));
+			console.log("CHECK:: 기타 허용::",Is_Using_Others )
 		} else{
-			console.log("NO CHECK")
-			setIs_Using_Others(0)
+			
+			setIs_Using_Others(parseInt(0));
+			console.log("CHECKNo:: 기타 X ::",Is_Using_Others )
 		}
 	}
 
-	console.log("sssssssssssss", Is_Using_Others)
-
 	const onSubmitHandler = async(e) => {
 		e.preventDefault();
+		console.log("Is_Using_Others ::" , Is_Using_Others )
 
 		if(Image){
-
+		
 			client.post('/uploads/fileups', formData).then((res) =>{
 				const Image = res.data.returnValue[0];
 				const Select_Image_1 = res.data.returnValue[1];
@@ -380,7 +382,7 @@ function MulitpleChoice(){
 										min={new Date().toISOString().slice(0, 10)}
 										onChange={(e) => setStart_Date(e.target.value)}
 										name="datepicker"
-										value={Start_Date}
+										value={Start_Date || ''}
 										placehoder="폴 시작일"
 									/>
 
@@ -411,7 +413,7 @@ function MulitpleChoice(){
 										format="yyyy-MM-dd"
 										name="datepicker"
 										min={new Date().toISOString().slice(0, 10)}
-                  						value={End_Date}
+                  						value={End_Date || ''}
 										placehoder="폴 종료일"
 										locale={ko}
 										onChange={(e) => setEnd_Date(e.target.value)}

@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
+import client from "../../../client";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import { useNavigate } from "react-router-dom";
 import {ko} from 'date-fns/esm/locale';
 import "./Fullmember.css";
 import moment from "moment";
@@ -28,6 +30,28 @@ function FullmemberData(){
         }
     }
 
+const [memberlist , setmemberlist] = useState([]);
+	// useEffect(() => {
+	// 	client.get("/member/list").then(({data}) =>
+	// 	console.log(data),
+	// 	//console.log({data}),
+	// 	setmemberlist(data)
+		 
+		 
+	// 	 )}, [])
+
+	useEffect(() => {
+		async function listData() {
+			  const response = await client.get("/member/list")
+			  setmemberlist(response.data)
+			  }
+			  listData()
+			},[])
+
+			console.log(memberlist);
+	
+			//페이지 이동을위해 사용 
+	const navigate = useNavigate();
 
     return (
         <div className="contents">
@@ -43,7 +67,19 @@ function FullmemberData(){
 
 							<div>
 								<h4>가입기간</h4>
-								<DatePicker
+								<input
+									type="date"
+									className="form-control start-date date"
+									format="yyyy-MM-dd"
+									locale={ko}
+									min={new Date().toISOString().slice(0, 10)}
+									onChange={(e) => setStart_Date(e.target.value)}
+									name="datepicker"
+									value={Start_Date || ""}
+									placehoder="폴 시작일"
+								/>
+
+								{/* <DatePicker
                                     className="w180 form-control start-date date"
                                     selected={Start_Date}
                                     onChange={date => setStart_Date(date)}
@@ -54,9 +90,21 @@ function FullmemberData(){
                                     dateFormat="yyyy년 MM월 dd일 (eee)"
                                     minDate={new Date()}
                                     closeOnScroll={true}
-							    />
+							    /> */}
 								<span>~</span>
-								<DatePicker
+								<input
+									type="date"
+									className="form-control end-date date"
+									format="yyyy-MM-dd"
+									name="datepicker"
+									min={new Date().toISOString().slice(0, 10)}
+									value={End_Date || ""}
+									placehoder="폴 종료일"
+									locale={ko}
+									onChange={(e) => setEnd_Date(e.target.value)}
+								/>
+
+								{/* <DatePicker
 									className="form-control end-date date"
 									selected={End_Date}
 									onChange={date => setEnd_Date(date)}
@@ -67,7 +115,7 @@ function FullmemberData(){
 									locale={ko}
 									dateFormat="yyyy년 MM월 dd일 (eee)"
 									closeOnScroll={true}
-								/>
+								/> */}
 							</div>
 						</li>
 					</ul>
@@ -116,68 +164,39 @@ function FullmemberData(){
 						<tr>
 							<th scope="col">NO.</th>
 							<th scope="col">회원유형</th>
-							<th scope="col">아이디</th>
+							
 							<th scope="col">닉네임</th>
 							<th scope="col">회원가입일</th>
 							<th scope="col">최근접속일</th>
 							<th scope="col">포인트</th>
+							<th scope="col">여분 필드 값</th>
 							<th scope="col">관리</th>
 						</tr>
 					</thead>
 
 					<tbody>
-						<tr>
-							<td className="num">50</td>
-							<td className="state">일반회원</td>
-							<td>id@naver.com</td>
-							<td className="state">위시폴</td>
-							<td className="date">2022.10.01</td>
-							<td className="date">2022.10.01</td>
-							<td className="num">500</td>
-							<td className="management">
-								<Link to="/member/member-information" className="btn btnCF">보기</Link>
-								<a href="#" className="btn btnL">삭제</a>
-							</td>
-						</tr>
-						<tr>
-							<td className="num">49</td>
-							<td className="state">일반회원</td>
-							<td>id@naver.com</td>
-							<td className="state">위시폴</td>
-							<td className="date">2022.10.01</td>
-							<td className="date">2022.10.01</td>
-							<td className="num">12,000</td>
-							<td className="management">
-								<a href="#" className="btn btnCF">보기</a>
-								<a href="#" className="btn btnL">삭제</a>
-							</td>
-						</tr>
-						<tr>
-							<td className="num">48</td>
-							<td className="state">패널회원</td>
-							<td>id@naver.com</td>
-							<td className="state">위시폴</td>
-							<td className="date">2022.10.01</td>
-							<td className="date">2022.10.01</td>
-							<td className="num">1,000</td>
-							<td className="management">
-								<a href="#" className="btn btnCF">보기</a>
-								<a href="#" className="btn btnL">삭제</a>
-							</td>
-						</tr>
-						<tr>
-							<td className="num">47</td>
-							<td className="state">패널회원</td>
-							<td>id@naver.com</td>
-							<td className="state">위시폴</td>
-							<td className="date">2022.10.01</td>
-							<td className="date">2022.10.01</td>
-							<td className="num">5,000</td>
-							<td className="management">
-								<a href="#" className="btn btnCF">보기</a>
-								<a href="#" className="btn btnL">삭제</a>
-							</td>
-						</tr>
+						{memberlist.map((mdata, M_Idx)=>(
+							
+							<tr key={M_Idx} onClick={() => {
+								navigate("/member/member-information", {
+									state: {
+										data: mdata.M_Idx
+									}
+								})
+							}} >
+								<td className="num">{mdata.M_Idx}</td>
+								<td className="state">{mdata.Panel === 0 ? "일반" : mdata.Panel === 1 && "패널"}</td>
+								<td>{mdata.Nickname}</td>
+								<td className="date">{moment(mdata.Create_Date).format("YYYY-MM-DD")}</td>
+								<td className="date">{moment(mdata.Update_Date).format("YYYY-MM-DD")}</td>
+								<td className="num">{mdata.Point_Balance}</td>
+								<td > 여분 필드 값 </td>
+								<td className="management">
+									<Link to="/member/member-information" className="btn btnCF">보기</Link>
+									<a href="#" className="btn btnL">삭제</a>
+								</td>
+							</tr>
+						))} 
 					</tbody>
 				</table>
 			</section>

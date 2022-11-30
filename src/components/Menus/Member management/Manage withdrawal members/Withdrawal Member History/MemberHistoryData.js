@@ -32,7 +32,19 @@ function MemberHistoryData(){
 						<li>
 							<div>
 								<h4>탈퇴 날짜</h4>
-								<DatePicker
+								<input
+									type="date"
+									className="form-control start-date date"
+									format="yyyy-MM-dd"
+									locale={ko}
+									min={new Date().toISOString().slice(0, 10)}
+									onChange={(e) => setStart_Date(e.target.value)}
+									name="datepicker"
+									value={Start_Date || ''}
+									placehoder="폴 시작일"
+								/>
+
+								{/* <DatePicker
                                     className="form-control start-date date"
                                     selected={Start_Date}
                                     onChange={date => setStart_Date(date)}
@@ -43,9 +55,21 @@ function MemberHistoryData(){
                                     dateFormat="yyyy년 MM월 dd일 (eee)"
                                     minDate={new Date()}
                                     closeOnScroll={true}
-							    />
+							    /> */}
 								<span className="aa">~</span>
-								<DatePicker
+								<input
+									type="date"
+									className="form-control end-date date"
+									format="yyyy-MM-dd"
+									name="datepicker"
+									min={new Date().toISOString().slice(0, 10)}
+									value={End_Date || ''}
+									placehoder="폴 종료일"
+									locale={ko}
+									onChange={(e) => setEnd_Date(e.target.value)}
+								/>
+
+								{/* <DatePicker
 									className="form-control end-date date"
 									selected={End_Date}
 									onChange={date => setEnd_Date(date)}
@@ -56,7 +80,7 @@ function MemberHistoryData(){
 									locale={ko}
 									dateFormat="yyyy년 MM월 dd일 (eee)"
 									closeOnScroll={true}
-								/>
+								/> */}
 							</div>
 						</li>
 					</ul>
