@@ -14,12 +14,12 @@ function UpDown(){
 
     const [Title, setTitle] = useState("");
 
-    const [Scale_Start_Text, setScale_Start_Text] = useState("좋아요");
+    const [Scale_Start_Text, setScale_Start_Text] = useState("");
     const handleScale_Start_Text = (e) => {
         setScale_Start_Text(e.target.value);
     }
 
-    const [Scale_End_Text, setScale_End_Text] = useState("싫어요");
+    const [Scale_End_Text, setScale_End_Text] = useState("");
     const handleScale_End_Text = (e) => {
         setScale_End_Text(e.target.value);
     }
@@ -343,8 +343,8 @@ function UpDown(){
 										</div>}
 									<div className="updowns">
 										<ul className="updown">
-											<li>{Select_1}</li>
-											<li>{Select_2}</li>
+											<li>{Scale_Start_Text}</li>
+											<li>{Scale_End_Text}</li>
 										</ul>
 									</div>
 								</div>
