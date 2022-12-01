@@ -201,11 +201,11 @@ function PointData(){
 								<td>{pdata.Point_Name}</td>
 								<td className="state">{pdata.Point_Reward}</td>
 								<td className="management">
-									<Link to="/point/history" className="btn btnCF">보기</Link>
+									<a className="btn btnCF">보기</a>
 									<a href="#" className="btn btnL">삭제</a>
 								</td>
 							</tr>
-						))} 	
+						))}
 						<tr>
 							<td className="num">01</td>
 							<td className="state">2022-10-10</td>
@@ -216,7 +216,7 @@ function PointData(){
 							<td>테스트 제목</td>
 							<td className="state">2,000</td>
 							<td className="management">
-								<Link to="/point/history" className="btn btnCF">보기</Link>
+								<a href="#" className="btn btnCF">보기</a>
 								<a href="#" className="btn btnL">삭제</a>
 							</td>
 						</tr>

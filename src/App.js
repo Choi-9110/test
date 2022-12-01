@@ -45,7 +45,7 @@ function App(){
         <BrowserRouter>
             <ScrollToTop />
             <Routes>
-                <Route exact path="/" element={<Login />}/>
+                <Route path="/" element={<Login />}/>
                 
                 {/* 기본 관리 */}
                 <Route path="dashboard" element={<Dashboard />}/>
